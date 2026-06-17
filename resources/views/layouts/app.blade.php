@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
 
     {{-- If you STILL want to keep Vite when available, leave this safe-guarded block.
-         It will only run when the build manifest exists. Otherwise it’s skipped. --}}
+         It will only run when the build manifest exists. Otherwise it's skipped. --}}
     @php $viteManifest = public_path('build/manifest.json'); @endphp
     @if (file_exists($viteManifest))
         @vite(['resources/css/app.css', 'resources/js/app.js'])

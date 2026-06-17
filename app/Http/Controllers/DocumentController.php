@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers;
 
@@ -6,7 +6,7 @@ use App\Models\Document;
 
 class DocumentController extends Controller
 {
-    // GET /api/docs/{tracking_no}   (we’ll assume 8-digit numeric)
+    // GET /api/docs/{tracking_no}   (we'll assume 8-digit numeric)
     public function show(string $tracking_no)
     {
         abort_unless(preg_match('/^\d{7}$/', $tracking_no), 404);

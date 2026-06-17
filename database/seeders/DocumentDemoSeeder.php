@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace Database\Seeders;
 
@@ -28,7 +28,7 @@ class DocumentDemoSeeder extends Seeder
         $events = [
             ['2025-08-15 09:30', 'Document Received', 'Received at the Records Section by John Arzaga', $from->id],
             ['2025-08-16 13:00', 'Processing',        'Reviewed by Treasury Office staff', $to->id],
-            ['2025-08-18 10:00', 'For Approval',      'Pending approval by Mayor’s Office', null],
+            ['2025-08-18 10:00', 'For Approval',      'Pending approval by Mayor's Office', null],
             ['2025-08-20 15:15', 'Released',          'Released by Information Desk clerk', null],
         ];
 
