@@ -1,0 +1,44 @@
+@extends('adminlte::page')
+
+@section('title', 'Create Office')
+
+@section('content_header')
+    <h1>Create Office</h1>
+@stop
+
+@section('content')
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('admin.offices.store') }}" method="POST">
+            @csrf
+
+            <div class="form-group">
+                <label for="name">Office Name</label>
+                <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+                @error('name') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="main">Main</label>
+                <input type="text" name="main" class="form-control" value="{{ old('main') }}">
+                @error('main') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="district">District</label>
+                <input type="text" name="district" class="form-control" value="{{ old('district') }}">
+                @error('district') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="show_order">Show Order</label>
+                <input type="number" name="show_order" class="form-control" value="{{ old('show_order', 0) }}" required>
+                @error('show_order') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <button type="submit" class="btn btn-success">Save</button>
+            <a href="{{ route('admin.offices.index') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+@stop
