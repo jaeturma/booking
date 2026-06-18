@@ -1,0 +1,25 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-Bfj8GOT0.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DtCVKgHt.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/bookings-index.js": {
+    "file": "assets/bookings-index-BeT_H4me.js",
+    "name": "bookings-index",
+    "src": "resources/js/bookings-index.js",
+    "isEntry": true,
+    "css": [
+      "assets/bookings-index-CfX1LlEv.css"
+    ]
+  }
+}
