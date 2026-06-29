@@ -1,9 +1,11 @@
 @php
-  // Defaults (override when including)
   $tableId        = $tableId        ?? 'dataTable';
-  $orderCol       = $orderCol       ?? 0;          // index to sort (desc)
+  $orderCol       = $orderCol       ?? 0;
   $pageLength     = $pageLength     ?? 10;
-  $noOrderTargets = $noOrderTargets ?? [-1];       // disable order on last col (actions)
+  $noOrderTargets = $noOrderTargets ?? [-1];
+  $ajaxUrl        = $ajaxUrl        ?? null;
+  $columns        = $columns        ?? null;
+  $placeholder    = $placeholder    ?? null;
 @endphp
 
 <script>
@@ -13,11 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-  // Bootstrap 5 sample layout:
-  // top: length (left) + filter/search (right)
-  // middle: table
-  // bottom: info (left) + pagination (right)
-  const dt = new $.fn.dataTable.Api($('#{{ $tableId }}').DataTable({
+  const config = {
     dom:
       "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
       "rt" +
@@ -26,14 +24,27 @@ document.addEventListener('DOMContentLoaded', function () {
     lengthMenu: [[10,25,50,-1],[10,25,50,'All']],
     order: [[{{ $orderCol }}, 'desc']],
     responsive: true,
-    deferRender: true,
     stateSave: true,
     orderClasses: false,
     columnDefs: [{ targets: {!! json_encode($noOrderTargets) !!}, orderable: false }]
-    // note: no language overrides, no autofocus
-  }));
+  };
 
-  // expose if you need to access it elsewhere
+@if($ajaxUrl)
+  Object.assign(config, {
+    processing: true,
+    serverSide: true,
+    deferRender: false,
+    ajax: '{{ $ajaxUrl }}',
+@if($columns)
+    columns: {!! json_encode($columns) !!}
+@endif
+  });
+@else
+  config.deferRender = true;
+@endif
+
+  const dt = new $.fn.dataTable.Api($('#{{ $tableId }}').DataTable(config));
+
   window.__dt = window.__dt || {};
   window.__dt['{{ $tableId }}'] = dt;
 });

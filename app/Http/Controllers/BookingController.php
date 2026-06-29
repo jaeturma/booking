@@ -15,7 +15,7 @@ class BookingController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->hasRole('Admin')) {
+        if ($user->hasRole('admin')) {
             $bookings = Booking::all();
         }
         elseif ($user->office_id == 10) {

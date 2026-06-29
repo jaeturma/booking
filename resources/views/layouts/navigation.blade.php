@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('images/ddo_logo.png') }}" alt="App Logo" class="h-9 w-auto">
+                        <img src="{{ asset(\App\Models\AppSetting::getValue('app_logo_path', 'images/ddo_logo.png')) }}" alt="App Logo" class="h-9 w-auto">
                     </a>
                 </div>
 
@@ -16,26 +16,19 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    {{-- Bookings (only validator or admin) --}}
-                    @role('validator|admin')
-                        <x-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.*')">
-                            {{ __('Office Bookings') }}
-                        </x-nav-link>
-                    @endrole
-
-                    {{-- Certificates (only office_id = 10 or Admin) --}}
+                    {{-- Transaction Booking (validator, admin, or privileged offices) --}}
                     @auth
-                        @if(auth()->user()->hasRole('Admin') || auth()->user()->office_id == 10)
-                            <x-nav-link :href="route('bookings.all')" :active="request()->routeIs('bookings.all')">
-                                {{ __('All Bookings') }}
+                        @if(auth()->user()->hasAnyRole(['validator', 'admin', 'superadmin']) || in_array(auth()->user()->office_id, [10, 17]))
+                            <x-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.index') || request()->routeIs('bookings.data')">
+                                {{ __('Transaction Booking') }}
                             </x-nav-link>
                         @endif
-                        @if(auth()->user()->office_id == 10 || auth()->user()->hasRole('Admin'))
+                        @if(auth()->user()->office_id == 10 || auth()->user()->hasAnyRole(['admin', 'superadmin']))
                             <x-nav-link :href="route('certificates.index')" :active="request()->routeIs('certificates.index')">
                                 {{ __('CA Today') }}
                             </x-nav-link>
                             <x-nav-link :href="route('certificates.week')" :active="request()->routeIs('certificates.week')">
-                                {{ __('CA this Year') }}
+                                {{ __('CA Archive') }}
                             </x-nav-link>
                         @endif
                     @endauth
@@ -66,6 +59,12 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
+
+                            @if(auth()->user()->hasAnyRole(['admin', 'superadmin', 'ca', 'validator']) || in_array(auth()->user()->office_id, [10, 17]))
+                                <x-dropdown-link :href="route('admin.dashboard')">
+                                    {{ __('Admin Panel') }}
+                                </x-dropdown-link>
+                            @endif
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -105,24 +104,22 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            {{-- Responsive Bookings --}}
-            @role('validator|admin')
-                <x-responsive-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.*')">
-                    {{ __('Bookings') }}
-                </x-responsive-nav-link>
-            @endrole
-
-            {{-- Responsive Certificates --}}
+            {{-- Responsive Transaction Booking --}}
             @auth
-                @if(auth()->user()->hasRole('Admin') || auth()->user()->office_id == 10)
-                    <x-nav-link :href="route('certificates.index')" :active="request()->routeIs('certificates.*')">
-                        {{ __('Certificates') }}
-                    </x-nav-link>
+                @if(auth()->user()->hasAnyRole(['validator', 'admin', 'superadmin']) || in_array(auth()->user()->office_id, [10, 17]))
+                    <x-responsive-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.index')">
+                        {{ __('Transaction Booking') }}
+                    </x-responsive-nav-link>
                 @endif
-                @if(auth()->user()->hasRole('Admin'))
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">
+                @if(auth()->user()->office_id == 10 || auth()->user()->hasAnyRole(['admin', 'superadmin']))
+                    <x-responsive-nav-link :href="route('certificates.index')" :active="request()->routeIs('certificates.*')">
+                        {{ __('CA Today') }}
+                    </x-responsive-nav-link>
+                @endif
+                @if(auth()->user()->hasAnyRole(['admin', 'superadmin', 'ca', 'validator']) || in_array(auth()->user()->office_id, [10, 17]))
+                    <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">
                         {{ __('Admin Panel') }}
-                    </x-nav-link>
+                    </x-responsive-nav-link>
                 @endif
             @endauth
         </div>

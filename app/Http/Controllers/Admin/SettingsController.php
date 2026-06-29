@@ -25,6 +25,10 @@ class SettingsController extends Controller
             'ca_esign' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'ca_pnpki' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'ca_background' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'login_logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'app_logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'kiosk_title' => 'required|string|max:100',
+            'kiosk_footer' => 'nullable|string|max:255',
         ]);
 
         AppSetting::setValue('ca_signatory_name', $data['ca_signatory_name']);
@@ -34,6 +38,10 @@ class SettingsController extends Controller
         $this->storeImageSetting($request, 'ca_esign', 'ca_esign_path');
         $this->storeImageSetting($request, 'ca_pnpki', 'ca_pnpki_path');
         $this->storeImageSetting($request, 'ca_background', 'ca_background_path');
+        $this->storeImageSetting($request, 'login_logo', 'login_logo_path');
+        $this->storeImageSetting($request, 'app_logo', 'app_logo_path');
+        AppSetting::setValue('kiosk_title', $data['kiosk_title']);
+        AppSetting::setValue('kiosk_footer', $data['kiosk_footer'] ?? '');
 
         return redirect()
             ->route('admin.settings.edit')

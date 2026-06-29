@@ -18,14 +18,14 @@ class CertificateController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->hasAnyRole(['admin', 'administration'])) {
+        if ($user->hasAnyRole(['admin', 'ca', 'validator'])) {
             $certificates = Certificate::with(['office', 'service'])
                 ->whereDate('issued_at', Carbon::today())
                 ->whereNull('printed_at')
                 ->orderByDesc('issued_at')
                 ->get();
 
-            $officeName = "Unprinted Certificates Today";
+            $officeName = "CA Today";
         } else {
             return redirect()->route('dashboard')
                 ->with('error', 'You are not authorized to access Certificates.');
@@ -39,7 +39,7 @@ class CertificateController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->hasAnyRole(['admin', 'administration'])) {
+        if ($user->hasAnyRole(['admin', 'ca', 'validator'])) {
             $certificates = Certificate::with(['office','service'])
                 ->whereBetween('issued_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfDay()])
                 ->orderByDesc('issued_at')
@@ -106,7 +106,7 @@ class CertificateController extends Controller
     {
         $user = auth()->user();
 
-        if (! ($user && $user->hasAnyRole(['admin', 'administration']))) {
+        if (! ($user && $user->hasAnyRole(['admin', 'ca']))) {
             return response()->json(['status' => 'error', 'message' => 'Unauthorized'], 403);
         }
 

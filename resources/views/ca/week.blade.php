@@ -1,6 +1,6 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $officeName }}</h2>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">CA Archive</h2>
   </x-slot>
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
               @foreach($certificates as $c)
-                <tr>
+                <tr data-issued="{{ $c->issued_at->timestamp }}">
                   <td>{{ $c->certificate_number }}</td>
                   <td>{{ $c->guest_name }}</td>
                   <td>{{ $c->office->name ?? '' }}</td>
@@ -55,9 +55,55 @@
   @push('scripts')
     @include('partials.vendor-dt-bs5-scripts')
     <script>
-      $(function () {
-        $('#certificatesTable').DataTable();
+    $(function () {
+      let activeFilter = 'today';
+
+      $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+        if (settings.nTable.id !== 'certificatesTable') return true;
+        const ts = parseInt($(settings.aoData[dataIndex].nTr).data('issued')) * 1000;
+        if (isNaN(ts)) return true;
+        return inDateRange(new Date(ts), activeFilter);
       });
+
+      function inDateRange(date, filter) {
+        const now = new Date();
+        const sod  = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        switch (filter) {
+          case 'today':
+            return sod(date).getTime() === sod(now).getTime();
+          case 'week': {
+            const start = sod(now);
+            start.setDate(now.getDate() - ((now.getDay() + 6) % 7)); // Monday
+            const end = new Date(start);
+            end.setDate(start.getDate() + 7);
+            return date >= start && date < end;
+          }
+          case 'month':
+            return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
+          case 'year':
+            return date.getFullYear() === now.getFullYear();
+          default:
+            return true;
+        }
+      }
+
+      const dt = $('#certificatesTable').DataTable({
+        columnDefs: [{ targets: [-1], orderable: false }],
+        initComplete: function () {
+          const select = $('<select class="form-select form-select-sm d-inline-block w-auto me-2">'
+            + '<option value="today">Today</option>'
+            + '<option value="week">This Week</option>'
+            + '<option value="month">This Month</option>'
+            + '<option value="year">This Year</option>'
+            + '</select>');
+          $('#certificatesTable_filter').prepend(select);
+          select.on('change', function () {
+            activeFilter = this.value;
+            dt.draw();
+          });
+        },
+      });
+    });
     </script>
   @endpush
 </x-app-layout>

@@ -1,58 +1,72 @@
 @extends('adminlte::page')
 
-@section('title', 'Offices Management')
+@section('title', 'Offices')
 
-@section('content_header')
-    <h1>Offices</h1>
+@section('content_header')@stop
+
+@section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
 @stop
 
 @section('content')
-<div class="card">
+<div class="card mt-3">
     <div class="card-header">
-        <a href="{{ route('admin.offices.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Add Office
-        </a>
+        <h3 class="card-title">Offices</h3>
+        @can('manage-offices-services')
+        <div class="card-tools">
+            <a href="{{ route('admin.offices.create') }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Add Office
+            </a>
+        </div>
+        @endcan
     </div>
     <div class="card-body">
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <table class="table table-bordered table-striped">
+        <table id="officesTable" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Group</th>
                     <th>Main</th>
                     <th>District</th>
                     <th>Show Order</th>
-                    <th width="150px">Actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach($offices as $i => $office)
-                <tr>
-                    <td>{{ $i + 1 }}</td>
-                    <td>{{ $office->name }}</td>
-                    <td>{{ $office->main ?? '-' }}</td>
-                    <td>{{ $office->district ?? '-' }}</td>
-                    <td>{{ $office->show_order }}</td>
-                    <td>
-                        <a href="{{ route('admin.offices.edit', $office->id) }}" class="btn btn-sm btn-warning">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <form action="{{ route('admin.offices.destroy', $office->id) }}" method="POST" style="display:inline;">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('Are you sure?')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>
+@stop
+
+@section('js')
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    $('#officesTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{{ route("admin.offices.data") }}',
+        columns: [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            { data: 'name',        name: 'name' },
+            { data: 'group',       name: 'group',       defaultContent: '-' },
+            { data: 'main',        name: 'main',        defaultContent: '-' },
+            { data: 'district',    name: 'district',    defaultContent: '-' },
+            { data: 'show_order',  name: 'show_order' },
+            { data: 'actions',     name: 'actions',     orderable: false, searchable: false },
+        ],
+        order: [[4, 'asc']],
+        pageLength: 10,
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        responsive: true,
+    });
+});
+</script>
 @stop

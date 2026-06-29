@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
   $(document).on('click', '.js-validate', async function (e) {
     const btn    = e.currentTarget;
     const action = btn.dataset.action;
-    const rowSel = btn.dataset.row;
     const code   = btn.dataset.code;
     const token  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -36,10 +35,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
       await Swal.fire("Saved!", "", "success");
 
-      const rowEl = document.querySelector(rowSel);
-      const dt = window.__dt && window.__dt['bookingsTable'];
-      if (rowEl && dt) dt.row(rowEl).remove().draw(false);
-      else if (rowEl) rowEl.remove();
+      // Reload the DataTable to reflect the updated status
+      const tableEl = btn.closest('table');
+      const tableId = tableEl ? tableEl.id : null;
+      const dt = window.__dt && tableId && window.__dt[tableId];
+      if (dt) {
+        dt.ajax.reload(null, false);
+      } else {
+        // fallback: remove row from DOM for client-side tables
+        const rowSel = btn.dataset.row;
+        const rowEl = rowSel ? document.querySelector(rowSel) : null;
+        if (rowEl) rowEl.remove();
+      }
     } catch (err) {
       Swal.fire("Error", err.message || "Validation failed", "error");
     }

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Office;
+use App\Models\Booking;
+use App\Models\Service;
+use App\Models\User;
 
 // Controllers
 use App\Http\Controllers\ProfileController;
@@ -19,6 +22,9 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\SurveyController;
+use App\Http\Controllers\Admin\SupportController;
 
 
 /*
@@ -92,24 +98,59 @@ Route::middleware(['auth'])->group(function () {
     | Admin Routes
     |--------------------------------------------------------------------------
     */
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware(['admin.panel'])->group(function () {
 
         Route::get('/dashboard', function () {
-            return view('admin.dashboard');
+            $user = auth()->user();
+            if ($user->hasAnyRole(['admin', 'ca'])) {
+                return view('admin.dashboard', [
+                    'isValidator'    => false,
+                    'userCount'      => User::count(),
+                    'officeCount'    => Office::count(),
+                    'serviceCount'   => Service::count(),
+                    'pendingCount'   => Booking::where('is_validated', 0)->count(),
+                    'validatedToday' => Booking::where('is_validated', 1)
+                                           ->whereDate('created_at', today())->count(),
+                ]);
+            }
+            // validator role — show their office's bookings for today only
+            $officeId = $user->office_id;
+            return view('admin.dashboard', [
+                'isValidator'    => true,
+                'officeName'     => optional($user->office)->name ?? 'Your Office',
+                'pendingToday'   => Booking::where('office_id', $officeId)
+                                        ->where('is_validated', 0)
+                                        ->whereDate('created_at', today())->count(),
+                'validatedToday' => Booking::where('office_id', $officeId)
+                                        ->where('is_validated', 1)
+                                        ->whereDate('created_at', today())->count(),
+                'totalToday'     => Booking::where('office_id', $officeId)
+                                        ->whereDate('created_at', today())->count(),
+            ]);
         })->name('dashboard');
 
-        // Admin CRUD resources
-        Route::resource('users', UserController::class);
-        Route::resource('roles', RoleController::class);
-        Route::resource('permissions', PermissionController::class);
-        Route::resource('offices', OfficeController::class);
+        // Shared routes — accessible to all admin-panel roles
+        Route::get('/offices/data',      [OfficeController::class,     'getData'])->name('offices.data');
+        Route::get('/transactions',      [TransactionController::class, 'index'])->name('transactions.index');
+        Route::get('/transactions/data', [TransactionController::class, 'getData'])->name('transactions.data');
+        Route::get('/support',           [SupportController::class,    'index'])->name('support.index');
+        Route::resource('offices',  OfficeController::class);
         Route::resource('services', ServiceController::class);
-        Route::get('/settings', [SettingsController::class, 'edit'])->name('settings.edit');
-        Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
 
-        // DataTables endpoint for users
-        Route::get('/users/data', [UserController::class, 'getData'])
-            ->name('users.data');
+        // ICT Office only (admin role)
+        Route::middleware('role:admin')->group(function () {
+            Route::get('/users/data',     [UserController::class, 'getData'])->name('users.data');
+            Route::get('/users/template', [UserController::class, 'downloadTemplate'])->name('users.template');
+            Route::post('/users/import',  [UserController::class, 'importCsv'])->name('users.import');
+            Route::get('/surveys/data',               [SurveyController::class, 'getData'])->name('surveys.data');
+            Route::get('/surveys/{survey}/responses', [SurveyController::class, 'responses'])->name('surveys.responses');
+            Route::get('/surveys',                    [SurveyController::class, 'index'])->name('surveys.index');
+            Route::resource('users',       UserController::class);
+            Route::resource('roles',       RoleController::class);
+            Route::resource('permissions', PermissionController::class);
+            Route::get('/settings', [SettingsController::class, 'edit'])->name('settings.edit');
+            Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
+        });
     });
 
     /*
@@ -122,7 +163,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/bookings/{booking}/validate', [BookingAdminController::class, 'validateBooking'])->name('bookings.validate');
         Route::post('/bookings/{booking}/hide', [BookingAdminController::class, 'hide'])->name('bookings.hide');
         Route::post('/bookings/{booking}/unhide', [BookingAdminController::class, 'unhide'])->name('bookings.unhide');
-        Route::get('/bookings/all', [BookingAdminController::class, 'all'])->name('bookings.all');
+        Route::get('/bookings/data', [BookingAdminController::class, 'getIndexData'])->name('bookings.data');
     });
 
 
@@ -133,18 +174,19 @@ Route::middleware(['auth'])->group(function () {
     */
 Route::prefix('ca')
     ->name('certificates.')
-    ->middleware(['auth'])
+    ->middleware(['auth', 'role:admin|validator|ca'])
     ->group(function () {
         Route::get('/', [CertificateController::class, 'index'])->name('index');
         Route::get('/week', [CertificateController::class, 'week'])->name('week');
 
-        // ✅ Place toggle route before the wildcard {certificate}
-        Route::patch('/{certificate}/toggle-ob-ot', [App\Http\Controllers\CertificateController::class, 'toggleObOt'])
-            ->name('toggle-ob-ot');
-
-        Route::get('/{certificate}/print-preview', [CertificateController::class, 'printPreview'])->name('print-preview');
-        Route::get('/{certificate}/print-fresh', [CertificateController::class, 'printFresh'])->name('print-fresh');
-        Route::get('/{certificate}/print-esign', [CertificateController::class, 'printEsign'])->name('print-esign');
+        // Admin/CA only — print and toggle actions
+        Route::middleware('role:admin|ca')->group(function () {
+            Route::patch('/{certificate}/toggle-ob-ot', [App\Http\Controllers\CertificateController::class, 'toggleObOt'])
+                ->name('toggle-ob-ot');
+            Route::get('/{certificate}/print-preview', [CertificateController::class, 'printPreview'])->name('print-preview');
+            Route::get('/{certificate}/print-fresh',   [CertificateController::class, 'printFresh'])->name('print-fresh');
+            Route::get('/{certificate}/print-esign',   [CertificateController::class, 'printEsign'])->name('print-esign');
+        });
 
         Route::get('/{certificate}', [CertificateController::class, 'show'])->name('show');
     });

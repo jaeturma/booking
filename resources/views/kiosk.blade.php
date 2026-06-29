@@ -19,7 +19,7 @@
     body { background: #f2f2f2; }
 
     .header { background: #FFD700; box-shadow: 0 4px 10px rgba(0,0,0,.15); }
-    .header .brand { display:flex; align-items:center; gap:.6rem; font-weight:700; }
+    .header .brand { display:flex; align-items:center; gap:.6rem; font-weight:700; font-size:1.5rem; }
     .header .brand i { font-size:1.4rem; }
     .btn, .form-control, .modal-content, .card, .progress, .progress-bar { border-radius:0!important; }
 
@@ -75,16 +75,20 @@
 	  color: #222;
 	}
 
+  /* Radio: large white, fills golden yellow when selected */
   .form-check-input.radio-gold {
-    background-color: #FFD700 !important;
-    border: 2px solid #333;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    border: 3px solid #888;
+    background-color: #fff !important;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease;
   }
-
   .form-check-input.radio-gold:checked {
     background-color: #FFD700 !important;
-    border-color: #222 !important;
+    border-color: #555 !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23333'/%3e%3c/svg%3e") !important;
   }
 
     .panel { background:#fff; box-shadow:0 8px 18px rgba(0,0,0,.15); padding:24px; margin-top:18px; }
@@ -105,10 +109,86 @@
     .form-control { box-shadow:0 3px 6px rgba(0,0,0,.08); }
 
     .hidden { display:none!important; }
-    .modal-dialog-top { margin: 200px auto !important; }
-    .form-check-input.big-radio { width: 2rem; height: 2rem; }
+
+    /* Portrait kiosk: push every modal into the lower touchable zone */
+    .modal-dialog-top { margin: 32vh auto 1rem !important; }
+    .modal-dialog-centered {
+        align-items: flex-start !important;
+        padding-top: 30vh !important;
+        min-height: unset !important;
+    }
+    .form-check-input.big-radio {
+      width: 3.5rem;
+      height: 3.5rem;
+      min-width: 3.5rem;
+      border: 3px solid #888;
+      background-color: #fff !important;
+      cursor: pointer;
+      transition: background-color .15s ease, border-color .15s ease;
+    }
+    .form-check-input.big-radio:checked {
+      background-color: #FFD700 !important;
+      border-color: #555 !important;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23333'/%3e%3c/svg%3e") !important;
+    }
+
+    /* Spinner overlay */
+    #submitSpinner {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    #submitSpinner .spinner-ring {
+      width: 7rem; height: 7rem;
+      border: 10px solid rgba(255,255,255,.25);
+      border-top-color: #FFD700;
+      border-radius: 50%;
+      animation: spin .9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
     .form-check-label.big-label { font-size: 1.5rem; font-weight: bold; margin-left: 0.5rem; }
       
+    /* Thin top progress bar — all network activity */
+    #kioskProgress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      z-index: 99999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    #kioskProgress.active { opacity: 1; }
+    #kioskProgress .kp-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #FFD700 0%, #FF6600 60%, #FFD700 100%);
+      background-size: 200% 100%;
+      box-shadow: 0 0 10px rgba(255,165,0,.9), 0 0 4px #FFD700;
+      animation: kp-shimmer 1.6s linear infinite;
+    }
+    @keyframes kp-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+    /* Android-style circular loader inside keypad modal */
+    #keypadLoader .android-spinner {
+      width: 4rem; height: 4rem;
+      border-radius: 50%;
+      border: 5px solid #e0e0e0;
+      border-top:   5px solid #1a73e8;
+      border-right: 5px solid #1a73e8;
+      animation: spin .85s cubic-bezier(.4,0,.2,1) infinite;
+      margin: 0 auto;
+    }
+    #keypadLoader .loader-label {
+      font-size: 1rem; color: #555; margin-top: .6rem;
+    }
+
     .timeline { position: relative; margin: 20px 0; padding-left: 20px; border-left: 3px solid #ccc; }
     .timeline-item { display: flex; align-items: flex-start; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee; position: relative; }
     .timeline-item:last-child { border-bottom: none; }
@@ -146,21 +226,40 @@
       .office-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .office-grid > .office-btn:nth-child(-n+2){ grid-column: span 2; }
     }
-  
+
+    .kiosk-footer {
+      background: #FFD700;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #222;
+      box-shadow: 0 -2px 8px rgba(0,0,0,.1);
+      margin-top: 32px;
+    }
+
   </style>
 </head>
 <body>
+
+<!-- Thin top progress bar (shown on every network request) -->
+<div id="kioskProgress"><div class="kp-bar" id="kioskProgressBar"></div></div>
 
   <!-- Header -->
 	<div class="header py-3">
 	  <div class="wrap d-flex align-items-center justify-content-between">
 		<div class="brand">
 		  <i class="bi bi-tablet"></i>
-		  <span>Self-Service Kiosk</span>
+		  <span>{{ \App\Models\AppSetting::getValue('kiosk_title', 'Self-Service Kiosk') }}</span>
 		</div>
-		<button id="homeBtn" class="btn btn-outline-dark">
-		  <i class="bi bi-house-fill me-1"></i> Home
-		</button>
+		<div class="d-flex gap-2">
+		  <button id="fullscreenBtn" class="btn btn-outline-dark" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+		    <i id="fullscreenIcon" class="bi bi-fullscreen"></i>
+		  </button>
+		  <button id="homeBtn" class="btn btn-outline-dark">
+		    <i class="bi bi-house-fill me-1"></i> Home
+		  </button>
+		</div>
 	  </div>
 	</div>
   </br></br></br></br></br>
@@ -297,6 +396,115 @@
 	  </div>
 	</div>
 
+    <!-- How to Use -->
+    <div id="guideFlow" class="panel hidden">
+      <h4><i class="bi bi-question-circle me-2"></i>How to Use This Kiosk</h4>
+      <p class="text-muted mb-3">Follow the steps below depending on what you need.</p>
+
+      <div class="accordion" id="guideAccordion">
+
+        <!-- Book Transaction -->
+        <div class="accordion-item mb-2">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#guide1">
+              <i class="bi bi-calendar-check me-2 fs-5"></i> Book a Transaction
+            </button>
+          </h2>
+          <div id="guide1" class="accordion-collapse collapse show" data-bs-parent="#guideAccordion">
+            <div class="accordion-body fs-5">
+              <ol class="mb-0">
+                <li class="mb-2">Tap <strong>Book Transaction</strong> from the main menu.</li>
+                <li class="mb-2">Select your <strong>Customer Type</strong>:
+                  <ul class="mt-1">
+                    <li><strong>Business</strong> – Private schools, companies, or establishments.</li>
+                    <li><strong>Citizen</strong> – General public, learners, parents, or NGOs.</li>
+                    <li><strong>Government</strong> – DepEd employees or other government agency staff. Enter your <em>7-digit Employee ID</em> (optional) and tap <strong>Continue</strong>.</li>
+                  </ul>
+                </li>
+                <li class="mb-2">Select the <strong>Office</strong> you need to visit.</li>
+                <li class="mb-2">Select the <strong>Service</strong> you need from that office.</li>
+                <li class="mb-2">If prompted, select a <strong>Sub-service</strong>.</li>
+                <li class="mb-2">Review the summary, then tap <strong>Confirm</strong>.</li>
+                <li>Your <strong>Booking Code</strong> will appear on screen — please note it down. A QR code is also shown for your reference.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSM Survey -->
+        <div class="accordion-item mb-2">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guide2">
+              <i class="bi bi-emoji-smile me-2 fs-5"></i> Client Satisfaction Measurement (CSM)
+            </button>
+          </h2>
+          <div id="guide2" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+            <div class="accordion-body fs-5">
+              <p class="mb-2">The CSM is a quick survey about your experience. You can only take it <strong>after your transaction has been verified</strong> by the office.</p>
+              <ol class="mb-0">
+                <li class="mb-2">Tap <strong>Client Satisfaction Measurement</strong> from the main menu.</li>
+                <li class="mb-2">Tap the input box, enter your <strong>6-digit Booking Code</strong> using the keypad, then tap <strong>Validate Booking</strong>.</li>
+                <li class="mb-2">Check your booking status:
+                  <ul class="mt-1">
+                    <li><span class="badge bg-success">Verified</span> – You may proceed with the survey.</li>
+                    <li><span class="badge bg-warning text-dark">Pending Verification</span> – Please proceed to the office window first, then tap <strong>Refresh Booking Status</strong> to check again.</li>
+                    <li><span class="badge bg-secondary">CSM Completed</span> – You have already submitted your survey.</li>
+                  </ul>
+                </li>
+                <li class="mb-2">Once verified, tap <strong>START Client Satisfaction Survey</strong>.</li>
+                <li class="mb-2">Provide your <strong>Age</strong>, <strong>Gender</strong>, and optional <strong>Mobile Number</strong>, then tap <strong>NEXT</strong>.</li>
+                <li class="mb-2">Answer the pre-survey questions about the Citizens Charter, then tap <strong>CONTINUE</strong>.</li>
+                <li class="mb-2">Answer each survey question by tapping your response.</li>
+                <li class="mb-2">Choose whether to request a <strong>Certificate of Appearance</strong>.</li>
+                <li>Tap <strong>Submit</strong>. If you requested a Certificate of Appearance, proceed to the Admin Office / HRMO window with your Booking Code.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track Document -->
+        <div class="accordion-item mb-2">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guide3">
+              <i class="bi bi-search me-2 fs-5"></i> Track a Document
+            </button>
+          </h2>
+          <div id="guide3" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+            <div class="accordion-body fs-5">
+              <ol class="mb-0">
+                <li class="mb-2">Tap <strong>Track Document</strong> from the main menu.</li>
+                <li class="mb-2">Tap the input box and enter your <strong>7-digit Document Tracking Number</strong> using the keypad.</li>
+                <li class="mb-2">Tap <strong>Search</strong> to view the current status and movement history of your document.</li>
+                <li>Tap <strong>Clear</strong> to reset and search for a different document.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- Citizens Charter -->
+        <div class="accordion-item mb-2">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guide4">
+              <i class="bi bi-file-earmark-text me-2 fs-5"></i> Citizens Charter
+            </button>
+          </h2>
+          <div id="guide4" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+            <div class="accordion-body fs-5">
+              <p class="mb-0">Tap <strong>Citizens Charter</strong> from the main menu to view the official list of services, requirements, and processing times of this office. Use it as a guide before booking your transaction.</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /accordion -->
+
+      <hr>
+      <div class="actions row g-0 w-100">
+        <div class="col-3 d-grid"></div>
+        <div class="col-6 d-grid"><button class="btn btn-warning btn-lg w-100" onclick="goHome()"><i class="bi bi-house me-1"></i> Back to Menu</button></div>
+        <div class="col-3 d-grid"></div>
+      </div>
+    </div>
+
     <!-- Citizens Charter -->
     <div id="charterFlow" class="panel hidden">
 	  <h4><i class="bi bi-info-circle me-2"></i>Citizens Charter</h4>
@@ -374,6 +582,13 @@
       </div>
 
       <div id="keypadMessage" class="alert alert-danger d-none" role="alert"></div>
+
+      {{-- Android-style circular loader shown during validation --}}
+      <div id="keypadLoader" class="d-none text-center py-3">
+        <div class="android-spinner"></div>
+        <div class="loader-label" id="keypadLoaderText">Validating&hellip;</div>
+      </div>
+
       <div class="d-grid gap-2">
         <button id="validateBtn" class="btn btn-primary btn-lg" onclick="validateKeypadValue()">
           <i class="bi bi-check2-circle"></i> Validate Entry
@@ -420,7 +635,49 @@ const OFFICES = (function normalize(data){
 function showTemporaryAlert(message, type = "info") {
   Swal.fire({ toast:true, position:'top', icon:type, title:message, showConfirmButton:false, timer:3000, timerProgressBar:true });
 }
-function api(url, opts={}){ return fetch(url, {headers:{'Content-Type':'application/json', ...(opts.headers||{})}, ...opts}); }
+/* ---- Thin progress bar ---- */
+let _pReqs = 0, _pTimer = null, _pVal = 0;
+
+function showProgress() {
+  const bar = document.getElementById('kioskProgressBar');
+  const wrap = document.getElementById('kioskProgress');
+  if (!bar || !wrap) return;
+  clearInterval(_pTimer);
+  _pVal = 0;
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  wrap.classList.add('active');
+  requestAnimationFrame(() => {
+    bar.style.transition = 'width .4s ease';
+    bar.style.width = '35%';
+    _pVal = 35;
+    _pTimer = setInterval(() => {
+      if (_pVal < 85) {
+        _pVal += Math.random() * 7 + 1;
+        bar.style.width = Math.min(_pVal, 85) + '%';
+      }
+    }, 500);
+  });
+}
+
+function hideProgress() {
+  const bar = document.getElementById('kioskProgressBar');
+  const wrap = document.getElementById('kioskProgress');
+  if (!bar || !wrap) return;
+  clearInterval(_pTimer);
+  bar.style.transition = 'width .15s ease';
+  bar.style.width = '100%';
+  setTimeout(() => {
+    wrap.classList.remove('active');
+    setTimeout(() => { bar.style.transition = 'none'; bar.style.width = '0%'; }, 280);
+  }, 200);
+}
+
+function api(url, opts={}) {
+  if (++_pReqs === 1) showProgress();
+  return fetch(url, {headers: {'Content-Type': 'application/json', ...(opts.headers || {})}, ...opts})
+    .finally(() => { if (--_pReqs <= 0) { _pReqs = 0; hideProgress(); } });
+}
 function isEnabledFlag(value) {
   return value === true || value === 1 || value === "1";
 }
@@ -602,9 +859,20 @@ function keypadInput(val) {
 }
 
 async function validateKeypadValue() {
-  const value = document.getElementById("keypadTarget").value.trim();
-  const msg   = document.getElementById("keypadMessage");
-  const btn   = document.getElementById("validateBtn");
+  const value      = document.getElementById("keypadTarget").value.trim();
+  const msg        = document.getElementById("keypadMessage");
+  const btn        = document.getElementById("validateBtn");
+  const loader     = document.getElementById("keypadLoader");
+  const loaderText = document.getElementById("keypadLoaderText");
+
+  // Show Android-style circular loader
+  msg.classList.add("d-none");
+  msg.textContent = "";
+  loaderText.textContent = currentType === "employee" ? "Looking up employee…"
+                         : currentType === "booking"  ? "Checking booking code…"
+                         : "Searching…";
+  loader.classList.remove("d-none");
+  btn.disabled = true;
 
   let valid = false, name = "", transactionStatus = "", canStartSurvey = false, transactionStatusType = "warning", validatedBooking = null;
 
@@ -635,6 +903,10 @@ async function validateKeypadValue() {
   } catch (e) {
     valid = false;
   }
+
+  // Hide loader, restore button
+  loader.classList.add("d-none");
+  btn.disabled = false;
 
   if (valid) {
     if (currentType === "employee") {
@@ -685,8 +957,9 @@ function goHome(){
   mainMenu.classList.remove("hidden");
   bookingFlow.classList.add("hidden"); 
   surveyFlow.classList.add("hidden"); 
-  charterFlow.classList.add("hidden"); 
-  trackerFlow.classList.add("hidden");    // ✅ hide tracker
+  charterFlow.classList.add("hidden");
+  trackerFlow.classList.add("hidden");
+  document.getElementById("guideFlow").classList.add("hidden");
   stepsBar.classList.add("hidden");
   document.getElementById("trackResult").innerHTML = "";
   document.getElementById("trackId").value = "";
@@ -695,6 +968,7 @@ function showTracker(){ mainMenu.classList.add("hidden"); document.getElementByI
 function startBooking(){ mainMenu.classList.add("hidden"); bookingFlow.classList.remove("hidden"); stepsBar.classList.remove("hidden"); bookingStep=0; renderBooking(); }
 function startSurvey(){ mainMenu.classList.add("hidden"); surveyFlow.classList.remove("hidden"); renderSurvey(); }
 function showCharter(){ mainMenu.classList.add("hidden"); charterFlow.classList.remove("hidden"); }
+function showGuide(){ mainMenu.classList.add("hidden"); document.getElementById("guideFlow").classList.remove("hidden"); }
 function escapeJs(value) {
   return String(value || "").replace(/\\/g, "\\\\").replace(/'/g, "\\'");
 }
@@ -872,6 +1146,7 @@ async function confirmBooking() {
   const bookingsApi = "{{ url('/api/bookings') }}";
 
   try{
+    showProgress();
     const r = await fetch(bookingsApi, {
       method:'POST',
       headers: {
@@ -895,8 +1170,10 @@ async function confirmBooking() {
         ${bookingData.subService ? `<div><strong>Sub-service:</strong></div><div>${bookingData.subService}</div>` : ""}
       </div>`;
     new QRious({ element: document.getElementById("qrCanvas"), value: buildSurveyUrl(data.booking_code), size: 220 });
+    hideProgress();
     new bootstrap.Modal(document.getElementById("bookingModal")).show();
   }catch(err){
+    hideProgress();
     Swal.fire({icon:'error', title:'Booking failed', text: (err?.message || 'Please check inputs')});
   }
 }
@@ -952,7 +1229,7 @@ function renderSurvey(){
     const q = surveyQ[surveyIndex];
     surveyContent.innerHTML = `
       <h4>Question ${surveyIndex+1}</h4>
-      <p>${q.question}</p>
+      <p class="fs-4 fw-bold mt-2 mb-4">${q.question}</p>
       <div class="d-grid gap-2">
         ${[
           { label: '<i class="bi bi-emoji-heart-eyes-fill"></i> Strongly Agree (5)', value: '5' },
@@ -1284,6 +1561,7 @@ function answerSurvey(qid, ans){
 function onSurveyBack(){ surveyIndex=Math.max(-1,surveyIndex-1); renderSurvey(); }
 
 async function submitSurvey(){
+  document.getElementById('submitSpinner').classList.remove('d-none');
   try{
     const answers = Object.keys(surveyAnswers).map(qid => ({ question_id: Number(qid), answer: surveyAnswers[qid] }));
    const r = await api('/api/surveys/submit', {
@@ -1310,9 +1588,11 @@ async function submitSurvey(){
     const data = await r.json();
     if(!r.ok) throw data;
 
-    goHome();
-    setTimeout(()=>showTemporaryAlert("Thank you! Survey submitted. </br>Please proceed to Admin Office for your CA if you have requested.", "success"),200);
+    document.getElementById('submitSpinner').classList.add('d-none');
+    document.getElementById('coaInstruction').style.display = surveyCOASelected ? '' : 'none';
+    new bootstrap.Modal(document.getElementById('surveySuccessModal')).show();
   }catch(err){
+    document.getElementById('submitSpinner').classList.add('d-none');
     showTemporaryAlert(err.message || "Failed to submit survey.", "error");
   }
 }
@@ -1335,6 +1615,7 @@ async function searchDocument(){
   }
 
   resultBox.innerHTML = '';
+  showProgress();
   try{
     const r = await fetch(`/api/docs/${encodeURIComponent(trackId)}`);
     const data = await r.json();
@@ -1371,8 +1652,10 @@ async function searchDocument(){
         }).join('') }
       </div>
     `;
+    hideProgress();
     resultBox.innerHTML = html;
   }catch(err){
+    hideProgress();
     resultBox.innerHTML = `<div class="alert alert-danger">❌ Document not found.</div>`;
   }
 }
@@ -1383,6 +1666,54 @@ function clearTracking(){ document.getElementById("trackId").value = ""; documen
 /* ========= INIT ========= */
 goHome();
 </script>
+
+<!-- Submitting Spinner Overlay -->
+<div id="submitSpinner" class="d-none">
+  <div class="spinner-ring mb-4"></div>
+  <div class="fs-3 fw-bold">Submitting your response&hellip;</div>
+  <div class="mt-2 fs-5 text-warning">Please wait</div>
+</div>
+
+<!-- Survey Success Modal -->
+<div class="modal fade" id="surveySuccessModal" tabindex="-1"
+     data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content text-center p-4 p-md-5">
+
+      <div class="mb-3">
+        <i class="bi bi-patch-check-fill text-success" style="font-size:5rem;"></i>
+      </div>
+      <h2 class="fw-bold mb-2">Thank You!</h2>
+      <p class="fs-5 text-muted mb-4">Your survey response has been submitted successfully.</p>
+
+      <!-- COA instruction — shown only when requested_coa = true -->
+      <div id="coaInstruction" class="alert alert-warning border-2 border-warning p-4 text-start"
+           style="display:none; border-left: 6px solid #FFD700 !important;">
+        <div class="d-flex align-items-start gap-3">
+          <i class="bi bi-printer-fill fs-2 text-dark mt-1 flex-shrink-0"></i>
+          <div>
+            <h5 class="fw-bold mb-1">Certificate of Appearance — Next Step</h5>
+            <p class="fs-5 mb-1">
+              You requested a <strong>Certificate of Appearance (CA)</strong>.
+            </p>
+            <p class="fs-5 mb-0">
+              Please proceed to the <strong>Admin Office / HRMO Window</strong>
+              and present your <strong>Booking Code</strong> for the printing of your certificate.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-warning btn-lg px-5 fw-bold" style="font-size:1.3rem;"
+                data-bs-dismiss="modal" onclick="goHome()">
+          <i class="bi bi-house-fill me-2"></i> Back to Menu
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- Keypad Modal -->
 <div class="modal fade" id="keypadModal" tabindex="-1" aria-labelledby="keypadModalLabel" aria-hidden="true">
@@ -1473,7 +1804,25 @@ function openClientSatisfactionFromUrl() {
 }
 
 setTimeout(openClientSatisfactionFromUrl, 0);
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen().catch(() => {});
+  }
+}
+
+document.addEventListener('fullscreenchange', () => {
+  const icon = document.getElementById('fullscreenIcon');
+  if (!icon) return;
+  icon.className = document.fullscreenElement ? 'bi bi-fullscreen-exit' : 'bi bi-fullscreen';
+});
 </script>
 
+@php $kioskFooter = \App\Models\AppSetting::getValue('kiosk_footer', ''); @endphp
+@if($kioskFooter)
+<div class="kiosk-footer">{{ $kioskFooter }}</div>
+@endif
 </body>
 </html>

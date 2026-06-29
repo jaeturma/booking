@@ -15,6 +15,10 @@ class AppSetting extends Model
         'ca_pnpki_path' => null,
         'ca_background_path' => null,
         'ca_theme_color' => '#000000',
+        'login_logo_path' => 'images/ddo_logo.png',
+        'app_logo_path' => 'images/ddo_logo.png',
+        'kiosk_title' => 'Self-Service Kiosk',
+        'kiosk_footer' => 'Schools Division of Davao de Oro | Department of Education',
     ];
 
     public static function getValue(string $key, mixed $default = null): mixed

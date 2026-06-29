@@ -32,6 +32,17 @@
             </div>
 
             <div class="form-group">
+                <label for="group">Group</label>
+                <select name="group" class="form-control">
+                    <option value="">— None —</option>
+                    @foreach(['SDO', 'Districts', 'Implementing Units', 'Elementary Schools', 'Secondary Schools', 'Others'] as $g)
+                        <option value="{{ $g }}" {{ old('group', $office->group) == $g ? 'selected' : '' }}>{{ $g }}</option>
+                    @endforeach
+                </select>
+                @error('group') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="show_order">Show Order</label>
                 <input type="number" name="show_order" class="form-control" value="{{ old('show_order', $office->show_order) }}" required>
                 @error('show_order') <small class="text-danger">{{ $message }}</small> @enderror

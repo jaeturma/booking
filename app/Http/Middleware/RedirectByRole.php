@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Http\Middleware;
@@ -9,24 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RedirectByRole
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
 
         if ($user) {
-            if ($user->hasRole('admin')) {
+            // All admin-panel roles and privileged offices go to admin dashboard
+            if ($user->hasAnyRole(['admin', 'superadmin', 'ca', 'validator']) || in_array($user->office_id, [10, 17])) {
                 return redirect()->route('admin.dashboard');
-            }
-
-            if ($user->hasRole('administration')) {
-                return redirect()->route('certificates.index');
             }
 
             if ($user->office_id) {

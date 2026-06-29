@@ -79,6 +79,49 @@
                 @error('ca_theme_color') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
 
+            <hr>
+            <h5 class="mb-3">Branding / Logos</h5>
+
+            <div class="form-group">
+                <label for="kiosk_title">Kiosk Title</label>
+                <input type="text" name="kiosk_title" id="kiosk_title" class="form-control"
+                    value="{{ old('kiosk_title', $settings['kiosk_title']) }}" required maxlength="100">
+                <small class="text-muted">The name displayed in the kiosk header (e.g. "Self-Service Kiosk").</small>
+                @error('kiosk_title') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="kiosk_footer">Kiosk Footer Text</label>
+                <input type="text" name="kiosk_footer" id="kiosk_footer" class="form-control"
+                    value="{{ old('kiosk_footer', $settings['kiosk_footer']) }}" maxlength="255">
+                <small class="text-muted">Text shown at the bottom of the kiosk (e.g. office name, address, or hotline). Leave blank to hide the footer.</small>
+                @error('kiosk_footer') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="login_logo">Login Logo</label>
+                <input type="file" name="login_logo" id="login_logo" class="form-control" accept="image/*">
+                <small class="text-muted">Displayed on the login, register, and forgot-password pages.</small>
+                @error('login_logo') <small class="text-danger">{{ $message }}</small> @enderror
+                @if(!empty($settings['login_logo_path']))
+                    <div class="mt-2">
+                        <img src="{{ asset($settings['login_logo_path']) }}" alt="Login Logo" style="max-height:80px;">
+                    </div>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="app_logo">App Logo</label>
+                <input type="file" name="app_logo" id="app_logo" class="form-control" accept="image/*">
+                <small class="text-muted">Displayed in the navigation bar across the booking app.</small>
+                @error('app_logo') <small class="text-danger">{{ $message }}</small> @enderror
+                @if(!empty($settings['app_logo_path']))
+                    <div class="mt-2">
+                        <img src="{{ asset($settings['app_logo_path']) }}" alt="App Logo" style="max-height:80px;">
+                    </div>
+                @endif
+            </div>
+
             <button type="submit" class="btn btn-success">
                 <i class="fas fa-save"></i> Save Settings
             </button>

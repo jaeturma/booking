@@ -17,15 +17,17 @@ class ServiceController extends Controller
 
     public function create()
     {
+        $this->authorize('manage-offices-services');
         $offices = Office::orderBy('show_order')->get();
         return view('admin.services.create', compact('offices'));
     }
 
     public function store(Request $request)
     {
+        $this->authorize('manage-offices-services');
         $request->validate([
-            'name' => 'required|string|max:255',
-            'office_id' => 'required|exists:offices,id',
+            'name'         => 'required|string|max:255',
+            'office_id'    => 'required|exists:offices,id',
             'sub_services' => 'nullable|string',
         ]);
 
@@ -37,6 +39,7 @@ class ServiceController extends Controller
 
     public function edit(Service $service)
     {
+        $this->authorize('manage-offices-services');
         $service->load('subServices');
         $offices = Office::orderBy('show_order')->get();
         return view('admin.services.edit', compact('service', 'offices'));
@@ -44,9 +47,10 @@ class ServiceController extends Controller
 
     public function update(Request $request, Service $service)
     {
+        $this->authorize('manage-offices-services');
         $request->validate([
-            'name' => 'required|string|max:255',
-            'office_id' => 'required|exists:offices,id',
+            'name'         => 'required|string|max:255',
+            'office_id'    => 'required|exists:offices,id',
             'sub_services' => 'nullable|string',
         ]);
 
@@ -58,6 +62,7 @@ class ServiceController extends Controller
 
     public function destroy(Service $service)
     {
+        $this->authorize('manage-offices-services');
         $service->delete();
         return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully.');
     }
