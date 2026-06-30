@@ -7220,11 +7220,25 @@ class UsersSeeder extends Seeder
         }
 
         // Assign roles to system accounts
-        // role_id 1 = admin (Admin Office), role_id 5 = superadmin (ITO / Superadmin)
+        // role_id 1 = admin (Admin Office), role_id 2 = validator (all other offices), role_id 5 = superadmin
         DB::table('model_has_roles')->insertOrIgnore([
-            ['role_id' => 1, 'model_type' => 'App\\Models\\User', 'model_id' => 16330], // Admin Office account
+            ['role_id' => 1, 'model_type' => 'App\\Models\\User', 'model_id' => 16330], // Admin Office
             ['role_id' => 5, 'model_type' => 'App\\Models\\User', 'model_id' => 16338], // ITO
             ['role_id' => 5, 'model_type' => 'App\\Models\\User', 'model_id' => 16339], // Superadmin
+            // All other office accounts — can validate their own office bookings
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16324], // SDS
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16325], // ASDS
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16326], // ICT
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16327], // Legal
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16328], // Accounting
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16329], // Budget
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16331], // Cash
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16332], // Personnel
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16333], // Records
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16334], // Supply
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16335], // BAC
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16336], // LRMDS
+            ['role_id' => 2, 'model_type' => 'App\\Models\\User', 'model_id' => 16337], // SGOD
         ]);
 
         if ($driver === 'sqlite') {
