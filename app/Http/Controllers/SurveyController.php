@@ -44,7 +44,7 @@ class SurveyController extends Controller
             'answers.*.question_id' => 'required|exists:survey_questions,id',
             'answers.*.answer'      => 'required|string|max:255',
             'age'            => 'required|integer|min:1|max:120',
-            'gender'         => 'required|string|max:10',
+            'gender'         => 'required|string|max:20',
             'contact'        => 'required|string|max:20',
             'cc_aware'        => 'required|string|max:20',
             'cc_see'        => 'required|string|max:20',

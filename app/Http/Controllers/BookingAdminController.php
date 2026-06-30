@@ -11,9 +11,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class BookingAdminController extends Controller
 {
+    // superadmin (ITO/Superadmin) or admin (Admin Office) can see all bookings
     private function isPrivileged($user): bool
     {
-        return $user->hasRole('admin') || in_array($user->office_id, [10, 17]);
+        return $user->hasAnyRole(['superadmin', 'admin']);
     }
 
     public function index()
@@ -32,10 +33,8 @@ class BookingAdminController extends Controller
 
         if ($officeFilter) {
             $query = Booking::with(['user', 'service', 'office'])->where('office_id', $officeFilter);
-        } elseif ($user->hasRole('admin')) {
+        } elseif ($isPrivileged) {
             $query = Booking::with(['user', 'service', 'office']);
-        } elseif ($user->office_id == 10) {
-            $query = Booking::with(['user', 'service', 'office'])->where('office_id', 10);
         } elseif ($user->office_id == 540 || optional($user->office)->name === 'SGOD') {
             $query = Booking::with(['user', 'service', 'office'])->whereBetween('office_id', [11, 16]);
         } else {
@@ -63,7 +62,13 @@ class BookingAdminController extends Controller
 
     private function buildBookingDataTable($query, $user)
     {
-        $isAdmin = $user->hasRole('admin');
+        $isSuperAdmin  = $user->hasRole('superadmin');   // ITO/Superadmin — full access
+        $isAdmin       = $user->hasRole('admin');         // Admin Office — see all, validate own
+        $isValidator   = $user->hasRole('validator');     // Own office only
+        $userOfficeId  = $user->office_id;
+        $canHide       = $isSuperAdmin || $isAdmin;
+        $canValidateAny = $isSuperAdmin;                  // only superadmin can validate any office
+        $canValidateOwn = $isAdmin || $isValidator;       // validate own office only
 
         return DataTables::eloquent($query)
             ->setRowId(fn($b) => 'booking-row-' . $b->id)
@@ -93,9 +98,9 @@ class BookingAdminController extends Controller
                 }
                 return $html;
             })
-            ->addColumn('actions', function ($b) use ($isAdmin) {
+            ->addColumn('actions', function ($b) use ($canHide, $canValidateAny, $canValidateOwn, $userOfficeId) {
                 $html = '';
-                if ($isAdmin) {
+                if ($canHide) {
                     if (!$b->is_hidden) {
                         $html .= '<button class="js-hide btn btn-outline-secondary btn-sm me-1"'
                                . ' data-action="' . route('bookings.hide', $b) . '"'
@@ -108,13 +113,16 @@ class BookingAdminController extends Controller
                                . ' data-id="' . $b->id . '">Unhide</button>';
                     }
                 }
-                if (!$b->is_validated) {
-                    $html .= '<button class="js-validate btn btn-primary btn-sm"'
-                           . ' data-action="' . route('bookings.validate', $b) . '"'
-                           . ' data-row="#booking-row-' . $b->id . '"'
-                           . ' data-code="' . e($b->booking_code) . '">Validate</button>';
-                } else {
-                    $html .= '<button class="btn btn-success btn-sm" disabled>Validated</button>';
+                $canValidateRow = $canValidateAny || ($canValidateOwn && $b->office_id == $userOfficeId);
+                if ($canValidateRow) {
+                    if (!$b->is_validated) {
+                        $html .= '<button class="js-validate btn btn-primary btn-sm"'
+                               . ' data-action="' . route('bookings.validate', $b) . '"'
+                               . ' data-row="#booking-row-' . $b->id . '"'
+                               . ' data-code="' . e($b->booking_code) . '">Validate</button>';
+                    } else {
+                        $html .= '<button class="btn btn-success btn-sm" disabled>Validated</button>';
+                    }
                 }
                 return $html;
             })
@@ -142,15 +150,24 @@ class BookingAdminController extends Controller
     public function validateBooking(Request $request, Booking $booking)
     {
         $user = $request->user();
-        $isPrivileged = $this->isPrivileged($user);
 
-        if (!$user->hasAnyRole(['validator', 'admin']) && !$isPrivileged) {
-            return $this->respond($request, 403, 'Unauthorized.');
-        }
-        if (!$user->hasRole('admin') && !$isPrivileged) {
+        if ($user->hasRole('superadmin')) {
+            // ITO/Superadmin — can validate any booking
+        } elseif ($user->hasRole('admin')) {
+            // Admin Office — can only validate their own office's bookings
+            if ($booking->office_id !== $user->office_id) {
+                return $this->respond($request, 403, 'Admin Office can only validate its own office bookings.');
+            }
+            if ($booking->is_hidden) {
+                return $this->respond($request, 403, 'This booking is hidden.');
+            }
+        } elseif ($user->hasRole('validator')) {
+            // Regular office validator — own office only
             if (!$user->office_id) return $this->respond($request, 403, 'You must be assigned to an office.');
             if ($booking->office_id !== $user->office_id) return $this->respond($request, 403, 'This booking belongs to another office.');
             if ($booking->is_hidden) return $this->respond($request, 403, 'This booking is hidden.');
+        } else {
+            return $this->respond($request, 403, 'Unauthorized.');
         }
         if ($booking->is_validated) {
             return $this->respond($request, 409, 'Booking already validated.');
@@ -183,8 +200,8 @@ class BookingAdminController extends Controller
 
     private function authorizeAdmin(Request $request): void
     {
-        if (!$request->user()->hasRole('admin')) {
-            abort(403, 'Admins only.');
+        if (!$request->user()->hasAnyRole(['superadmin', 'admin'])) {
+            abort(403, 'Unauthorized.');
         }
     }
 

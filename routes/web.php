@@ -102,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/dashboard', function () {
             $user = auth()->user();
-            if ($user->hasAnyRole(['admin', 'ca'])) {
+            if ($user->hasAnyRole(['superadmin', 'admin', 'ca'])) {
                 return view('admin.dashboard', [
                     'isValidator'    => false,
                     'userCount'      => User::count(),
@@ -137,8 +137,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('offices',  OfficeController::class);
         Route::resource('services', ServiceController::class);
 
-        // ICT Office only (admin role)
-        Route::middleware('role:admin')->group(function () {
+        // ITO / Superadmin only
+        Route::middleware('role:superadmin')->group(function () {
             Route::get('/users/data',     [UserController::class, 'getData'])->name('users.data');
             Route::get('/users/template', [UserController::class, 'downloadTemplate'])->name('users.template');
             Route::post('/users/import',  [UserController::class, 'importCsv'])->name('users.import');
@@ -174,13 +174,13 @@ Route::middleware(['auth'])->group(function () {
     */
 Route::prefix('ca')
     ->name('certificates.')
-    ->middleware(['auth', 'role:admin|validator|ca'])
+    ->middleware(['auth', 'role:superadmin|admin|ca|validator'])
     ->group(function () {
         Route::get('/', [CertificateController::class, 'index'])->name('index');
         Route::get('/week', [CertificateController::class, 'week'])->name('week');
 
-        // Admin/CA only — print and toggle actions
-        Route::middleware('role:admin|ca')->group(function () {
+        // Admin Office + ITO/Superadmin + CA role — print and toggle actions
+        Route::middleware('role:superadmin|admin|ca')->group(function () {
             Route::patch('/{certificate}/toggle-ob-ot', [App\Http\Controllers\CertificateController::class, 'toggleObOt'])
                 ->name('toggle-ob-ot');
             Route::get('/{certificate}/print-preview', [CertificateController::class, 'printPreview'])->name('print-preview');

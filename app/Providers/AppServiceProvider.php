@@ -11,22 +11,22 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Validate / hide / unhide bookings
-        Gate::define('manage-transactions', fn($user) => $user->hasAnyRole(['admin', 'ca']));
+        // Hide/unhide bookings (Admin Office + ITO/Superadmin)
+        Gate::define('manage-transactions', fn($user) => $user->hasAnyRole(['superadmin', 'admin', 'ca']));
 
-        // Print COA and toggle OB/OT
-        Gate::define('manage-certificates', fn($user) => $user->hasAnyRole(['admin', 'ca']));
+        // Print COA and toggle OB/OT (Admin Office + ITO/Superadmin + CA role)
+        Gate::define('manage-certificates', fn($user) => $user->hasAnyRole(['superadmin', 'admin', 'ca']));
 
-        // Create / edit / delete offices and services
-        Gate::define('manage-offices-services', fn($user) => $user->hasRole('admin'));
+        // Create / edit / delete offices and services (ITO/Superadmin only)
+        Gate::define('manage-offices-services', fn($user) => $user->hasRole('superadmin'));
 
-        // Survey Responses module
-        Gate::define('view-surveys', fn($user) => $user->hasRole('admin'));
+        // Survey Responses module (ITO/Superadmin only)
+        Gate::define('view-surveys', fn($user) => $user->hasRole('superadmin'));
 
-        // User Management module
-        Gate::define('manage-users', fn($user) => $user->hasRole('admin'));
+        // User Management module (ITO/Superadmin only)
+        Gate::define('manage-users', fn($user) => $user->hasRole('superadmin'));
 
-        // Settings module
-        Gate::define('manage-settings', fn($user) => $user->hasRole('admin'));
+        // Settings module (ITO/Superadmin only)
+        Gate::define('manage-settings', fn($user) => $user->hasRole('superadmin'));
     }
 }

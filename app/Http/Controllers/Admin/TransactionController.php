@@ -16,8 +16,12 @@ class TransactionController extends Controller
 
     public function getData(Request $request)
     {
-        $user       = auth()->user();
-        $canManage  = $user->can('manage-transactions');
+        $user        = auth()->user();
+        $canManage   = $user->can('manage-transactions'); // superadmin|admin|ca
+        $canValidate = $user->hasRole('superadmin')
+                    || $user->hasRole('admin')
+                    || $user->hasRole('validator');
+        $userOfficeId = $user->office_id;
 
         // All admin-panel roles see all transactions
         $query = Booking::with(['user', 'service', 'office'])->latest();
@@ -46,12 +50,12 @@ class TransactionController extends Controller
                 if ($b->is_survey) $html .= ' <span class="badge badge-info">CSM Done</span>';
                 return $html;
             })
-            ->addColumn('actions', function ($b) use ($canManage, $user) {
-                if (!$canManage) {
+            ->addColumn('actions', function ($b) use ($canManage, $canValidate, $user, $userOfficeId) {
+                if (!$canManage && !$canValidate) {
                     return '<span class="text-muted">—</span>';
                 }
                 $html = '';
-                if ($user->hasRole('admin')) {
+                if ($canManage) {
                     if (!$b->is_hidden) {
                         $html .= '<button class="js-hide btn btn-sm btn-outline-secondary mr-1"'
                                . ' data-action="' . route('bookings.hide', $b) . '"'
@@ -62,12 +66,17 @@ class TransactionController extends Controller
                                . ' data-id="' . $b->id . '">Unhide</button>';
                     }
                 }
-                if (!$b->is_validated) {
-                    $html .= '<button class="js-validate btn btn-sm btn-primary"'
-                           . ' data-action="' . route('bookings.validate', $b) . '"'
-                           . ' data-code="' . e($b->booking_code) . '">Validate</button>';
-                } else {
-                    $html .= '<button class="btn btn-sm btn-secondary" disabled>Validated</button>';
+                // superadmin can validate any; admin and validator validate own office only
+                $canValidateRow = $user->hasRole('superadmin')
+                    || (($user->hasRole('admin') || $user->hasRole('validator')) && $b->office_id == $userOfficeId);
+                if ($canValidateRow) {
+                    if (!$b->is_validated) {
+                        $html .= '<button class="js-validate btn btn-sm btn-primary"'
+                               . ' data-action="' . route('bookings.validate', $b) . '"'
+                               . ' data-code="' . e($b->booking_code) . '">Validate</button>';
+                    } else {
+                        $html .= '<button class="btn btn-sm btn-secondary" disabled>Validated</button>';
+                    }
                 }
                 return '<div class="text-nowrap">' . $html . '</div>';
             })

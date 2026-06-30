@@ -241,7 +241,10 @@
       font-weight: 600;
       color: #222;
       box-shadow: 0 -2px 8px rgba(0,0,0,.1);
-      margin-top: 32px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
     }
 
   </style>

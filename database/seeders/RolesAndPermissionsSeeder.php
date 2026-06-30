@@ -40,6 +40,13 @@ class RolesAndPermissionsSeeder extends Seeder
             'guard_name' => 'web',
             'created_at' => null,
             'updated_at' => null
+        ],
+        [
+            'id' => 5,
+            'name' => 'superadmin',
+            'guard_name' => 'web',
+            'created_at' => '2025-08-23 11:02:06',
+            'updated_at' => '2025-08-23 11:02:06'
         ]
         ]);
 
@@ -109,7 +116,13 @@ class RolesAndPermissionsSeeder extends Seeder
         [
             'permission_id' => 2,
             'role_id' => 4
-        ]
+        ],
+        // superadmin gets all permissions
+        ['permission_id' => 1, 'role_id' => 5],
+        ['permission_id' => 2, 'role_id' => 5],
+        ['permission_id' => 3, 'role_id' => 5],
+        ['permission_id' => 4, 'role_id' => 5],
+        ['permission_id' => 5, 'role_id' => 5],
         ]);
     }
 }
