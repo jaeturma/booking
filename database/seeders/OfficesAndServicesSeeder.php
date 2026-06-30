@@ -212,6 +212,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 25,
             'name' => 'ADMIN OFFICE',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -220,6 +221,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 26,
             'name' => 'ALIMADMAD ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -228,6 +230,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 27,
             'name' => 'ALIMADMAD IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -236,6 +239,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 28,
             'name' => 'AMOGAD ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -244,6 +248,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 29,
             'name' => 'AMORCRUZ ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -252,6 +257,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 30,
             'name' => 'AMPUNAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -260,6 +266,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 31,
             'name' => 'ANAGASE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -268,6 +275,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 32,
             'name' => 'ANAGASE IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -276,6 +284,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 33,
             'name' => 'ANAGASE IS-CALINOGAN',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -284,6 +293,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 34,
             'name' => 'ANDAP ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -292,6 +302,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 35,
             'name' => 'ANDAP NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -300,6 +311,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 36,
             'name' => 'ANDILI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -308,6 +320,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 37,
             'name' => 'ANDILI ES-WILSON CONDES EXTENSION',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -316,6 +329,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 38,
             'name' => 'ANDILI NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -324,6 +338,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 39,
             'name' => 'ANIBONGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -332,6 +347,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 40,
             'name' => 'ANIBONGAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -340,6 +356,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 41,
             'name' => 'ANISLAGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -348,6 +365,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 42,
             'name' => 'ANITAP ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -356,6 +374,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 43,
             'name' => 'ANITAPAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -364,6 +383,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 44,
             'name' => 'ANITAPAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -372,6 +392,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 45,
             'name' => 'ANTEQUERA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -380,6 +401,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 46,
             'name' => 'ANTEQUERA IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -388,6 +410,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 47,
             'name' => 'ARAIBO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -396,6 +419,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 48,
             'name' => 'ARAIBO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -404,6 +428,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 49,
             'name' => 'ASDS OFFICE',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -412,6 +437,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 50,
             'name' => 'ATTY. ORLANDO S. RIMANDO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -420,6 +446,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 51,
             'name' => 'AURORA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -428,6 +455,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 52,
             'name' => 'AWAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -436,6 +464,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 53,
             'name' => 'AWAO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -444,6 +473,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 54,
             'name' => 'AWAO/CASOON/TUBO-TUBO/UNION-MT. DIWATA',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -452,6 +482,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 55,
             'name' => 'AYAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -460,6 +491,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 56,
             'name' => 'BABAG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -468,6 +500,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 57,
             'name' => 'BABAG NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -476,6 +509,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 58,
             'name' => 'BAC UNIT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -484,6 +518,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 59,
             'name' => 'BAGONG SILANG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -492,6 +527,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 60,
             'name' => 'BAGONG SILANG NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -500,6 +536,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 61,
             'name' => 'BAGONG TAAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -508,6 +545,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 62,
             'name' => 'BAGONGON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -516,6 +554,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 63,
             'name' => 'BAHI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -524,6 +563,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 64,
             'name' => 'BAHI NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -532,6 +572,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 65,
             'name' => 'BANAGBANAG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -540,6 +581,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 66,
             'name' => 'BANBANON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -548,6 +590,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 67,
             'name' => 'BANGLASAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -556,6 +599,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 68,
             'name' => 'BANGO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -564,6 +608,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 69,
             'name' => 'BANGO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -572,6 +617,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 70,
             'name' => 'BANGO NHS & CONSUELO M. VALDERRAMA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -580,6 +626,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 71,
             'name' => 'BANGO/CM VALDERRAMA/MANGAYON/SAN MIGUEL/C AQUINO',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -588,6 +635,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 72,
             'name' => 'BANKEROHAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -596,6 +644,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 73,
             'name' => 'BANKEROHAN SUR ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -604,6 +653,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 74,
             'name' => 'BANLAG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -612,6 +662,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 75,
             'name' => 'BANTACAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -620,6 +671,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 76,
             'name' => 'BANTACAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -628,6 +680,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 77,
             'name' => 'BARABAT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -636,6 +689,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 78,
             'name' => 'BARUBO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -644,6 +698,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 79,
             'name' => 'BASAK ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -652,6 +707,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 80,
             'name' => 'BASAK IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -660,6 +716,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 81,
             'name' => 'BATINAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -668,6 +725,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 82,
             'name' => 'BAWANI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -676,6 +734,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 83,
             'name' => 'BAYABAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -684,6 +743,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 84,
             'name' => 'BAYABAS NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -692,6 +752,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 85,
             'name' => 'BAYANIHAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -700,6 +761,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 86,
             'name' => 'BAYLO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -708,6 +770,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 87,
             'name' => 'BELMONTE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -716,6 +779,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 88,
             'name' => 'BELMONTE INTEGRATED SCHOOL',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -724,6 +788,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 89,
             'name' => 'BELMONTE IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -732,6 +797,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 90,
             'name' => 'BIASONG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -740,6 +806,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 91,
             'name' => 'BINASBAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -748,6 +815,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 92,
             'name' => 'BINOGSAYAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -756,6 +824,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 93,
             'name' => 'BLISS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -764,6 +833,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 94,
             'name' => 'BOAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -772,6 +842,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 95,
             'name' => 'BOLLUKAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -780,6 +851,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 96,
             'name' => 'BON TEMPLE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -788,6 +860,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 97,
             'name' => 'BONGABONG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -796,6 +869,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 98,
             'name' => 'BONGABONG NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -804,6 +878,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 99,
             'name' => 'BONGBONG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -812,6 +887,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 100,
             'name' => 'BONGKILATON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -820,6 +896,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 101,
             'name' => 'BONGKILATON IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -828,6 +905,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 102,
             'name' => 'BON-TEMPLE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -839,6 +917,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 103,
             'name' => 'BORINGOT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -847,6 +926,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 104,
             'name' => 'BORINGOT NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -855,6 +935,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 105,
             'name' => 'BUCANA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -863,6 +944,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 107,
             'name' => 'BUDGET AND FINANCE',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -871,6 +953,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 108,
             'name' => 'BUDGET UNIT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -879,6 +962,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 109,
             'name' => 'BUHI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -887,6 +971,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 110,
             'name' => 'BUKAL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -895,6 +980,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 111,
             'name' => 'CABACUNGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -903,6 +989,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 112,
             'name' => 'CABANGGATAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -911,6 +998,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 113,
             'name' => 'CABANGGATAN PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -919,6 +1007,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 114,
             'name' => 'CABANGKALAN IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -927,6 +1016,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 115,
             'name' => 'CABIDIANAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -935,6 +1025,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 116,
             'name' => 'CABIDIANAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -943,6 +1034,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 117,
             'name' => 'CABINUANGAN CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -951,6 +1043,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 118,
             'name' => 'CABINUANGAN CES/NEW BATAAN DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -959,6 +1052,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 119,
             'name' => 'CABUYAON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -967,6 +1061,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 120,
             'name' => 'CABUYOAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -975,6 +1070,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 121,
             'name' => 'CABUYUAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -983,6 +1079,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 122,
             'name' => 'CADUNAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -991,6 +1088,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 123,
             'name' => 'CAGAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -999,6 +1097,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 124,
             'name' => 'CALABCAB ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1007,6 +1106,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 125,
             'name' => 'CALABCAB PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1015,6 +1115,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 126,
             'name' => 'CALABCAB/PANGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1023,6 +1124,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 127,
             'name' => 'CALACAB ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1031,6 +1133,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 128,
             'name' => 'CALINOGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1039,6 +1142,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 129,
             'name' => 'CAMANLANGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1047,6 +1151,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 130,
             'name' => 'CAMANLANGAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1055,6 +1160,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 131,
             'name' => 'CAMANSI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1063,6 +1169,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 132,
             'name' => 'CAMANSI NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1071,6 +1178,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 133,
             'name' => 'CAMANTANGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1079,6 +1187,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 134,
             'name' => 'CAMANTANGAN ES/BANKEROHAN',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1087,6 +1196,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 135,
             'name' => 'CAMBAGANG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1095,6 +1205,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 136,
             'name' => 'CANDIIS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1103,6 +1214,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 137,
             'name' => 'CANDINUYAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1111,6 +1223,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 138,
             'name' => 'CANIDKID ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1119,6 +1232,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 139,
             'name' => 'CANIDKID IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1127,6 +1241,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 140,
             'name' => 'CARAGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1135,6 +1250,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 142,
             'name' => 'CASOON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1143,6 +1259,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 143,
             'name' => 'CASOON NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1151,6 +1268,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 144,
             'name' => 'CASOON NHS & NEW KAPATAGAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1159,6 +1277,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 145,
             'name' => 'CEBOLEDA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1167,6 +1286,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 146,
             'name' => 'CID',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1175,6 +1295,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 147,
             'name' => 'CLC-COMPOSTELA EAST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1183,6 +1304,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 148,
             'name' => 'CLC-COMPOSTELA WEST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1191,6 +1313,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 149,
             'name' => 'CLC-LAAK NORTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1199,6 +1322,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 150,
             'name' => 'CLC-LAAK SOUTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1207,6 +1331,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 151,
             'name' => 'CLC-MABINI DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1215,6 +1340,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 152,
             'name' => 'CLC-MACO NORTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1223,6 +1349,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 153,
             'name' => 'CLC-MACO SOUTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1231,6 +1358,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 154,
             'name' => 'CLC-MARAGUSAN EAST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1239,6 +1367,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 155,
             'name' => 'CLC-MARAGUSAN WEST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1247,6 +1376,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 156,
             'name' => 'CLC-MAWAB DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1255,6 +1385,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 157,
             'name' => 'CLC-MONKAYO EAST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1263,6 +1394,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 158,
             'name' => 'CLC-MONKAYO WEST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1271,6 +1403,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 159,
             'name' => 'CLC-MONTEVISTA DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1279,6 +1412,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 160,
             'name' => 'CLC-NABUNTURAN EAST DIST',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1287,6 +1421,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 161,
             'name' => 'CLC-NABUNTURAN EAST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1295,6 +1430,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 162,
             'name' => 'CLC-NABUNTURAN WEST DIST',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1303,6 +1439,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 163,
             'name' => 'CLC-NABUNTURAN WEST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1311,6 +1448,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 164,
             'name' => 'CLC-NEW BATAAN DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1319,6 +1457,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 165,
             'name' => 'CLC-PANTUKAN NORTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1327,6 +1466,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 166,
             'name' => 'CLC-PANTUKAN SOUTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1335,6 +1475,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 167,
             'name' => 'CM RECTO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1343,6 +1484,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 168,
             'name' => 'COA',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1351,6 +1493,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 169,
             'name' => 'COGONON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1359,6 +1502,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 170,
             'name' => 'COGONON IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1367,6 +1511,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 171,
             'name' => 'COMPOSTELA CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1375,6 +1520,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 172,
             'name' => 'COMPOSTELA CES SPED CENTER',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1383,6 +1529,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 173,
             'name' => 'COMPOSTELA CES-SC',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1391,6 +1538,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 174,
             'name' => 'COMPOSTELA DISTRICT/SECONDARY CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1399,6 +1547,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 175,
             'name' => 'COMPOSTELA EAST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1407,6 +1556,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 176,
             'name' => 'COMPOSTELA EAST DISTRICT CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1415,6 +1565,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 177,
             'name' => 'COMPOSTELA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1423,6 +1574,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 179,
             'name' => 'COMPOSTELA WEST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1431,6 +1583,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 180,
             'name' => 'COMPOSTELA WEST DISTRICT - SECONDARY CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1439,6 +1592,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 181,
             'name' => 'CONCEPCION ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1447,6 +1601,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 183,
             'name' => 'CONCEPCION IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1455,6 +1610,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 184,
             'name' => 'CONSUELO M. VALDERRAMA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1463,6 +1619,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 185,
             'name' => 'CORAZON C. AQUINO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1471,6 +1628,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 186,
             'name' => 'CORAZON C. AQUINO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1479,6 +1637,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 187,
             'name' => 'CORONOBE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1487,6 +1646,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 188,
             'name' => 'CORONOBE IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1495,6 +1655,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 189,
             'name' => 'DALAGUETE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1503,6 +1664,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 190,
             'name' => 'DALIMDIM ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1511,6 +1673,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 191,
             'name' => 'DANGGAYON INTEGRATED SCHOOL',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1519,6 +1682,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 192,
             'name' => 'DANGGAYON IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1527,6 +1691,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 193,
             'name' => 'DATU AMPUNAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1535,6 +1700,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 194,
             'name' => 'DATU DAVAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1543,6 +1709,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 195,
             'name' => 'DATU DAVAO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1551,6 +1718,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 196,
             'name' => 'DAUMAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1559,6 +1727,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 197,
             'name' => 'DEL PILAR ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1567,6 +1736,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 198,
             'name' => 'DEPOT ANCESTRAL DOMAIN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1575,6 +1745,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 199,
             'name' => 'DEPOT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1583,6 +1754,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 200,
             'name' => 'DIAT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1591,6 +1763,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 201,
             'name' => 'DIOSDADO MACAPAGAL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1599,6 +1772,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 202,
             'name' => 'DIOSDADO MACAPAGAL NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1607,6 +1781,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 203,
             'name' => 'DISTRICT OFFICE',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1615,6 +1790,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 204,
             'name' => 'DIVISION OF DAVAO DE ORO',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1623,6 +1799,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 205,
             'name' => 'DIVISION OFFICE',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1631,6 +1808,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 206,
             'name' => 'DON VICENTE ROMUALDEZ NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1642,6 +1820,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 207,
             'name' => 'DON WILLIAM GEMPERLE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1650,6 +1829,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 209,
             'name' => 'DO?A JOSEFA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1658,6 +1838,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 210,
             'name' => 'DOROTEO DE CASTRO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1666,6 +1847,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 211,
             'name' => 'DOROTEO DE CASTRO ES ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1674,6 +1856,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 212,
             'name' => 'DUMLAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1682,6 +1865,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 213,
             'name' => 'EDUARDO E. MAQUIDATO SR. ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1690,6 +1874,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 214,
             'name' => 'EDUARDO H. MAQUIDATO SR. ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1698,6 +1883,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 215,
             'name' => 'EL KATIPUNAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1706,6 +1892,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 216,
             'name' => 'ELIZALDE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1714,6 +1901,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 217,
             'name' => 'ELIZALDE NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1722,6 +1910,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 218,
             'name' => 'GABI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1730,6 +1919,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 219,
             'name' => 'GABI NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1738,6 +1928,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 220,
             'name' => 'GAYAB ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1746,6 +1937,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 221,
             'name' => 'GOLDEN VALLEY NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1754,6 +1946,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 222,
             'name' => 'GOV. VICENTE DUTERTE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1762,6 +1955,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 223,
             'name' => 'GUBATAB ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1770,6 +1964,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 224,
             'name' => 'GUBATAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1778,6 +1973,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 225,
             'name' => 'GUISOK ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1786,6 +1982,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 226,
             'name' => 'GUISOK PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1794,6 +1991,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 227,
             'name' => 'GUMAYAN IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1802,6 +2000,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 228,
             'name' => 'HAGUIMITAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1810,6 +2009,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 229,
             'name' => 'HIJO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1818,6 +2018,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 230,
             'name' => 'HINAGTUNGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1826,6 +2027,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 231,
             'name' => 'HR SECTION',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1834,6 +2036,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 232,
             'name' => 'HR UNIT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1842,6 +2045,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 233,
             'name' => 'ILPAPA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1850,6 +2054,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 234,
             'name' => 'IMELDA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1858,6 +2063,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 235,
             'name' => 'INAKAYAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1866,6 +2072,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 236,
             'name' => 'INAMBATAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1874,6 +2081,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 237,
             'name' => 'INOPAWAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1882,6 +2090,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 238,
             'name' => 'INUPUAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1890,6 +2099,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 239,
             'name' => 'KABURACANAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1898,6 +2108,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 240,
             'name' => 'KABURAKANAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1906,6 +2117,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 241,
             'name' => 'KALIGUTAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1914,6 +2126,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 242,
             'name' => 'KALIGUTAN IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1922,6 +2135,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 243,
             'name' => 'KALUYAPI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1930,6 +2144,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 244,
             'name' => 'KAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1938,6 +2153,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 245,
             'name' => 'KAO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1946,6 +2162,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 246,
             'name' => 'KAO NHS AND CABIDIANAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1954,6 +2171,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 247,
             'name' => 'KAPATAGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1962,6 +2180,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 248,
             'name' => 'KAPATAGAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1970,6 +2189,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 249,
             'name' => 'KAPOC ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1978,6 +2198,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 250,
             'name' => 'KATIPUNAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1986,6 +2207,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 251,
             'name' => 'KATIPUNAN IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -1994,6 +2216,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 252,
             'name' => 'KIBAGUIO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2002,6 +2225,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 253,
             'name' => 'KIDAWA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2010,6 +2234,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 254,
             'name' => 'KIDAWA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2018,6 +2243,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 255,
             'name' => 'KILAGDENG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2026,6 +2252,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 256,
             'name' => 'KILAGDING NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2034,6 +2261,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 257,
             'name' => 'KINABUHI-AN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2042,6 +2270,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 258,
             'name' => 'KINGKING CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2050,6 +2279,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 259,
             'name' => 'KINGKING CESSC',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2058,6 +2288,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 260,
             'name' => 'KINUBAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2066,6 +2297,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 261,
             'name' => 'KIOKMAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2074,6 +2306,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 262,
             'name' => 'LA PURISIMA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2082,6 +2315,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 263,
             'name' => 'LAAK CENTRAL ES SPED CENTER',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2090,6 +2324,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 264,
             'name' => 'LAAK CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2098,6 +2333,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 265,
             'name' => 'LAAK DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2106,6 +2342,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 266,
             'name' => 'LAAK NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2114,6 +2351,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 267,
             'name' => 'LAAK NORTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2122,6 +2360,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 268,
             'name' => 'LAAK SOUTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2130,6 +2369,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 269,
             'name' => 'LAGAB ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2138,6 +2378,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 270,
             'name' => 'LAHI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2146,6 +2387,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 271,
             'name' => 'LANGGAM ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2154,6 +2396,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 272,
             'name' => 'LANGGAM ES-SAN JUAN',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2162,6 +2405,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 273,
             'name' => 'LANGGAM ES-SAN ROQUE EXT.',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2170,6 +2414,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 274,
             'name' => 'LANGGAM/SAN JUAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2178,6 +2423,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 275,
             'name' => 'LANGGAWISAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2186,6 +2432,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 276,
             'name' => 'LANGGAWISAN/NEW ALBAY/PALOC/TUPAZ NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2194,6 +2441,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 277,
             'name' => 'LANGTUD ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2202,6 +2450,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 278,
             'name' => 'LAPU-LAPU ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2210,6 +2459,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 279,
             'name' => 'LAS ARENAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2218,6 +2468,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 280,
             'name' => 'LAWAAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2226,6 +2477,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 281,
             'name' => 'LIBASAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2234,6 +2486,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 282,
             'name' => 'LIBAYLIBAY NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2242,6 +2495,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 283,
             'name' => 'LIBOAC ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2250,6 +2504,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 284,
             'name' => 'LIBOAC PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2258,6 +2513,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 285,
             'name' => 'LIBUDON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2266,6 +2522,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 286,
             'name' => 'LIBUTON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2274,6 +2531,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 287,
             'name' => 'LIMBO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2282,6 +2540,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 288,
             'name' => 'LIMOT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2290,6 +2549,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 289,
             'name' => 'LINDA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2298,6 +2558,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 290,
             'name' => 'LINDA INTEGRATED SCHOOL',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2306,6 +2567,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 291,
             'name' => 'LINIPUTAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2314,6 +2576,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 292,
             'name' => 'LINOAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2322,6 +2585,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 293,
             'name' => 'LIWANAG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2330,6 +2594,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 294,
             'name' => 'LONGANAPAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2338,6 +2603,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 295,
             'name' => 'LONGANAPAN IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2346,6 +2612,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 296,
             'name' => 'LONOLONO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2354,6 +2621,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 297,
             'name' => 'LOWER AMPAWID ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2362,6 +2630,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 298,
             'name' => 'LOWER PANANSALAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2370,6 +2639,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 299,
             'name' => 'LOWER PANANSALAN ES-JACINTO EXT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2378,6 +2648,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 300,
             'name' => 'LOWER PANANSALAN PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2386,6 +2657,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 301,
             'name' => 'LRMDC',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2394,6 +2666,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 302,
             'name' => 'LS SARMIENTO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2402,6 +2675,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 303,
             'name' => 'LS SARMIENTO SR NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2410,6 +2684,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 304,
             'name' => 'LUMATAB ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2418,6 +2693,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 305,
             'name' => 'MABANDA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2426,6 +2702,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 306,
             'name' => 'MABINI CENTRAL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2434,6 +2711,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 307,
             'name' => 'MABINI CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2445,6 +2723,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 308,
             'name' => 'MABINI DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2453,6 +2732,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 309,
             'name' => 'MABINI NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2461,6 +2741,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 310,
             'name' => 'MABUGNAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2469,6 +2750,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 311,
             'name' => 'MABUHAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2477,6 +2759,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 312,
             'name' => 'MABUHAY NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2485,6 +2768,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 313,
             'name' => 'MACO CENTRAL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2493,6 +2777,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 314,
             'name' => 'MACO CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2501,6 +2786,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 315,
             'name' => 'MACO HEIGHTS CENTRAL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2509,6 +2795,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 316,
             'name' => 'MACO HEIGHTS CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2517,6 +2804,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 317,
             'name' => 'MACO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2525,6 +2813,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 318,
             'name' => 'MACO NORTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2533,6 +2822,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 319,
             'name' => 'MACO NORTH DISTRICT OFFICE',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2541,6 +2831,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 320,
             'name' => 'MACO SOUTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2549,6 +2840,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 321,
             'name' => 'MACOPA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2557,6 +2849,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 322,
             'name' => 'MAGADING ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2565,6 +2858,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 323,
             'name' => 'MAGANGIT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2573,6 +2867,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 324,
             'name' => 'MAGANGIT IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2581,6 +2876,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 325,
             'name' => 'MAGCAGONG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2589,6 +2885,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 326,
             'name' => 'MAGCAGONG NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2597,6 +2894,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 327,
             'name' => 'MAGNAGA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2605,6 +2903,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 328,
             'name' => 'MAGNAGA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2613,6 +2912,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 329,
             'name' => 'MAGSAYSAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2621,6 +2921,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 330,
             'name' => 'MAGSAYSAY NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2629,6 +2930,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 331,
             'name' => 'MAGTAYA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2637,6 +2939,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 332,
             'name' => 'MAHAYAG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2645,6 +2948,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 333,
             'name' => 'MAHAYAHAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2653,6 +2957,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 334,
             'name' => 'MAINIT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2661,6 +2966,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 335,
             'name' => 'MAINIT NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2669,6 +2975,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 336,
             'name' => 'MAJOR ANGEL V. FAJARDO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2677,6 +2984,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 337,
             'name' => 'MAKOPA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2685,6 +2993,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 338,
             'name' => 'MALINAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2693,6 +3002,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 339,
             'name' => 'MALINAWON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2701,6 +3011,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 340,
             'name' => 'MAMBATANG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2709,6 +3020,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 342,
             'name' => 'MAMBUSAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2717,6 +3029,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 343,
             'name' => 'MAMONGA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2725,6 +3038,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 344,
             'name' => 'MANASA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2733,6 +3047,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 345,
             'name' => 'MANAT CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2741,6 +3056,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 346,
             'name' => 'MANAT NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2749,6 +3065,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 347,
             'name' => 'MANGAYON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2757,6 +3074,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 348,
             'name' => 'MANGAYON NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2765,6 +3083,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 349,
             'name' => 'MANGLOY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2773,6 +3092,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 350,
             'name' => 'MANGLOY NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2781,6 +3101,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 351,
             'name' => 'MANIPONGOL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2789,6 +3110,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 352,
             'name' => 'MANSINAO-AN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2797,6 +3119,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 353,
             'name' => 'MANURIGAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2805,6 +3128,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 354,
             'name' => 'MANURIGAO INTEGRATED SCHOOL- DIGAYNON EXT.',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2813,6 +3137,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 355,
             'name' => 'MANURIGAO IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2821,6 +3146,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 356,
             'name' => 'MAPAANG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2829,6 +3155,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 357,
             'name' => 'MAPACA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2837,6 +3164,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 358,
             'name' => 'MAPARAT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2845,6 +3173,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 359,
             'name' => 'MAPARAT NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2853,6 +3182,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 360,
             'name' => 'MAPASO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2861,6 +3191,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 361,
             'name' => 'MAPAWA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2869,6 +3200,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 362,
             'name' => 'MAPAWA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2877,6 +3209,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 363,
             'name' => 'MARAGUSAN  CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2885,6 +3218,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 364,
             'name' => 'MARAGUSAN CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2893,6 +3227,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 365,
             'name' => 'MARAGUSAN DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2901,6 +3236,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 366,
             'name' => 'MARAGUSAN EAST ',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2909,6 +3245,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 367,
             'name' => 'MARAGUSAN EAST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2917,6 +3254,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 368,
             'name' => 'MARAGUSAN EAST DISTRICT CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2925,6 +3263,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 369,
             'name' => 'MARAGUSAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2933,6 +3272,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 370,
             'name' => 'MARAGUSAN WEST DIST',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2941,6 +3281,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 371,
             'name' => 'MARAGUSAN WEST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2949,6 +3290,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 372,
             'name' => 'MARAGUSAN WEST DISTRICT CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2957,6 +3299,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 373,
             'name' => 'MASARA IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2965,6 +3308,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 374,
             'name' => 'MASICAREG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2973,6 +3317,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 375,
             'name' => 'MASINAO-AN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2981,6 +3326,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 376,
             'name' => 'MATAGDUNGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2989,6 +3335,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 377,
             'name' => 'MATANGAD ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -2997,6 +3344,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 378,
             'name' => 'MATIAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3005,6 +3353,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 379,
             'name' => 'MATILO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3013,6 +3362,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 380,
             'name' => 'MAUBOG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3021,6 +3371,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 381,
             'name' => 'MAUGAT ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3029,6 +3380,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 382,
             'name' => 'MAUGAT PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3037,6 +3389,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 383,
             'name' => 'MAUSWAGON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3045,6 +3398,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 384,
             'name' => 'MAWAB CENTRAL ES SC',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3053,6 +3407,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 385,
             'name' => 'MAWAB CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3061,6 +3416,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 386,
             'name' => 'MAWAB DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3069,6 +3425,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 387,
             'name' => 'MAYAON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3077,6 +3434,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 388,
             'name' => 'MAYAON NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3085,6 +3443,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 389,
             'name' => 'MAYAON/MONTEVISTA-DNAS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3093,6 +3452,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 390,
             'name' => 'MAYOBE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3101,6 +3461,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 391,
             'name' => 'MELALE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3109,6 +3470,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 392,
             'name' => 'MELALE NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3117,6 +3479,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 393,
             'name' => 'MIPANGI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3125,6 +3488,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 394,
             'name' => 'MONKAYO CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3133,6 +3497,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 395,
             'name' => 'MONKAYO EAST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3141,6 +3506,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 396,
             'name' => 'MONKAYO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3149,6 +3515,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 397,
             'name' => 'MONKAYO NHS - SHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3157,6 +3524,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 398,
             'name' => 'MONKAYO WEST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3165,6 +3533,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 399,
             'name' => 'MONKAYO WEST DISTRICT - SECONDARY CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3173,6 +3542,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 400,
             'name' => 'MONKAYO WEST DISTRICT (CLUSTER SCHOOLS)',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3181,6 +3551,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 401,
             'name' => 'MONTEVISTA CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3189,6 +3560,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 402,
             'name' => 'MONTEVISTA DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3197,6 +3569,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 403,
             'name' => 'MONTEVISTA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3205,6 +3578,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 404,
             'name' => 'MONTEVISTA NHS ANNEX',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3213,6 +3587,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 405,
             'name' => 'MONTEVISTA STAND ALONE SHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3221,6 +3596,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 406,
             'name' => 'MORIA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3229,6 +3605,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 407,
             'name' => 'MT. DIWATA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3237,6 +3614,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 408,
             'name' => 'MUNOZ ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3248,6 +3626,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 409,
             'name' => 'MU?OZ ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3256,6 +3635,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 410,
             'name' => 'NABOC ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3264,6 +3644,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 411,
             'name' => 'NABUNTURAN CENTRAL ESSC',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3272,6 +3653,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 412,
             'name' => 'NABUNTURAN CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3280,6 +3662,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 413,
             'name' => 'NABUNTURAN CES-SPED CENTER',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3288,6 +3671,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 414,
             'name' => 'NABUNTURAN EAST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3296,6 +3680,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 415,
             'name' => 'NABUNTURAN EAST DISTRICT CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3304,6 +3689,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 416,
             'name' => 'NABUNTURAN NCHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3312,6 +3698,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 417,
             'name' => 'NABUNTURAN WEST DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3320,6 +3707,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 418,
             'name' => 'NAGA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3328,6 +3716,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 419,
             'name' => 'NAGAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3336,6 +3725,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 420,
             'name' => 'NAPNAPAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3344,6 +3734,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 421,
             'name' => 'NAPNAPAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3352,6 +3743,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 422,
             'name' => 'NEW ALBAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3360,6 +3752,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 423,
             'name' => 'NEW ALBAY NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3368,6 +3761,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 424,
             'name' => 'NEW ALEGRIA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3376,6 +3770,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 425,
             'name' => 'NEW ASTURIAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3384,6 +3779,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 426,
             'name' => 'NEW BARILI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3392,6 +3788,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 427,
             'name' => 'NEW BATAAN DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3400,6 +3797,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 428,
             'name' => 'NEW BATAAN DISTRICT CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3408,6 +3806,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 429,
             'name' => 'NEW BATAAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3416,6 +3815,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 430,
             'name' => 'NEW BETHLEHEM ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3424,6 +3824,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 431,
             'name' => 'NEW CALAPE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3432,6 +3833,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 432,
             'name' => 'NEW DALAGUETE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3440,6 +3842,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 433,
             'name' => 'NEW DAUIS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3448,6 +3851,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 434,
             'name' => 'NEW KAPATAGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3456,6 +3860,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 435,
             'name' => 'NEW KAPATAGAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3464,6 +3869,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 436,
             'name' => 'NEW KATIPUNAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3472,6 +3878,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 437,
             'name' => 'NEW LEYTE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3480,6 +3887,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 438,
             'name' => 'NEW LEYTE NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3488,6 +3896,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 439,
             'name' => 'NEW MANAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3496,6 +3905,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 440,
             'name' => 'NEW NEGROS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3504,6 +3914,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 441,
             'name' => 'NEW PANAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3512,6 +3923,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 442,
             'name' => 'NEW PANAY IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3520,6 +3932,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 443,
             'name' => 'NEW SIBONGA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3528,6 +3941,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 444,
             'name' => 'NEW SIBONGA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3536,6 +3950,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 445,
             'name' => 'NEW VISAYAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3544,6 +3959,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 446,
             'name' => 'NEW VISAYAS NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3552,6 +3968,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 447,
             'name' => 'NEW VISAYAS PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3560,6 +3977,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 448,
             'name' => 'NGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3568,6 +3986,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 449,
             'name' => 'NGAN ES-PUTTING BATO',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3576,6 +3995,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 450,
             'name' => 'NUEVA VISAYAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3584,6 +4004,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 451,
             'name' => 'NUEVO ILOCO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3592,6 +4013,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 452,
             'name' => 'NUEVO ILOCO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3600,6 +4022,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 453,
             'name' => 'OFFICE OF THE SDS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3608,6 +4031,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 454,
             'name' => 'OGAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3616,6 +4040,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 455,
             'name' => 'OLAYCON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3624,6 +4049,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 456,
             'name' => 'OLAYCON INTEGRATED SCHOOL',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3632,6 +4058,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 457,
             'name' => 'OSDS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3640,6 +4067,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 458,
             'name' => 'OSMENA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3648,6 +4076,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 459,
             'name' => 'OSME?A ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3656,6 +4085,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 460,
             'name' => 'P. FUENTES ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3664,6 +4094,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 461,
             'name' => 'PACO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3672,6 +4103,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 462,
             'name' => 'PAGSABANGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3680,6 +4112,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 463,
             'name' => 'PAGSABANGAN ES- BAREZ EXTENSION',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3688,6 +4121,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 464,
             'name' => 'PAGSILAAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3696,6 +4130,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 465,
             'name' => 'PALOC CES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3704,6 +4139,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 466,
             'name' => 'PALOC ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3712,6 +4148,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 467,
             'name' => 'PALOC NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3720,6 +4157,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 468,
             'name' => 'PAMINTARAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3728,6 +4166,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 469,
             'name' => 'PAMINTARAN IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3736,6 +4175,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 470,
             'name' => 'PANAG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3744,6 +4184,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 471,
             'name' => 'PANAG ES-INOPAWAN',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3752,6 +4193,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 472,
             'name' => 'PANAMEN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3760,6 +4202,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 473,
             'name' => 'PANAMIN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3768,6 +4211,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 474,
             'name' => 'PANAMOREN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3776,6 +4220,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 475,
             'name' => 'PANANGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3784,6 +4229,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 476,
             'name' => 'PANANSALAN INTEGRATED SCHOOL',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3792,6 +4238,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 477,
             'name' => 'PANGANASON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3800,6 +4247,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 478,
             'name' => 'PANGI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3808,6 +4256,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 479,
             'name' => 'PANGI NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3816,6 +4265,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 480,
             'name' => 'PANGUTOSAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3824,6 +4274,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 481,
             'name' => 'PANIBASAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3832,6 +4283,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 482,
             'name' => 'PANIBASAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3840,6 +4292,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 484,
             'name' => 'PANORAON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3848,6 +4301,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 485,
             'name' => 'PANTUKAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3856,6 +4310,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 486,
             'name' => 'PANTUKAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3864,6 +4319,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 487,
             'name' => 'PANTUKAN NORTH DIST',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3872,6 +4328,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 488,
             'name' => 'PANTUKAN NORTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3880,6 +4337,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 489,
             'name' => 'PANTUKAN NORTH DISTRICT CLUSTER SCHOOLS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3888,6 +4346,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 490,
             'name' => 'PANTUKAN SOUTH DISTRICT',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3896,6 +4355,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 491,
             'name' => 'PARASAN IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3904,6 +4364,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 492,
             'name' => 'PARASANON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3912,6 +4373,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 493,
             'name' => 'PARASANON IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3920,6 +4382,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 494,
             'name' => 'PASIAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3928,6 +4391,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 495,
             'name' => 'PASIAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3936,6 +4400,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 497,
             'name' => 'PIASUSUAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3944,6 +4409,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 498,
             'name' => 'PILAR ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3952,6 +4418,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 499,
             'name' => 'PINDASAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3960,6 +4427,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 500,
             'name' => 'PINDASAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3968,6 +4436,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 501,
             'name' => 'PLANNING',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3976,6 +4445,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 502,
             'name' => 'PONGPONG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3984,6 +4454,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 503,
             'name' => 'PONGPONG INTEGRATED SCHOOL',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -3992,6 +4463,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 504,
             'name' => 'PROSPERIDAD ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4000,6 +4472,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 505,
             'name' => 'PROSPERIDAD TRIBAL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4008,6 +4481,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 506,
             'name' => 'PULANG LUPA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4016,6 +4490,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 507,
             'name' => 'PUTING BATO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4024,6 +4499,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 508,
             'name' => 'RECTO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4032,6 +4508,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 509,
             'name' => 'RIZAL MEMORIAL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4040,6 +4517,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 510,
             'name' => 'SABUD ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4051,6 +4529,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 511,
             'name' => 'SALVACION ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4059,6 +4538,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 512,
             'name' => 'SALVACION IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4067,6 +4547,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 513,
             'name' => 'SAMBAYON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4075,6 +4556,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 514,
             'name' => 'SAMUAG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4083,6 +4565,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 515,
             'name' => 'SAN ANTONIO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4091,6 +4574,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 516,
             'name' => 'SAN ANTONIO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4099,6 +4583,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 517,
             'name' => 'SAN ISIDRO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4107,6 +4592,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 518,
             'name' => 'SAN ISIDRO INTEGRATED SCHOOL',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4115,6 +4601,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 519,
             'name' => 'SAN ISIDRO IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4123,6 +4610,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 520,
             'name' => 'SAN JOSE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4131,6 +4619,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 521,
             'name' => 'SAN JOSE ES ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4139,6 +4628,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 522,
             'name' => 'SAN JUAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4147,6 +4637,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 523,
             'name' => 'SAN JUAN ES (BASAK ANNEX)',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4155,6 +4646,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 524,
             'name' => 'SAN MIGUEL ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4163,6 +4655,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 525,
             'name' => 'SAN MIGUEL NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4171,6 +4664,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 526,
             'name' => 'SAN ROQUE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4179,6 +4673,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 527,
             'name' => 'SAN ROQUE PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4187,6 +4682,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 528,
             'name' => 'SAN VICENTE ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4195,6 +4691,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 529,
             'name' => 'SAN VICENTE IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4203,6 +4700,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 530,
             'name' => 'SAN VICENTE PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4211,6 +4709,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 531,
             'name' => 'SANGAB ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4219,6 +4718,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 532,
             'name' => 'SAOSAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4227,6 +4727,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 533,
             'name' => 'SAOSAO IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4235,6 +4736,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 534,
             'name' => 'SAPAWAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4243,6 +4745,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 535,
             'name' => 'SARANGA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4251,6 +4754,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 536,
             'name' => 'SAROG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4259,6 +4763,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 537,
             'name' => 'SASA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4267,6 +4772,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 538,
             'name' => 'SAWANGAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4275,6 +4781,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 539,
             'name' => 'SDS OFFICE',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4283,6 +4790,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 540,
             'name' => 'SGOD',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4291,6 +4799,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 541,
             'name' => 'SGOD-LSP',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4299,6 +4808,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 542,
             'name' => 'SGOD-PRP',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4307,6 +4817,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 543,
             'name' => 'SHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4315,6 +4826,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 544,
             'name' => 'SIMSIMEN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4323,6 +4835,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 545,
             'name' => 'SINGANAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4331,6 +4844,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 546,
             'name' => 'SINGANAN PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4339,6 +4853,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 547,
             'name' => 'SIOCON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4347,6 +4862,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 548,
             'name' => 'SIOCON NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4355,6 +4871,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 549,
             'name' => 'SISIMON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4363,6 +4880,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 550,
             'name' => 'STA. EMELIA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4371,6 +4889,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 551,
             'name' => 'STA. EMILIA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4379,6 +4898,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 552,
             'name' => 'STA. MARIA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4387,6 +4907,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 553,
             'name' => 'STA. TERESA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4395,6 +4916,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 554,
             'name' => 'SUGOD ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4403,6 +4925,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 555,
             'name' => 'SUPPLY SECTION',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4411,6 +4934,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 556,
             'name' => 'TABONTABON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4419,6 +4943,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 557,
             'name' => 'TADYA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4427,6 +4952,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 558,
             'name' => 'TADYA PS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4435,6 +4961,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 559,
             'name' => 'TAGAYTAY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4443,6 +4970,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 560,
             'name' => 'TAGBALABAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4451,6 +4979,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 561,
             'name' => 'TAGBAROS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4459,6 +4988,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 562,
             'name' => 'TAGDANGUA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4467,6 +4997,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 563,
             'name' => 'TAGLAWIG ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4475,6 +5006,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 564,
             'name' => 'TAGNOCON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4483,6 +5015,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 565,
             'name' => 'TAGUGPO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4491,6 +5024,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 566,
             'name' => 'TAGUGPO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4499,6 +5033,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 567,
             'name' => 'TALIAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4507,6 +5042,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 568,
             'name' => 'TAMBONGON NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4515,6 +5051,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 569,
             'name' => 'TAMIA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4523,6 +5060,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 570,
             'name' => 'TAN-AWAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4532,6 +5070,7 @@ class OfficesAndServicesSeeder extends Seeder
             'name' => 'TAN-AWAN IS
 ',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4540,6 +5079,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 572,
             'name' => 'TANDAWAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4548,6 +5088,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 573,
             'name' => 'TANDAWAN INTEGRATED SCHOOL',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4556,6 +5097,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 574,
             'name' => 'TANDAWAN IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4564,6 +5106,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 575,
             'name' => 'TANDIK ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4572,6 +5115,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 576,
             'name' => 'TAPIA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4580,6 +5124,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 577,
             'name' => 'TAPIS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4588,6 +5133,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 578,
             'name' => 'TAYTAYAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4596,6 +5142,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 579,
             'name' => 'TERESA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4604,6 +5151,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 580,
             'name' => 'TERESA NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4612,6 +5160,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 581,
             'name' => 'TH VALDERRAMA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4620,6 +5169,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 582,
             'name' => 'TIBAGON ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4628,6 +5178,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 583,
             'name' => 'TIGASA ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4636,6 +5187,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 584,
             'name' => 'TIGBAO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4644,6 +5196,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 585,
             'name' => 'TIGBAO IS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4652,6 +5205,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 586,
             'name' => 'TOTOY ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4660,6 +5214,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 587,
             'name' => 'TUBORAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4668,6 +5223,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 588,
             'name' => 'TUBORAN NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4676,6 +5232,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 589,
             'name' => 'TUBO-TUBO ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4684,6 +5241,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 590,
             'name' => 'TUBO-TUBO NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4692,6 +5250,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 591,
             'name' => 'TUBURAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4700,6 +5259,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 592,
             'name' => 'TUGAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4708,6 +5268,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 593,
             'name' => 'TUGOP ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4716,6 +5277,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 594,
             'name' => 'TUGUNAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4724,6 +5286,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 595,
             'name' => 'TUK-AN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4732,6 +5295,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 596,
             'name' => 'TUPAS ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4740,6 +5304,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 597,
             'name' => 'TUPAZ NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4748,6 +5313,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 598,
             'name' => 'UDUAN ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4756,6 +5322,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 599,
             'name' => 'ULIP ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4764,6 +5331,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 600,
             'name' => 'ULIP NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4772,6 +5340,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 601,
             'name' => 'UNION NHS',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4780,6 +5349,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 602,
             'name' => 'UNION NHS-MT. DIWATA ANNEX',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
@@ -4788,6 +5358,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 603,
             'name' => 'UPPER CAMILI ES',
             'main' => ' ',
+            'group' => null,
             'district' => ' ',
             'icon' => '',
             'show_order' => null
