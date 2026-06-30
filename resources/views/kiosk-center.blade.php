@@ -410,7 +410,7 @@ const OFFICES = (function normalize(data){
 function showTemporaryAlert(message, type = "info") {
   Swal.fire({ toast:true, position:'top', icon:type, title:message, showConfirmButton:false, timer:3000, timerProgressBar:true });
 }
-function api(url, opts={}){ return fetch(url, {headers:{'Content-Type':'application/json', ...(opts.headers||{})}, ...opts}); }
+function api(url, opts={}){ return fetch(url, {headers:{'Content-Type':'application/json', 'Accept':'application/json', ...(opts.headers||{})}, ...opts}); }
 
 /* ========= GLOBAL STATE ========= */
 const steps = ["Customer Type", "Office", "Service", "Confirm"];

@@ -702,7 +702,7 @@ function hideProgress() {
 
 function api(url, opts={}) {
   if (++_pReqs === 1) showProgress();
-  return fetch(url, {headers: {'Content-Type': 'application/json', ...(opts.headers || {})}, ...opts})
+  return fetch(url, {headers: {'Content-Type': 'application/json', 'Accept': 'application/json', ...(opts.headers || {})}, ...opts})
     .finally(() => { if (--_pReqs <= 0) { _pReqs = 0; hideProgress(); } });
 }
 function isEnabledFlag(value) {
