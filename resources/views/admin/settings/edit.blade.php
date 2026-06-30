@@ -215,6 +215,9 @@
         return m ? m[1] : null;
     }
 
+    const ssModal    = document.getElementById('ssTestModal');
+    const bsModal    = new bootstrap.Modal(ssModal);
+
     document.querySelectorAll('.ss-test-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
             const slot  = this.dataset.slot;
@@ -223,13 +226,19 @@
             const empty = document.getElementById('ssTestEmpty');
             const label = document.getElementById('ssTestSlotLabel');
 
-            label.textContent = slot;
-            wrap.innerHTML    = '';
+            label.textContent   = slot;
+            wrap.innerHTML      = '';
             empty.style.display = 'none';
 
             if (!url) {
                 empty.style.display = 'block';
-            } else {
+                bsModal.show();
+                return;
+            }
+
+            // Inject and play AFTER the modal is fully visible so browsers allow autoplay
+            ssModal.addEventListener('shown.bs.modal', function onShown() {
+                ssModal.removeEventListener('shown.bs.modal', onShown);
                 const ytId = getYouTubeId(url);
                 if (ytId) {
                     const iframe = document.createElement('iframe');
@@ -239,17 +248,17 @@
                     wrap.appendChild(iframe);
                 } else {
                     const video = document.createElement('video');
-                    video.src      = url;
-                    video.controls = true;
-                    video.autoplay = true;
-                    video.muted    = true;
-                    video.style.cssText = 'width:100%;height:480px;object-fit:contain;background:#000;display:block;';
+                    video.src            = url;
+                    video.controls       = true;
+                    video.muted          = true;
+                    video.playsInline    = true;
+                    video.style.cssText  = 'width:100%;height:480px;object-fit:contain;background:#000;display:block;';
                     wrap.appendChild(video);
                     video.play().catch(() => {});
                 }
-            }
+            });
 
-            new bootstrap.Modal(document.getElementById('ssTestModal')).show();
+            bsModal.show();
         });
     });
 

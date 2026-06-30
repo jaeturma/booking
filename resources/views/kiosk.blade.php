@@ -56,11 +56,17 @@
 	  color: #777;
 	  cursor: not-allowed;
 	}
+	@keyframes survey-pulse-border {
+	  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 160, 0, 0.8), 0 3px 6px rgba(0,0,0,0.15); border-color: #e65c00; }
+	  50%       { box-shadow: 0 0 0 10px rgba(255, 160, 0, 0), 0 3px 6px rgba(0,0,0,0.15); border-color: #ff8c00; }
+	}
 	.menu-btn.start-enabled,
 	.menu-btn.start-enabled:hover {
 	  background: #FFD700;
-	  border-color: #999;
+	  border-color: #e65c00;
+	  border-width: 3px;
 	  color: #000;
+	  animation: survey-pulse-border 1.4s ease-in-out infinite;
 	}
 
 	.menu-header {
@@ -81,7 +87,7 @@
 	  color: #222;
 	}
 
-  /* Radio: large white, fills golden yellow when selected */
+  /* Radio: large white, fills solid golden yellow when selected — no center dot */
   .form-check-input.radio-gold {
     width: 2.5rem;
     height: 2.5rem;
@@ -94,8 +100,43 @@
   .form-check-input.radio-gold:checked {
     background-color: #FFD700 !important;
     border-color: #555 !important;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23333'/%3e%3c/svg%3e") !important;
+    background-image: none !important;
   }
+
+  /* Pre-question choice buttons (btn-kiosk style with selected state) */
+  .cc-radio { display: none; }
+  .cc-opt   { display: block; }
+  .btn-kiosk-opt {
+    width: 100%; padding: 16px 18px; font-size: 1.15rem; font-weight: 700;
+    border: 2px solid #ccc; display: flex; align-items: center; gap: 12px;
+    background: #FFD700; color: #000; box-shadow: 0 4px 8px rgba(0,0,0,.1);
+    cursor: pointer; transition: background .15s, border-color .15s; margin: 0;
+  }
+  .btn-kiosk-opt:hover { background: #FFC107; }
+  .cc-radio:checked + .btn-kiosk-opt {
+    background: #FF8C00; color: #fff; border-color: #cc5500;
+    box-shadow: 0 4px 14px rgba(204,85,0,.35);
+  }
+
+  /* Numeric keypad */
+  .num-keypad {
+    position: absolute; z-index: 1050; top: 100%; left: 0;
+    background: #fff; border: 1px solid #ccc; border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(0,0,0,.25); padding: 10px;
+    min-width: 220px;
+  }
+  .keypad-row { display: flex; gap: 6px; margin-bottom: 6px; }
+  .keypad-btn {
+    flex: 1; padding: 15px 0; font-size: 1.4rem; font-weight: 700;
+    border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa;
+    cursor: pointer; transition: background .1s; line-height: 1;
+  }
+  .keypad-btn:hover  { background: #ffe066; }
+  .keypad-btn:active { background: #ffd700; }
+  .keypad-back { background: #f0f0f0 !important; font-size: 1.2rem !important; }
+  .keypad-back:hover { background: #e0e0e0 !important; }
+  .keypad-done { background: #28a745 !important; color: #fff; font-size: 1rem !important; font-weight: 700; }
+  .keypad-done:hover { background: #218838 !important; }
 
     .panel { background:#fff; box-shadow:0 8px 18px rgba(0,0,0,.15); padding:24px; margin-top:18px; }
     .step-chips { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
@@ -1449,10 +1490,33 @@ async function proceedSurveyBookingId(){
           </select>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 position-relative">
           <label class="form-label">Mobile No.</label>
-          <input type="tel" class="form-control" name="contact" value="09101234567"
-                pattern="^[0-9+]{7,15}$" inputmode="tel">
+          <input type="tel" class="form-control" id="csm-contact" name="contact" value=""
+                pattern="^[0-9+]{7,15}$" inputmode="none" autocomplete="off" readonly
+                onfocus="showNumKeypad(this)" onclick="showNumKeypad(this)">
+          <div id="num-keypad" class="num-keypad d-none">
+            <div class="keypad-row">
+              <button type="button" class="keypad-btn" onclick="kpType('1')">1</button>
+              <button type="button" class="keypad-btn" onclick="kpType('2')">2</button>
+              <button type="button" class="keypad-btn" onclick="kpType('3')">3</button>
+            </div>
+            <div class="keypad-row">
+              <button type="button" class="keypad-btn" onclick="kpType('4')">4</button>
+              <button type="button" class="keypad-btn" onclick="kpType('5')">5</button>
+              <button type="button" class="keypad-btn" onclick="kpType('6')">6</button>
+            </div>
+            <div class="keypad-row">
+              <button type="button" class="keypad-btn" onclick="kpType('7')">7</button>
+              <button type="button" class="keypad-btn" onclick="kpType('8')">8</button>
+              <button type="button" class="keypad-btn" onclick="kpType('9')">9</button>
+            </div>
+            <div class="keypad-row">
+              <button type="button" class="keypad-btn keypad-back" onclick="kpBack()">⌫</button>
+              <button type="button" class="keypad-btn" onclick="kpType('0')">0</button>
+              <button type="button" class="keypad-btn keypad-done" onclick="kpDone()">Done ✓</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1466,48 +1530,48 @@ async function proceedSurveyBookingId(){
     <div class="tab-pane fade" id="panel-prequestions" role="tabpanel">
       <div class="fs-4">
 
-        <div class="mb-4">
-          <label class="form-label">Are you aware of the Citizen's Charter - document of the SDO services and requirements?</label>
-          <div class="d-flex justify-content-left flex-wrap gap-4">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-gold rounded-circle" type="radio" name="cc_aware" id="q1-yes" value="Yes" required>
-              <label class="form-check-label fs-4" for="q1-yes">Yes</label>
+        <div class="mb-5">
+          <p class="fw-bold mb-3">Are you aware of the Citizen's Charter - document of the SDO services and requirements?</p>
+          <div class="d-grid gap-2">
+            <div class="cc-opt">
+              <input class="cc-radio" type="radio" name="cc_aware" id="q1-yes" value="Yes" required>
+              <label class="btn-kiosk-opt" for="q1-yes"><i class="bi bi-check-circle-fill"></i> Yes</label>
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-gold rounded-circle" type="radio" name="cc_aware" id="q1-no" value="No">
-              <label class="form-check-label fs-4" for="q1-no">No</label>
+            <div class="cc-opt">
+              <input class="cc-radio" type="radio" name="cc_aware" id="q1-no" value="No">
+              <label class="btn-kiosk-opt" for="q1-no"><i class="bi bi-x-circle-fill"></i> No</label>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="mb-5">
+          <p class="fw-bold mb-3">Did you see the SDO Citizen's Charter (online or posted in the office)?</p>
+          <div class="d-grid gap-2">
+            <div class="cc-opt">
+              <input class="cc-radio" type="radio" name="cc_see" id="q2-yes-easy" value="Yes-easy" required>
+              <label class="btn-kiosk-opt" for="q2-yes-easy"><i class="bi bi-eye-fill"></i> Yes - it was easy to find</label>
+            </div>
+            <div class="cc-opt">
+              <input class="cc-radio" type="radio" name="cc_see" id="q2-yes-hard" value="Yes-hard">
+              <label class="btn-kiosk-opt" for="q2-yes-hard"><i class="bi bi-search"></i> Yes - but it was hard to find</label>
+            </div>
+            <div class="cc-opt">
+              <input class="cc-radio" type="radio" name="cc_see" id="q2-no" value="No">
+              <label class="btn-kiosk-opt" for="q2-no"><i class="bi bi-x-circle-fill"></i> No</label>
             </div>
           </div>
         </div>
         <hr>
         <div class="mb-4">
-          <label class="form-label">Did you see the SDO Citizen's Charter (online or posted in the office)?</label>
-          <div class="d-flex justify-content-left flex-wrap gap-4">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-gold rounded-circle" type="radio" name="cc_see" id="q2-yes-easy" value="Yes-easy" required>
-              <label class="form-check-label fs-4" for="q2-yes-easy">Yes - it was easy to find</label>
-            </div></br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-gold rounded-circle" type="radio" name="cc_see" id="q2-yes-hard" value="Yes-hard">
-              <label class="form-check-label fs-4" for="q2-yes-hard">Yes - but it was hard to find</label>
-            </div></br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-gold rounded-circle" type="radio" name="cc_see" id="q3-no" value="No">
-              <label class="form-check-label fs-4" for="q3-no">No</label>
+          <p class="fw-bold mb-3">Did you use the SDO Citizen's Charter as a guide for the service you availed?</p>
+          <div class="d-grid gap-2">
+            <div class="cc-opt">
+              <input class="cc-radio" type="radio" name="cc_used" id="q3-yes" value="Yes" required>
+              <label class="btn-kiosk-opt" for="q3-yes"><i class="bi bi-check-circle-fill"></i> Yes</label>
             </div>
-          </div>
-        </div>
-        <hr>
-        <div class="mb-4">
-          <label class="form-label">Did you use the SDO Citizen's Charter as a guide for the service you availed?</label>
-          <div class="d-flex justify-content-left flex-wrap gap-4">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-gold rounded-circle" type="radio" name="cc_used" id="q3-yes" value="Yes" required>
-              <label class="form-check-label fs-4" for="q3-yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-gold rounded-circle" type="radio" name="cc_used" id="q3-no" value="No">
-              <label class="form-check-label fs-4" for="q3-no">No</label>
+            <div class="cc-opt">
+              <input class="cc-radio" type="radio" name="cc_used" id="q3-no" value="No">
+              <label class="btn-kiosk-opt" for="q3-no"><i class="bi bi-x-circle-fill"></i> No</label>
             </div>
           </div>
         </div>
@@ -1517,7 +1581,7 @@ async function proceedSurveyBookingId(){
       <div class="text-end mt-5">
         <button type="submit" class="btn btn-success btn-lg px-5"> CONTINUE </button>
       </div>
-      
+
     </div>
 
   </div>
@@ -1692,6 +1756,32 @@ async function searchDocument(){
 
 
 function clearTracking(){ document.getElementById("trackId").value = ""; document.getElementById("trackResult").innerHTML = ""; }
+
+/* ========= NUMERIC KEYPAD ========= */
+let kpTarget = null;
+function showNumKeypad(el) {
+  kpTarget = el;
+  const kp = document.getElementById('num-keypad');
+  if (kp) kp.classList.remove('d-none');
+}
+function kpType(digit) {
+  if (!kpTarget) return;
+  if (kpTarget.value.length < 15) kpTarget.value += digit;
+}
+function kpBack() {
+  if (!kpTarget) return;
+  kpTarget.value = kpTarget.value.slice(0, -1);
+}
+function kpDone() {
+  const kp = document.getElementById('num-keypad');
+  if (kp) kp.classList.add('d-none');
+  kpTarget = null;
+}
+document.addEventListener('click', function (e) {
+  const kp = document.getElementById('num-keypad');
+  if (!kp || kp.classList.contains('d-none')) return;
+  if (!kp.contains(e.target) && e.target !== kpTarget) kpDone();
+});
 
 /* ========= INIT ========= */
 goHome();
