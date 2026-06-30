@@ -9,6 +9,13 @@ class OfficesAndServicesSeeder extends Seeder
 {
     public function run(): void
     {
+        $driver = DB::getDriverName();
+        if ($driver === 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = OFF');
+        } elseif ($driver === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
+
         DB::table('offices')->insertOrIgnore([
         [
             'id' => 1,
@@ -6071,5 +6078,11 @@ class OfficesAndServicesSeeder extends Seeder
             'name' => 'Other concern'
         ]
         ]);
+
+        if ($driver === 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = ON');
+        } elseif ($driver === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
 }

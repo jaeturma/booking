@@ -9,6 +9,13 @@ class UsersSeeder extends Seeder
 {
     public function run(): void
     {
+        $driver = DB::getDriverName();
+        if ($driver === 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = OFF');
+        } elseif ($driver === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
+
         $chunks = [
             [
                 ['id' => '1', 'employee_no' => '8406069', 'name' => 'John Arzaga', 'email' => 'admin@admin.com', 'email_verified_at' => '2025-09-01 00:16:02', 'password' => '$2y$12$R5ryZCXqV41QN82VkXpBtu5eJCHKM400agjcTyLQa.ka9VZ6oFAbq', 'created_at' => '2025-08-23 09:00:36', 'updated_at' => '2025-08-23 13:15:32', 'position_id' => '1', 'office_id' => '17', 'bdate' => null],
@@ -7207,6 +7214,12 @@ class UsersSeeder extends Seeder
 
         foreach ($chunks as $chunk) {
             DB::table('users')->insertOrIgnore($chunk);
+        }
+
+        if ($driver === 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = ON');
+        } elseif ($driver === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
         }
     }
 }
