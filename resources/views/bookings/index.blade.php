@@ -11,6 +11,19 @@
 
   @push('styles')
     @include('partials.vendor-dt-bs5-styles')
+    <style>
+      /* Keep filter div as a flex row so all controls stay on one line */
+      #bookingsTable_filter {
+        float: none !important;
+        text-align: left !important;
+        display: flex !important;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+      #bookingsTable_filter label { margin-bottom: 0; white-space: nowrap; }
+      #bookingsTable_length label { margin-bottom: 0; }
+    </style>
   @endpush
 
   <div class="py-5">
@@ -66,52 +79,45 @@
       $('#bookingsTable').on('init.dt', function () {
         const filterDiv = $('#bookingsTable_filter');
 
-        // Date filter
-        const dateSelect = $('<select class="form-select form-select-sm d-inline-block w-auto me-2">'
+        // Build date select
+        const dateSelect = $('<select class="form-select form-select-sm" style="width:auto">'
           + '<option value="today">Today</option>'
           + '<option value="week">This Week</option>'
           + '<option value="month">This Month</option>'
           + '<option value="year">This Year</option>'
           + '</select>');
-
-        filterDiv.prepend(dateSelect);
         dateSelect.on('change', function () {
           activeDate = this.value;
           window.__dt['bookingsTable'].ajax.url(buildUrl()).load();
         });
 
-        // Office filter (privileged users only)
+        // Build office select (privileged users only)
+        let officeSelect = null;
         if (window.__offices && window.__offices.length) {
-          const groups = {};
-          const ungrouped = [];
+          const groups = {}, ungrouped = [];
           window.__offices.forEach(function (o) {
-            if (o.group) {
-              if (!groups[o.group]) groups[o.group] = [];
-              groups[o.group].push(o);
-            } else {
-              ungrouped.push(o);
-            }
+            if (o.group) { (groups[o.group] = groups[o.group] || []).push(o); }
+            else { ungrouped.push(o); }
           });
-
           let opts = '<option value="">All Offices</option>';
           Object.keys(groups).sort().forEach(function (g) {
             opts += '<optgroup label="' + g + '">';
-            groups[g].forEach(function (o) {
-              opts += '<option value="' + o.id + '">' + o.name + '</option>';
-            });
+            groups[g].forEach(o => opts += '<option value="' + o.id + '">' + o.name + '</option>');
             opts += '</optgroup>';
           });
-          ungrouped.forEach(function (o) {
-            opts += '<option value="' + o.id + '">' + o.name + '</option>';
-          });
+          ungrouped.forEach(o => opts += '<option value="' + o.id + '">' + o.name + '</option>');
 
-          const officeSelect = $('<select class="form-select form-select-sm d-inline-block w-auto me-2">' + opts + '</select>');
-          filterDiv.prepend(officeSelect);
+          officeSelect = $('<select class="form-select form-select-sm" style="width:auto">' + opts + '</select>');
           officeSelect.on('change', function () {
             activeOffice = this.value;
             window.__dt['bookingsTable'].ajax.url(buildUrl()).load();
           });
         }
+
+        // Insert: office (if any), then date, then existing search — left to right
+        // prepend() inserts before existing content, so add in reverse display order
+        filterDiv.prepend(dateSelect);
+        if (officeSelect) filterDiv.prepend(officeSelect);
       });
     });
     </script>
@@ -121,6 +127,7 @@
       'orderCol'       => 3,
       'noOrderTargets' => [],
       'ajaxUrl'        => route('bookings.data') . '?filter=today',
+      'dom'            => "<'d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2'<''l><'d-flex align-items-center gap-2 flex-wrap'f>>rt<'row mt-2'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
       'columns'        => [
         ['data' => 'booking_code',   'name' => 'booking_code'],
         ['data' => 'client',         'name' => 'client',        'orderable' => false],

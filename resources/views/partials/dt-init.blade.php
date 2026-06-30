@@ -6,6 +6,7 @@
   $ajaxUrl        = $ajaxUrl        ?? null;
   $columns        = $columns        ?? null;
   $placeholder    = $placeholder    ?? null;
+  $dom            = $dom            ?? "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>rt<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>";
 @endphp
 
 <script>
@@ -16,10 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const config = {
-    dom:
-      "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-      "rt" +
-      "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+    dom: {!! json_encode($dom) !!},
     pageLength: {{ $pageLength }},
     lengthMenu: [[10,25,50,-1],[10,25,50,'All']],
     order: [[{{ $orderCol }}, 'desc']],

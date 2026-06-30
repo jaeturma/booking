@@ -29,6 +29,17 @@ class SettingsController extends Controller
             'app_logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'kiosk_title' => 'required|string|max:100',
             'kiosk_footer' => 'nullable|string|max:255',
+            'screensaver_video_1' => 'nullable|string|max:500',
+            'screensaver_video_2' => 'nullable|string|max:500',
+            'screensaver_video_3' => 'nullable|string|max:500',
+            'screensaver_video_4' => 'nullable|string|max:500',
+            'screensaver_video_5' => 'nullable|string|max:500',
+            'screensaver_video_1_enabled' => 'nullable|boolean',
+            'screensaver_video_2_enabled' => 'nullable|boolean',
+            'screensaver_video_3_enabled' => 'nullable|boolean',
+            'screensaver_video_4_enabled' => 'nullable|boolean',
+            'screensaver_video_5_enabled' => 'nullable|boolean',
+            'screensaver_timeout' => 'nullable|integer|min:10|max:3600',
         ]);
 
         AppSetting::setValue('ca_signatory_name', $data['ca_signatory_name']);
@@ -42,6 +53,12 @@ class SettingsController extends Controller
         $this->storeImageSetting($request, 'app_logo', 'app_logo_path');
         AppSetting::setValue('kiosk_title', $data['kiosk_title']);
         AppSetting::setValue('kiosk_footer', $data['kiosk_footer'] ?? '');
+
+        for ($i = 1; $i <= 5; $i++) {
+            AppSetting::setValue("screensaver_video_{$i}", $data["screensaver_video_{$i}"] ?? '');
+            AppSetting::setValue("screensaver_video_{$i}_enabled", isset($data["screensaver_video_{$i}_enabled"]) ? '1' : '0');
+        }
+        AppSetting::setValue('screensaver_timeout', $data['screensaver_timeout'] ?? 60);
 
         return redirect()
             ->route('admin.settings.edit')

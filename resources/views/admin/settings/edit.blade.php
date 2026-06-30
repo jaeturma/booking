@@ -122,10 +122,143 @@
                 @endif
             </div>
 
+            <hr>
+            <h5 class="mb-1">Kiosk Screensaver</h5>
+            <p class="text-muted small mb-3">
+                Videos play in sequence when the kiosk is idle. Supports YouTube links <em>and</em> files stored directly on the kiosk drive —
+                enter the full Windows path (e.g. <code>D:\videos\clip1.mp4</code>). The file is read by the kiosk browser, not uploaded to the server.
+                Toggle the switch to enable or disable each slot. Use <strong>Test</strong> to preview.
+            </p>
+
+            @foreach([1,2,3,4,5] as $n)
+            @php
+                $ssUrl     = old('screensaver_video_' . $n, $settings['screensaver_video_' . $n] ?? '');
+                $ssEnabled = old('screensaver_video_' . $n . '_enabled', $settings['screensaver_video_' . $n . '_enabled'] ?? '1');
+            @endphp
+            <div class="card mb-2">
+                <div class="card-body py-2 px-3">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        {{-- Enable toggle --}}
+                        <div class="form-check form-switch mb-0 flex-shrink-0" title="Enable/disable this slot">
+                            <input class="form-check-input" type="checkbox" role="switch"
+                                   name="screensaver_video_{{ $n }}_enabled"
+                                   id="ss_enabled_{{ $n }}"
+                                   value="1"
+                                   {{ $ssEnabled === '1' || $ssEnabled === true ? 'checked' : '' }}>
+                            <label class="form-check-label fw-semibold" for="ss_enabled_{{ $n }}">
+                                Video&nbsp;{{ $n }}
+                            </label>
+                        </div>
+
+                        {{-- URL / path input --}}
+                        <input type="text"
+                               name="screensaver_video_{{ $n }}"
+                               id="screensaver_video_{{ $n }}"
+                               class="form-control form-control-sm flex-grow-1"
+                               value="{{ $ssUrl }}"
+                               placeholder="e.g. D:\videos\clip{{ $n }}.mp4  or  https://youtu.be/...">
+
+                        {{-- Test button --}}
+                        <button type="button"
+                                class="btn btn-outline-secondary btn-sm flex-shrink-0 ss-test-btn"
+                                data-slot="{{ $n }}"
+                                title="Preview this video">
+                            <i class="fas fa-play me-1"></i>Test
+                        </button>
+                    </div>
+                    @error('screensaver_video_' . $n)
+                        <small class="text-danger d-block mt-1">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+            @endforeach
+
+            <div class="form-group mt-3" style="max-width:300px;">
+                <label for="screensaver_timeout">Idle timeout (seconds)</label>
+                <input type="number" name="screensaver_timeout" id="screensaver_timeout" class="form-control"
+                    value="{{ old('screensaver_timeout', $settings['screensaver_timeout'] ?? 60) }}"
+                    min="10" max="3600" required>
+                <small class="text-muted">Screensaver starts after this many seconds of inactivity (minimum 10).</small>
+                @error('screensaver_timeout') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
             <button type="submit" class="btn btn-success">
                 <i class="fas fa-save"></i> Save Settings
             </button>
         </form>
+    </div>
+</div>
+
+{{-- ===== Screensaver Test Modal ===== --}}
+<div class="modal fade" id="ssTestModal" tabindex="-1" aria-labelledby="ssTestModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-secondary py-2">
+                <h6 class="modal-title text-white" id="ssTestModalLabel">Screensaver Preview — Video <span id="ssTestSlotLabel"></span></h6>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0" style="min-height:480px;background:#000;position:relative;">
+                <div id="ssTestPlayerWrap" style="width:100%;height:480px;position:relative;"></div>
+                <p id="ssTestEmpty" class="text-white text-center pt-5" style="display:none;">
+                    <i class="fas fa-exclamation-circle fa-2x mb-2 d-block text-warning"></i>
+                    No URL entered for this slot.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    function getYouTubeId(url) {
+        const m = url.match(/(?:youtube\.com\/watch\?[^#]*v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
+        return m ? m[1] : null;
+    }
+
+    document.querySelectorAll('.ss-test-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const slot  = this.dataset.slot;
+            const url   = (document.getElementById('screensaver_video_' + slot)?.value || '').trim();
+            const wrap  = document.getElementById('ssTestPlayerWrap');
+            const empty = document.getElementById('ssTestEmpty');
+            const label = document.getElementById('ssTestSlotLabel');
+
+            label.textContent = slot;
+            wrap.innerHTML    = '';
+            empty.style.display = 'none';
+
+            if (!url) {
+                empty.style.display = 'block';
+            } else {
+                const ytId = getYouTubeId(url);
+                if (ytId) {
+                    const iframe = document.createElement('iframe');
+                    iframe.src   = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1';
+                    iframe.allow = 'autoplay; encrypted-media; fullscreen';
+                    iframe.style.cssText = 'width:100%;height:480px;border:0;display:block;';
+                    wrap.appendChild(iframe);
+                } else {
+                    const video = document.createElement('video');
+                    video.src      = url;
+                    video.controls = true;
+                    video.autoplay = true;
+                    video.muted    = true;
+                    video.style.cssText = 'width:100%;height:480px;object-fit:contain;background:#000;display:block;';
+                    wrap.appendChild(video);
+                    video.play().catch(() => {});
+                }
+            }
+
+            new bootstrap.Modal(document.getElementById('ssTestModal')).show();
+        });
+    });
+
+    // Stop video/iframe when modal closes
+    document.getElementById('ssTestModal').addEventListener('hidden.bs.modal', function () {
+        document.getElementById('ssTestPlayerWrap').innerHTML = '';
+    });
+})();
+</script>
     </div>
 </div>
 @stop

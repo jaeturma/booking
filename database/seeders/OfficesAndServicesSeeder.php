@@ -14,6 +14,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 1,
             'name' => 'Schools Division Superintendent',
             'main' => '1',
+            'group' => null,
             'district' => null,
             'icon' => 'bi-building-fill',
             'show_order' => 1
@@ -22,6 +23,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 2,
             'name' => 'Assistant Schools Division Superintendent',
             'main' => '1',
+            'group' => null,
             'district' => null,
             'icon' => 'bi-building',
             'show_order' => 2
@@ -30,6 +32,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 3,
             'name' => 'Cash',
             'main' => 'Admin',
+            'group' => 'Admin',
             'district' => null,
             'icon' => 'bi-cash-coin',
             'show_order' => 8
@@ -38,6 +41,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 4,
             'name' => 'Personnel',
             'main' => 'Admin',
+            'group' => 'Admin',
             'district' => null,
             'icon' => 'bi-file-person-fill',
             'show_order' => 9
@@ -46,6 +50,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 5,
             'name' => 'Property and Supply',
             'main' => 'Admin',
+            'group' => 'Admin',
             'district' => null,
             'icon' => 'bi-backpack-fill',
             'show_order' => 11
@@ -54,6 +59,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 6,
             'name' => 'General Services',
             'main' => 'Admin',
+            'group' => 'Admin',
             'district' => null,
             'icon' => 'bi-tools',
             'show_order' => 12
@@ -62,6 +68,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 7,
             'name' => 'Procurement',
             'main' => 'Admin',
+            'group' => 'Admin',
             'district' => null,
             'icon' => 'bi-cart4',
             'show_order' => 13
@@ -70,6 +77,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 8,
             'name' => 'LRMDS',
             'main' => 'CID',
+            'group' => 'CID',
             'district' => null,
             'icon' => 'bi-book-fill',
             'show_order' => 14
@@ -78,6 +86,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 9,
             'name' => 'Instructional Management',
             'main' => 'CID',
+            'group' => 'CID',
             'district' => null,
             'icon' => 'bi-bookmark-check-fill',
             'show_order' => 15
@@ -86,6 +95,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 10,
             'name' => 'Admin',
             'main' => 'CID',
+            'group' => 'CID',
             'district' => null,
             'icon' => 'bi-clipboard',
             'show_order' => 7
@@ -94,6 +104,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 11,
             'name' => 'SMME',
             'main' => 'SGOD',
+            'group' => 'SGOD',
             'district' => null,
             'icon' => 'bi-buildings-fill',
             'show_order' => 16
@@ -102,6 +113,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 12,
             'name' => 'Social Mobilization',
             'main' => 'SGOD',
+            'group' => 'SGOD',
             'district' => null,
             'icon' => 'bi-bus-front-fill',
             'show_order' => 17
@@ -110,6 +122,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 13,
             'name' => 'Planning and Research',
             'main' => 'SGOD',
+            'group' => 'SGOD',
             'district' => null,
             'icon' => 'bi-collection-fill',
             'show_order' => 18
@@ -118,6 +131,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 14,
             'name' => 'HRD',
             'main' => 'SGOD',
+            'group' => 'SGOD',
             'district' => null,
             'icon' => 'bi-person-workspace',
             'show_order' => 19
@@ -126,6 +140,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 15,
             'name' => 'Facilities',
             'main' => 'SGOD',
+            'group' => 'SGOD',
             'district' => null,
             'icon' => 'bi-luggage-fill',
             'show_order' => 20
@@ -134,6 +149,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 16,
             'name' => 'School Health',
             'main' => 'SGOD',
+            'group' => 'SGOD',
             'district' => null,
             'icon' => 'bi-clipboard-pulse',
             'show_order' => 21
@@ -142,6 +158,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 17,
             'name' => 'ICT Unit',
             'main' => 'SDS',
+            'group' => 'SDS',
             'district' => null,
             'icon' => 'bi-router-fill',
             'show_order' => 3
@@ -150,6 +167,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 18,
             'name' => 'Legal Unit',
             'main' => 'SDS',
+            'group' => 'SDS',
             'district' => null,
             'icon' => 'bi-briefcase-fill',
             'show_order' => 4
@@ -158,6 +176,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 19,
             'name' => 'Records',
             'main' => 'Admin',
+            'group' => 'Admin',
             'district' => null,
             'icon' => 'bi-file-post',
             'show_order' => 10
@@ -166,6 +185,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 20,
             'name' => 'Accounting',
             'main' => 'Finance',
+            'group' => 'Finance',
             'district' => null,
             'icon' => 'bi-calculator',
             'show_order' => 5
@@ -174,6 +194,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 21,
             'name' => 'Budget',
             'main' => 'Finance',
+            'group' => 'Finance',
             'district' => null,
             'icon' => 'bi-file-spreadsheet',
             'show_order' => 6
@@ -182,6 +203,7 @@ class OfficesAndServicesSeeder extends Seeder
             'id' => 22,
             'name' => 'Engineering',
             'main' => 'SGOD',
+            'group' => 'SGOD',
             'district' => null,
             'icon' => 'bi-rulers',
             'show_order' => 22

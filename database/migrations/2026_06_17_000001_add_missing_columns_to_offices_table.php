@@ -13,7 +13,7 @@ return new class extends Migration
                 $table->unsignedInteger('show_order')->nullable()->after('district');
             }
             if (!Schema::hasColumn('offices', 'main')) {
-                $table->boolean('main')->default(false)->after('show_order');
+                $table->string('main')->nullable()->after('show_order');
             }
             if (!Schema::hasColumn('offices', 'icon')) {
                 $table->string('icon')->nullable()->after('main');

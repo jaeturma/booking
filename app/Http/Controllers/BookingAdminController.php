@@ -20,7 +20,7 @@ class BookingAdminController extends Controller
     {
         $user = auth()->user();
         $isPrivileged = $this->isPrivileged($user);
-        $offices = $isPrivileged ? Office::orderBy('name')->get(['id', 'name', 'group']) : collect();
+        $offices = $isPrivileged ? Office::whereNotNull('show_order')->orderBy('show_order')->get(['id', 'name', 'group']) : collect();
         return view('bookings.index', compact('isPrivileged', 'offices'));
     }
 

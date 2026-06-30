@@ -19,6 +19,17 @@ class AppSetting extends Model
         'app_logo_path' => 'images/ddo_logo.png',
         'kiosk_title' => 'Self-Service Kiosk',
         'kiosk_footer' => 'Schools Division of Davao de Oro | Department of Education',
+        'screensaver_video_1' => null,
+        'screensaver_video_1_enabled' => '1',
+        'screensaver_video_2' => null,
+        'screensaver_video_2_enabled' => '1',
+        'screensaver_video_3' => null,
+        'screensaver_video_3_enabled' => '1',
+        'screensaver_video_4' => null,
+        'screensaver_video_4_enabled' => '1',
+        'screensaver_video_5' => null,
+        'screensaver_video_5_enabled' => '1',
+        'screensaver_timeout' => '60',
     ];
 
     public static function getValue(string $key, mixed $default = null): mixed

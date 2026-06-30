@@ -24,6 +24,12 @@
     .btn, .form-control, .modal-content, .card, .progress, .progress-bar { border-radius:0!important; }
 
     .wrap { max-width:980px; margin:0 auto; padding:20px; }
+
+    @keyframes ss-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.65; transform: scale(0.97); }
+    }
+    #ssTapPrompt { animation: ss-pulse 2s ease-in-out infinite; }
 	
 	.menu-btn {
 	  display: block;
@@ -241,6 +247,27 @@
   </style>
 </head>
 <body>
+
+<!-- ===== Screensaver Overlay ===== -->
+@php
+    $ssVideos = array_values(array_filter(
+        array_map(function ($i) {
+            $url     = \App\Models\AppSetting::getValue("screensaver_video_{$i}");
+            $enabled = \App\Models\AppSetting::getValue("screensaver_video_{$i}_enabled", '1');
+            return ($enabled === '1' && $url !== null && $url !== '') ? $url : null;
+        }, [1, 2, 3, 4, 5])
+    ));
+    $ssTimeout = max(10, (int) \App\Models\AppSetting::getValue('screensaver_timeout', 60));
+@endphp
+<div id="screensaverOverlay" style="display:none;position:fixed;inset:0;z-index:9999;background:#000;cursor:pointer;">
+    <div id="ssTapPrompt" style="position:absolute;top:0;left:0;width:100%;z-index:10001;padding:22px 20px;text-align:center;background:linear-gradient(to bottom,rgba(0,0,0,.7) 80%,transparent);">
+        <span style="color:#FFD700;font-size:2.2rem;font-weight:800;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.8);">
+            <i class="bi bi-hand-index-thumb-fill me-2"></i>TAP ANYWHERE TO START THE KIOSK
+        </span>
+    </div>
+    {{-- Player container — filled dynamically with <video> or YouTube iframe --}}
+    <div id="ssPlayer" style="position:absolute;inset:0;width:100%;height:100%;"></div>
+</div>
 
 <!-- Thin top progress bar (shown on every network request) -->
 <div id="kioskProgress"><div class="kp-bar" id="kioskProgressBar"></div></div>
@@ -1818,6 +1845,135 @@ document.addEventListener('fullscreenchange', () => {
   if (!icon) return;
   icon.className = document.fullscreenElement ? 'bi bi-fullscreen-exit' : 'bi bi-fullscreen';
 });
+
+// ===== Screensaver =====
+(function () {
+  const videos  = @json($ssVideos);
+  const timeout = {{ $ssTimeout }} * 1000;
+  const overlay = document.getElementById('screensaverOverlay');
+  const player  = document.getElementById('ssPlayer');
+  let   timer   = null;
+  let   vidIdx  = 0;
+  let   active  = false;
+  let   ytReady = false;
+  let   ytPlayer = null;
+
+  if (!videos.length || !overlay) return;
+
+  // ---- URL helpers ----
+  function getYouTubeId(url) {
+    const m = url.match(/(?:youtube\.com\/watch\?[^#]*v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
+    return m ? m[1] : null;
+  }
+
+  // Convert any path to a URL the browser can load:
+  //   D:\videos\clip.mp4  →  file:///D:/videos/clip.mp4
+  //   file:///...         →  unchanged
+  //   https://...         →  unchanged
+  //   relative/path.mp4   →  served from this server
+  function toVideoUrl(path) {
+    if (/^(https?|file):\/\//i.test(path)) return path;          // already a URL
+    if (/^[a-zA-Z]:[\\\/]/.test(path))                           // Windows drive path
+      return 'file:///' + path.replace(/\\/g, '/');
+    return '{{ asset('') }}' + path;                              // server-relative path
+  }
+
+  const hasYT = videos.some(v => getYouTubeId(v));
+  if (hasYT) {
+    const s = document.createElement('script');
+    s.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+  window.onYouTubeIframeAPIReady = function () { ytReady = true; };
+
+  // ---- Player management ----
+  function clearPlayer() {
+    if (ytPlayer) { try { ytPlayer.destroy(); } catch (e) {} ytPlayer = null; }
+    player.innerHTML = '';
+  }
+
+  function loadVideo() {
+    clearPlayer();
+    const url  = videos[vidIdx];
+    const ytId = getYouTubeId(url);
+    ytId ? loadYouTube(ytId) : loadLocal(url);
+  }
+
+  function loadLocal(url) {
+    const v = document.createElement('video');
+    v.src       = toVideoUrl(url);
+    v.muted     = true;
+    v.autoplay  = true;
+    v.playsInline = true;
+    v.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    v.addEventListener('ended', advance);
+    player.appendChild(v);
+    v.play().catch(() => {});
+  }
+
+  function loadYouTube(ytId) {
+    const div = document.createElement('div');
+    div.id = 'ss-yt-player';
+    div.style.cssText = 'width:100%;height:100%;';
+    player.appendChild(div);
+
+    const create = function () {
+      ytPlayer = new YT.Player('ss-yt-player', {
+        videoId: ytId,
+        playerVars: { autoplay: 1, mute: 1, controls: 0, rel: 0, modestbranding: 1, iv_load_policy: 3 },
+        events: {
+          onReady: function (e) {
+            const iframe = e.target.getIframe();
+            iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+          },
+          onStateChange: function (e) {
+            if (e.data === YT.PlayerState.ENDED) advance();
+          },
+        },
+      });
+    };
+
+    if (ytReady) { create(); }
+    else {
+      const orig = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = function () { ytReady = true; if (orig) orig(); create(); };
+    }
+  }
+
+  function advance() {
+    vidIdx = (vidIdx + 1) % videos.length;
+    loadVideo();
+  }
+
+  // ---- Screensaver lifecycle ----
+  function startTimer() {
+    clearTimeout(timer);
+    timer = setTimeout(showScreensaver, timeout);
+  }
+
+  function showScreensaver() {
+    active = true;
+    overlay.style.display = 'block';
+    vidIdx = 0;
+    loadVideo();
+  }
+
+  function hideScreensaver() {
+    active = false;
+    overlay.style.display = 'none';
+    clearPlayer();
+    startTimer();
+  }
+
+  overlay.addEventListener('click',      hideScreensaver);
+  overlay.addEventListener('touchstart', function (e) { e.preventDefault(); hideScreensaver(); }, { passive: false });
+
+  ['touchstart', 'touchmove', 'click', 'mousemove', 'keydown', 'scroll'].forEach(function (evt) {
+    document.addEventListener(evt, function () { if (!active) startTimer(); }, { passive: true });
+  });
+
+  startTimer();
+})();
 </script>
 
 @php $kioskFooter = \App\Models\AppSetting::getValue('kiosk_footer', ''); @endphp
