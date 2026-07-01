@@ -18,7 +18,7 @@ class AppSetting extends Model
         'login_logo_path' => 'images/ddo_logo.png',
         'app_logo_path' => 'images/ddo_logo.png',
         'kiosk_title' => 'Self-Service Kiosk',
-        'kiosk_footer' => 'Schools Division of Davao de Oro | Department of Education',
+        'kiosk_footer' => 'DEPARTMENT OF EDUCATION | SCHOOLS DIVISION OF DAVAO DE ORO. 2026',
         'screensaver_enabled' => '1',
         'screensaver_mode' => 'video',
         'screensaver_image_folder' => null,

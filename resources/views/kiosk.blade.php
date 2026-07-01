@@ -287,6 +287,12 @@
       left: 0;
       width: 100%;
     }
+    .kiosk-footer .footer-link {
+      color: #222;
+      text-decoration: underline;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
   </style>
 </head>
@@ -498,8 +504,13 @@
 
     <!-- How to Use -->
     <div id="guideFlow" class="panel hidden">
-      <h4><i class="bi bi-question-circle me-2"></i>How to Use This Kiosk</h4>
-      <p class="text-muted mb-3">Follow the steps below depending on what you need.</p>
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <h4 class="mb-0"><i class="bi bi-question-circle me-2"></i>How to Use This Kiosk</h4>
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#aboutAppModal">
+          <i class="bi bi-info-circle me-1"></i> About this App
+        </button>
+      </div>
+      <p class="text-muted mb-3 mt-2">Follow the steps below depending on what you need.</p>
 
       <div class="accordion" id="guideAccordion">
 
@@ -595,6 +606,24 @@
           </div>
         </div>
 
+        <!-- About This App / Privacy -->
+        <div class="accordion-item mb-2">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guide5">
+              <i class="bi bi-info-circle me-2 fs-5"></i> About This App & Data Privacy
+            </button>
+          </h2>
+          <div id="guide5" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
+            <div class="accordion-body fs-5">
+              <p class="mb-0">
+                Tap the <strong>About this App</strong> button above to learn who developed and maintains this
+                kiosk, and to read the Policy of Use and Data Privacy Statement covering how your information
+                is collected and protected.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div><!-- /accordion -->
 
       <hr>
@@ -653,6 +682,71 @@
       </div>
       <div class="modal-body" id="employeeMessage"></div>
       <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- About This App Modal -->
+<div class="modal fade" id="aboutAppModal" tabindex="-1" aria-labelledby="aboutAppModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-top">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="aboutAppModalLabel"><i class="bi bi-info-circle me-2"></i>About This App</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fs-5">
+
+        <h6 class="fw-bold">About the System</h6>
+        <p>
+          The Self-Service Kiosk System is a digital front-desk facility of the
+          <strong>Schools Division of Davao de Oro (SDO Davao de Oro), Department of Education</strong>.
+          It allows clients to book office transactions, take the Client Satisfaction Measurement (CSM) survey,
+          track the status of documents, and view the Citizens Charter — without falling in line at the
+          front desk. It is intended to make transactions with the Division Office faster, more transparent,
+          and more convenient for teachers, learners, parents, government partners, and the general public.
+        </p>
+
+        <h6 class="fw-bold mt-3">Developed By</h6>
+        <p class="mb-1"><strong>JOAN A. ETURMA</strong></p>
+        <p>Schools Division of Davao de Oro</p>
+
+        <h6 class="fw-bold mt-3">Operated and Maintained By</h6>
+        <p>Information and Communication Technology Unit (ICT Unit), Schools Division of Davao de Oro</p>
+
+        <hr>
+
+        <h6 class="fw-bold">Policy of Use</h6>
+        <ul>
+          <li>This kiosk is provided for the official use of clients transacting with the DepEd Schools Division of Davao de Oro.</li>
+          <li>Users are expected to provide accurate and truthful information when booking transactions, tracking documents, or answering the CSM survey.</li>
+          <li>Any attempt to tamper with, damage, or disrupt the normal operation of this kiosk (hardware or software) is strictly prohibited and may be subject to appropriate administrative, civil, or criminal action.</li>
+          <li>This system is monitored for security and quality-assurance purposes. Access may be limited, suspended, or logged where misuse is suspected.</li>
+          <li>Booking codes and document tracking numbers are personal to the transaction — do not share them with unauthorized persons.</li>
+        </ul>
+
+        <h6 class="fw-bold mt-3">Data Privacy Statement</h6>
+        <p>
+          In compliance with the <strong>Data Privacy Act of 2012 (Republic Act No. 10173)</strong> and its
+          Implementing Rules and Regulations, the Schools Division of Davao de Oro is committed to protecting
+          the personal information collected through this kiosk.
+        </p>
+        <ul>
+          <li><strong>Information Collected:</strong> Name, employee number (if applicable), contact number, office/service selected, purpose of transaction, and — for the CSM survey — age, gender, and satisfaction ratings.</li>
+          <li><strong>Purpose:</strong> Data collected is used solely to process transactions, generate booking and tracking records, monitor service quality through the CSM survey, and issue certificates (e.g., Certificate of Appearance, Certificate of Employment) upon request.</li>
+          <li><strong>Storage and Protection:</strong> Data is stored in a secured system accessible only to authorized personnel and is retained only for as long as necessary for the stated purposes or as required by applicable records-retention rules.</li>
+          <li><strong>No Unauthorized Sharing:</strong> Personal information is not sold, shared, or disclosed to third parties except as required by law or with the client's consent.</li>
+          <li><strong>Data Subject Rights:</strong> Clients may inquire about, request correction of, or request deletion of their personal data, subject to legal and regulatory retention requirements, by contacting the ICT Unit or the Division Data Protection Officer.</li>
+        </ul>
+
+        <p class="text-muted small mt-3 mb-0">
+          For technical concerns, feedback, or data privacy inquiries, please contact the
+          Information and Communication Technology Unit, Schools Division of Davao de Oro,
+          Capitol Complex, Cabidianan, Nabunturan, Davao de Oro.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
@@ -2175,7 +2269,11 @@ document.addEventListener('fullscreenchange', () => {
 
 @php $kioskFooter = \App\Models\AppSetting::getValue('kiosk_footer', ''); @endphp
 @if($kioskFooter)
-<div class="kiosk-footer">{{ $kioskFooter }}</div>
+<div class="kiosk-footer">
+  {{ $kioskFooter }}
+  <span class="mx-2">|</span>
+  <span class="footer-link" data-bs-toggle="modal" data-bs-target="#aboutAppModal">About This App &amp; Data Privacy</span>
+</div>
 @endif
 </body>
 </html>
