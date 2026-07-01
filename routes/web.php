@@ -25,6 +25,8 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\SurveyController;
 use App\Http\Controllers\Admin\SupportController;
+use App\Http\Controllers\Admin\CoeRequestController;
+use App\Http\Controllers\CoeCertificateController;
 
 
 /*
@@ -133,6 +135,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/offices/data',      [OfficeController::class,     'getData'])->name('offices.data');
         Route::get('/transactions',      [TransactionController::class, 'index'])->name('transactions.index');
         Route::get('/transactions/data', [TransactionController::class, 'getData'])->name('transactions.data');
+        Route::get('/coe-requests',      [CoeRequestController::class, 'index'])->name('coe-requests.index');
+        Route::get('/coe-requests/data', [CoeRequestController::class, 'getData'])->name('coe-requests.data');
+        Route::get('/coe-requests/{booking}/print-fresh', [CoeCertificateController::class, 'printFresh'])->name('coe-requests.print-fresh');
+        Route::get('/coe-requests/{booking}/print-esign', [CoeCertificateController::class, 'printEsign'])->name('coe-requests.print-esign');
         Route::get('/support',           [SupportController::class,    'index'])->name('support.index');
         Route::resource('offices',  OfficeController::class);
         Route::resource('services', ServiceController::class);

@@ -21,7 +21,7 @@
     margin: auto;
     padding: 10px 25px;
     border: 2px solid {{ $caThemeColor }};
-    min-height: 5.8in;  /* Half A4 height */
+    min-height: 4.8in;  /* Just under half A4 height */
     position: relative;
     box-sizing: border-box;
     font-size: 0.9rem;  /* Slightly smaller text */
@@ -46,19 +46,25 @@
       flex: 1;
       margin: 0 5px;
     }
-    .header-center h5, 
-    .header-center h4, 
-    .header-center h1, 
+    .header-center h5,
+    .header-center h4,
+    .header-center h1,
     .header-center h6 {
       margin: 0;
     }
+    .header-center .fs10 {
+      font-size: 10pt;
+    }
+    .header-center .fs11 {
+      font-size: 11pt;
+    }
     .biggest {
-      font-size: 1.5rem; /* was 2rem */
+      font-size: 13pt;
       font-weight: bold;
       color: {{ $caThemeColor }};
     }
     .certificate-number {
-      font-size: 0.9rem;
+      font-size: 10pt;
       margin-top: 3px;
       color: {{ $caThemeColor }};
     }
@@ -71,12 +77,12 @@
       margin-left: 35%;
     }
     .signature {
-      margin-top: 60px;
+      margin-top: 40px;
       text-align: center;
     }
     .qr-code {
       position: absolute;
-      bottom: 35px;
+      bottom: 8px;
       right: 8px;
       width: .7in;
       height: .7in;
@@ -91,7 +97,6 @@
     @media print {
       .no-print { display: none; }
       body { margin: 0; }
-      .certificate { border: none; }
     }
 
     .info-table {
@@ -100,12 +105,14 @@
     }
     .info-table dt {
       margin: 0;
-      padding: 2px 0 2px 50px; /* ← 20px left padding (tab effect) */
+      padding: 0 0 0 50px; /* ← 20px left padding (tab effect) */
+      line-height: 1.15;
     }
     .info-table dd {
       font-weight: bold;
       margin: 0 0 0 50px; /* adjust to align values neatly */
-      padding: 2px 0;
+      padding: 0;
+      line-height: 1.15;
     }
     .signature strong {
       color: {{ $caThemeColor }};
@@ -126,11 +133,13 @@
     <div class="header mb-4">
       <img src="{{ asset('images/deped_logo.png') }}" class="logo" alt="Left Logo">
       <div class="header-center">
-        <h6>Republic of the Philippines</h6>
-        <h6>DEPARTMENT OF EDUCATION</h6>
-        <h5><strong>Schools Division of Davao de Oro</strong></h5>
+        <h6 class="fs10">Republic of the Philippines</h6>
+        <h6 class="fs10">DEPARTMENT OF EDUCATION</h6>
+        <h6 class="fs10"><strong>Region XI - Davao</strong></h6>
+        <h5 class="fs11"><strong>SCHOOLS DIVISION OF DAVAO DE ORO</strong></h5>
+        <h6 class="fs10">Nabunturan, Davao de Oro</h6>
         <h4 class="biggest">CERTIFICATE OF APPEARANCE</h4>
-        <h6 class="certificate-number">Certificate No.: {{ $certificate->certificate_number }}</h6>
+        <h6 class="certificate-number">Control No. : {{ $certificate->certificate_number }}</h6>
       </div>
       <img src="{{ asset('images/ddo_logo.png') }}" class="logo" alt="Right Logo">
     </div>
@@ -170,7 +179,7 @@
       </dd>
     </dl>
 
-  </br></br>
+  </br>
     <!-- Closing sentence -->
     <p class="text-justify">
       Issued this {{ $certificate->issued_at->format('F d, Y') }} at DepEd Schools Division of Davao de Oro office, 

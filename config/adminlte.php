@@ -321,6 +321,12 @@ return [
             'icon' => 'fas fa-fw fa-certificate',
         ],
         [
+            'text' => 'COE Requests',
+            'url'  => 'admin/coe-requests',
+            'icon' => 'fas fa-fw fa-id-badge',
+            'can'  => 'manage-transactions',
+        ],
+        [
             'text' => 'Survey Responses',
             'url'  => 'admin/surveys',
             'icon' => 'fas fa-fw fa-poll',

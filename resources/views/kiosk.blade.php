@@ -294,6 +294,9 @@
 
 <!-- ===== Screensaver Overlay ===== -->
 @php
+    $ssMasterEnabled = \App\Models\AppSetting::getValue('screensaver_enabled', '1') === '1';
+    $ssMode          = \App\Models\AppSetting::getValue('screensaver_mode', 'video');
+
     $ssVideos = array_values(array_filter(
         array_map(function ($i) {
             $url     = \App\Models\AppSetting::getValue("screensaver_video_{$i}");
@@ -301,6 +304,32 @@
             return ($enabled === '1' && $url !== null && $url !== '') ? $url : null;
         }, [1, 2, 3, 4, 5])
     ));
+
+    $ssImageFolder   = \App\Models\AppSetting::getValue('screensaver_image_folder');
+    $ssImageInterval = max(2, (int) \App\Models\AppSetting::getValue('screensaver_image_interval', 8));
+    $ssImages = [];
+
+    if ($ssImageFolder) {
+        $scanDir = rtrim(str_replace('\\', '/', $ssImageFolder), '/');
+        if (!is_dir($scanDir)) {
+            $maybe = public_path(ltrim($scanDir, '/'));
+            if (is_dir($maybe)) $scanDir = str_replace('\\', '/', $maybe);
+        }
+        if (is_dir($scanDir)) {
+            $exts       = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'];
+            $publicPath = str_replace('\\', '/', public_path());
+            $isPublic   = str_starts_with($scanDir, $publicPath);
+            $files      = glob($scanDir . '/*') ?: [];
+            sort($files);
+            foreach ($files as $file) {
+                if (!is_file($file)) continue;
+                if (!in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $exts, true)) continue;
+                $filePath   = str_replace('\\', '/', $file);
+                $ssImages[] = $isPublic ? ltrim(str_replace($publicPath, '', $filePath), '/') : $filePath;
+            }
+        }
+    }
+
     $ssTimeout = max(10, (int) \App\Models\AppSetting::getValue('screensaver_timeout', 60));
 @endphp
 <div id="screensaverOverlay" style="display:none;position:fixed;inset:0;z-index:9999;background:#000;cursor:pointer;">
@@ -851,7 +880,13 @@ function showSurveyBookingDetails(booking) {
 /* ========= GLOBAL STATE ========= */
 const steps = ["Customer Type", "Office", "Service", "Sub-service", "Confirm"];
 let bookingStep = 0;
-const bookingData = { type:"", employeeId:"", officeId:null, office:"", serviceId:null, service:"", subServiceId:null, subService:"", bookingCode:"" };
+const bookingData = { type:"", employeeId:"", officeId:null, office:"", serviceId:null, service:"", subServiceId:null, subService:"", bookingCode:"", coeEmployeeNo:"", coeName:"", coeDistrict:"", coeOffice:"", purpose:"" };
+
+const COE_PURPOSES = [
+  "Employment", "Promotion", "Salary/Car Loan", "GSIS/Pag-IBIG Maturity", "Transfer",
+  "Resignation", "Travel Abroad", "Visa Application", "Credit Card Application",
+  "TESDA Certificate Renewal", "Correction of Personal Information", "Others"
+];
 
 let surveyIndex = -1;
 let surveyQ = [];               // loaded from API
@@ -897,6 +932,7 @@ function attachKeypad(input) {
   const msg    = document.getElementById("keypadMessage");
 
   if (input.id === "employeeId") { title.innerText = "Enter Employee ID"; btn.innerHTML = '<i class="bi bi-check2-circle"></i> Validate Employee'; currentType="employee"; }
+  else if (input.id === "coeEmployeeId") { title.innerText = "Enter Employee ID"; btn.innerHTML = '<i class="bi bi-check2-circle"></i> Validate Employee'; currentType="coe-employee"; }
   else if (input.id === "surveyBookingInput") {
     title.innerText = "Enter Booking/Transaction ID";
     btn.innerHTML = '<i class="bi bi-check2-circle"></i> Validate Booking';
@@ -945,15 +981,15 @@ async function validateKeypadValue() {
   loader.classList.remove("d-none");
   btn.disabled = true;
 
-  let valid = false, name = "", transactionStatus = "", canStartSurvey = false, transactionStatusType = "warning", validatedBooking = null;
+  let valid = false, name = "", transactionStatus = "", canStartSurvey = false, transactionStatusType = "warning", validatedBooking = null, employeeLookup = null;
 
   try {
-    if (currentType === "employee") {
+    if (currentType === "employee" || currentType === "coe-employee") {
       if(!/^\d{7}$/.test(value)) throw { message: 'Employee ID must be 7 digits' };
       const r = await api(`/api/employees/validate/${encodeURIComponent(value)}`);
       const data = await r.json();
       if(!r.ok) throw data;
-      valid = true; name = data.name || "";
+      valid = true; name = data.name || ""; employeeLookup = data;
     } else if (currentType === "booking") {
       if(!/^\d{6}$/.test(value)) throw { message: 'Booking Code must be 6 digits' };
       const r = await api(`/api/bookings/code/${encodeURIComponent(value)}`);
@@ -980,7 +1016,7 @@ async function validateKeypadValue() {
   btn.disabled = false;
 
   if (valid) {
-    if (currentType === "employee") {
+    if (currentType === "employee" || currentType === "coe-employee") {
       msg.textContent = `Welcome! ${name || 'Employee'}. Tap PROCEED to continue.`;
       msg.className = "alert alert-warning";
     } else if (currentType === "booking") {
@@ -1001,6 +1037,9 @@ async function validateKeypadValue() {
       if (currentType === "employee") {
         continueFromGovernment();
       }
+      if (currentType === "coe-employee") {
+        onCoeEmployeeValidated(value, employeeLookup);
+      }
       if (currentType === "booking") {
         setSurveyStartCardEnabled(canStartSurvey);
         showSurveyBookingDetails(validatedBooking);
@@ -1011,7 +1050,7 @@ async function validateKeypadValue() {
     };
   } else {
     let message = "Entry not Found";
-    if (currentType === "employee") message = "Employee ID is 7 digits and Exist.";
+    if (currentType === "employee" || currentType === "coe-employee") message = "Employee ID is 7 digits and Exist.";
     if (currentType === "booking")  message = "Booking Code 6 digits and Exist.";
     if (currentType === "document") message = "Document ID is 7 digits and Valid or Exist.";
     msg.textContent = message;
@@ -1124,6 +1163,11 @@ function renderBooking(){
   }
 
   if (bookingStep === 4){
+    if (bookingData.subService === 'COE Request') {
+      renderCoeRequestStep();
+      return;
+    }
+    confirmBtn.disabled = false;
     bookingContent.innerHTML=`
       <h3 class="mb-3">Summary & Confirm</h3>
       <div class="border p-3">
@@ -1134,6 +1178,47 @@ function renderBooking(){
         ${bookingData.subService ? `<p><strong>Sub-service:</strong> ${bookingData.subService}</p>` : ""}
       </div>`;
   }
+}
+
+/* ========= COE REQUEST (custom sub-service form) ========= */
+function renderCoeRequestStep(){
+  const looked = !!bookingData.coeEmployeeNo;
+  bookingContent.innerHTML = `
+    <h3 class="mb-3">Certificate of Employment (COE) Request</h3>
+    <div class="border p-3">
+      <div class="mb-3">
+        <label class="form-label fw-bold">Employee ID</label>
+        <div class="row g-2">
+          <div class="col-8"><input id="coeEmployeeId" class="form-control form-control-lg" placeholder="Employee ID (7 digits)" readonly onclick="attachKeypad(this)" value="${bookingData.coeEmployeeNo||''}"></div>
+          <div class="col-4 d-grid"><button type="button" class="btn btn-warning btn-lg" onclick="attachKeypad(document.getElementById('coeEmployeeId'))"><i class="bi bi-search me-1"></i> Look up</button></div>
+        </div>
+      </div>
+      ${looked ? `
+        <p><strong>Name:</strong> ${escapeHtml(bookingData.coeName)||'-'}</p>
+        <p><strong>District:</strong> ${escapeHtml(bookingData.coeDistrict)||'-'}</p>
+        <p><strong>School/Office:</strong> ${escapeHtml(bookingData.coeOffice)||'-'}</p>
+      ` : `<p class="text-muted">Enter your Employee ID above and tap <strong>Look up</strong> to auto-fill your Name, District, and School/Office.</p>`}
+      <div class="mb-2">
+        <label for="coePurpose" class="form-label fw-bold">Purpose</label>
+        <select id="coePurpose" class="form-control form-control-lg" onchange="bookingData.purpose=this.value; updateCoeConfirmState();">
+          <option value="">-- Select Purpose --</option>
+          ${COE_PURPOSES.map(p => `<option value="${p}" ${bookingData.purpose===p?'selected':''}>${p}</option>`).join('')}
+        </select>
+      </div>
+    </div>`;
+  updateCoeConfirmState();
+}
+
+function onCoeEmployeeValidated(employeeNo, data){
+  bookingData.coeEmployeeNo = employeeNo;
+  bookingData.coeName = data?.name || "";
+  bookingData.coeDistrict = data?.district || "";
+  bookingData.coeOffice = data?.office_name || "";
+  renderCoeRequestStep();
+}
+
+function updateCoeConfirmState(){
+  confirmBtn.disabled = !(bookingData.coeEmployeeNo && bookingData.purpose);
 }
 
 // Make sure clicks/taps on any tile work, even after re-render
@@ -1188,6 +1273,7 @@ function selectService(id, name){
   bookingData.service=name;
   bookingData.subServiceId=null;
   bookingData.subService="";
+  bookingData.coeEmployeeNo=""; bookingData.coeName=""; bookingData.coeDistrict=""; bookingData.coeOffice=""; bookingData.purpose="";
   bookingStep=selectedServiceHasSubServices()?3:4;
   renderBooking();
 }
@@ -1207,8 +1293,9 @@ async function confirmBooking() {
     service_id: bookingData.serviceId,
     sub_service_id: bookingData.subServiceId,
     scheduled_at: null,
-    // If an employee ID was provided, send it so backend can map the user
-    employee_no: bookingData.employeeId && /^\d{7}$/.test(bookingData.employeeId) ? bookingData.employeeId : null,
+    // COE Request always carries its own validated employee ID; otherwise fall back to the general flow's
+    employee_no: bookingData.coeEmployeeNo || (bookingData.employeeId && /^\d{7}$/.test(bookingData.employeeId) ? bookingData.employeeId : null),
+    purpose: bookingData.purpose || null,
     // Keep these if you later add guest inputs for citizens/business
     guest_name: null,
     guest_contact: null,
@@ -1235,10 +1322,11 @@ async function confirmBooking() {
         <div><h5><strong>Booking Code:</strong></h5></div>
         <div><h5><strong>${data.booking_code}</strong></h5></div>
         <div><strong>Customer:</strong></div><div>${bookingData.type}</div>
-        <div><strong>Employee ID:</strong></div><div>${bookingData.employeeId || "(none)"}</div>
+        <div><strong>Employee ID:</strong></div><div>${bookingData.coeEmployeeNo || bookingData.employeeId || "(none)"}</div>
         <div><strong>Office:</strong></div><div>${bookingData.office}</div>
         <div><strong>Service:</strong></div><div>${bookingData.service}</div>
         ${bookingData.subService ? `<div><strong>Sub-service:</strong></div><div>${bookingData.subService}</div>` : ""}
+        ${bookingData.purpose ? `<div><strong>Purpose:</strong></div><div>${bookingData.purpose}</div>` : ""}
       </div>`;
     new QRious({ element: document.getElementById("qrCanvas"), value: buildSurveyUrl(data.booking_code), size: 220 });
     hideProgress();
@@ -1941,17 +2029,23 @@ document.addEventListener('fullscreenchange', () => {
 
 // ===== Screensaver =====
 (function () {
-  const videos  = @json($ssVideos);
-  const timeout = {{ $ssTimeout }} * 1000;
-  const overlay = document.getElementById('screensaverOverlay');
-  const player  = document.getElementById('ssPlayer');
-  let   timer   = null;
-  let   vidIdx  = 0;
-  let   active  = false;
-  let   ytReady = false;
+  const enabled     = @json($ssMasterEnabled);
+  const mode        = @json($ssMode);
+  const videos      = @json($ssVideos);
+  const images      = @json($ssImages);
+  const media       = mode === 'image' ? images : videos;
+  const imgInterval = {{ $ssImageInterval }} * 1000;
+  const timeout     = {{ $ssTimeout }} * 1000;
+  const overlay     = document.getElementById('screensaverOverlay');
+  const player      = document.getElementById('ssPlayer');
+  let   timer    = null;
+  let   imgTimer = null;
+  let   idx      = 0;
+  let   active   = false;
+  let   ytReady  = false;
   let   ytPlayer = null;
 
-  if (!videos.length || !overlay) return;
+  if (!enabled || !media.length || !overlay) return;
 
   // ---- URL helpers ----
   function getYouTubeId(url) {
@@ -1964,14 +2058,14 @@ document.addEventListener('fullscreenchange', () => {
   //   file:///...         →  unchanged
   //   https://...         →  unchanged
   //   relative/path.mp4   →  served from this server
-  function toVideoUrl(path) {
+  function toMediaUrl(path) {
     if (/^(https?|file):\/\//i.test(path)) return path;          // already a URL
     if (/^[a-zA-Z]:[\\\/]/.test(path))                           // Windows drive path
       return 'file:///' + path.replace(/\\/g, '/');
     return '{{ asset('') }}' + path;                              // server-relative path
   }
 
-  const hasYT = videos.some(v => getYouTubeId(v));
+  const hasYT = mode === 'video' && videos.some(v => getYouTubeId(v));
   if (hasYT) {
     const s = document.createElement('script');
     s.src = 'https://www.youtube.com/iframe_api';
@@ -1981,20 +2075,30 @@ document.addEventListener('fullscreenchange', () => {
 
   // ---- Player management ----
   function clearPlayer() {
+    clearTimeout(imgTimer);
     if (ytPlayer) { try { ytPlayer.destroy(); } catch (e) {} ytPlayer = null; }
     player.innerHTML = '';
   }
 
-  function loadVideo() {
+  function loadMedia() {
     clearPlayer();
-    const url  = videos[vidIdx];
+    if (mode === 'image') { loadImage(); return; }
+    const url  = videos[idx];
     const ytId = getYouTubeId(url);
     ytId ? loadYouTube(ytId) : loadLocal(url);
   }
 
+  function loadImage() {
+    const img = document.createElement('img');
+    img.src = toMediaUrl(images[idx]);
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    player.appendChild(img);
+    imgTimer = setTimeout(advance, imgInterval);
+  }
+
   function loadLocal(url) {
     const v = document.createElement('video');
-    v.src       = toVideoUrl(url);
+    v.src       = toMediaUrl(url);
     v.muted     = true;
     v.autoplay  = true;
     v.playsInline = true;
@@ -2034,8 +2138,8 @@ document.addEventListener('fullscreenchange', () => {
   }
 
   function advance() {
-    vidIdx = (vidIdx + 1) % videos.length;
-    loadVideo();
+    idx = (idx + 1) % media.length;
+    loadMedia();
   }
 
   // ---- Screensaver lifecycle ----
@@ -2047,8 +2151,8 @@ document.addEventListener('fullscreenchange', () => {
   function showScreensaver() {
     active = true;
     overlay.style.display = 'block';
-    vidIdx = 0;
-    loadVideo();
+    idx = 0;
+    loadMedia();
   }
 
   function hideScreensaver() {

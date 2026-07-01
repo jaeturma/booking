@@ -45,11 +45,8 @@ class BookingController extends Controller
             'guest_name'    => 'nullable|string|max:120',
             'guest_contact' => 'nullable|string|max:120',
             'employee_no'   => 'nullable|digits:7',   // 👈 new
+            'purpose'       => 'nullable|string|max:255',
         ]);
-
-        if (empty($data['employee_no'])) {
-            $data['employee_no'] = '1000000';
-        }
 
         $requiresSubService = DB::table('sub_services')
             ->where('service_id', $data['service_id'])
@@ -60,6 +57,29 @@ class BookingController extends Controller
                 'message' => 'Please select a sub-service.',
                 'errors'  => ['sub_service_id' => ['A sub-service is required for this service.']]
             ], 422);
+        }
+
+        if (!empty($data['sub_service_id'])) {
+            $subServiceName = DB::table('sub_services')->where('id', $data['sub_service_id'])->value('name');
+
+            if ($subServiceName === 'COE Request') {
+                if (empty($data['employee_no'])) {
+                    return response()->json([
+                        'message' => 'Employee ID is required for a COE Request.',
+                        'errors'  => ['employee_no' => ['Employee ID is required.']]
+                    ], 422);
+                }
+                if (empty($data['purpose'])) {
+                    return response()->json([
+                        'message' => 'Purpose is required for a COE Request.',
+                        'errors'  => ['purpose' => ['Purpose is required.']]
+                    ], 422);
+                }
+            }
+        }
+
+        if (empty($data['employee_no'])) {
+            $data['employee_no'] = '1000000';
         }
 
         // If employee_no is provided, bind booking to that user and mirror their name to guest_name

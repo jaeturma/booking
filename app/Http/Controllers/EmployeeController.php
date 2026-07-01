@@ -12,10 +12,17 @@ class EmployeeController extends Controller
         if (!preg_match('/^\d{7}$/', $employee_no)) {
             return response()->json(['message' => 'Invalid format'], 422);
         }
-        $user = User::where('employee_no', $employee_no)->first();
+        $user = User::with('office')->where('employee_no', $employee_no)->first();
         if (!$user) {
             return response()->json(['ok' => false], 404);
         }
-        return response()->json(['ok' => true, 'name' => $user->name, 'id' => $user->id]);
+        return response()->json([
+            'ok' => true,
+            'name' => $user->name,
+            'id' => $user->id,
+            'office_id' => $user->office_id,
+            'office_name' => optional($user->office)->name,
+            'district' => optional($user->office)->district,
+        ]);
     }
 }

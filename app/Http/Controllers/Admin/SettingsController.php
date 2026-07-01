@@ -29,6 +29,10 @@ class SettingsController extends Controller
             'app_logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'kiosk_title' => 'required|string|max:100',
             'kiosk_footer' => 'nullable|string|max:255',
+            'screensaver_enabled' => 'nullable|boolean',
+            'screensaver_mode' => 'required|in:video,image',
+            'screensaver_image_folder' => 'nullable|string|max:500',
+            'screensaver_image_interval' => 'nullable|integer|min:2|max:300',
             'screensaver_video_1' => 'nullable|string|max:500',
             'screensaver_video_2' => 'nullable|string|max:500',
             'screensaver_video_3' => 'nullable|string|max:500',
@@ -53,6 +57,11 @@ class SettingsController extends Controller
         $this->storeImageSetting($request, 'app_logo', 'app_logo_path');
         AppSetting::setValue('kiosk_title', $data['kiosk_title']);
         AppSetting::setValue('kiosk_footer', $data['kiosk_footer'] ?? '');
+
+        AppSetting::setValue('screensaver_enabled', isset($data['screensaver_enabled']) ? '1' : '0');
+        AppSetting::setValue('screensaver_mode', $data['screensaver_mode']);
+        AppSetting::setValue('screensaver_image_folder', $data['screensaver_image_folder'] ?? '');
+        AppSetting::setValue('screensaver_image_interval', $data['screensaver_image_interval'] ?? 8);
 
         for ($i = 1; $i <= 5; $i++) {
             AppSetting::setValue("screensaver_video_{$i}", $data["screensaver_video_{$i}"] ?? '');

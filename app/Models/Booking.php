@@ -10,7 +10,7 @@ class Booking extends Model {
 
     protected $fillable = [
         'user_id','guest_name','guest_contact',
-        'office_id','service_id','sub_service_id','booking_code',
+        'office_id','service_id','sub_service_id','purpose','booking_code',
         'customer_type','is_validated','scheduled_at',
     ];
 

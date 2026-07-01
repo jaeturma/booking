@@ -125,6 +125,59 @@
             <hr>
             <h5 class="mb-1">Kiosk Screensaver</h5>
             <p class="text-muted small mb-3">
+                Shown automatically when the kiosk is idle. Choose whether it plays a sequence of videos or a slideshow of images.
+            </p>
+
+            @php
+                $ssMasterEnabled = old('screensaver_enabled', $settings['screensaver_enabled'] ?? '1');
+                $ssMode          = old('screensaver_mode', $settings['screensaver_mode'] ?? 'video');
+            @endphp
+
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch"
+                       name="screensaver_enabled" id="screensaver_enabled" value="1"
+                       {{ $ssMasterEnabled === '1' || $ssMasterEnabled === true ? 'checked' : '' }}>
+                <label class="form-check-label fw-semibold" for="screensaver_enabled">
+                    Enable Screensaver
+                </label>
+            </div>
+
+            <div class="form-group mb-3" style="max-width:400px;">
+                <label for="screensaver_mode">Screensaver Type</label>
+                <select name="screensaver_mode" id="screensaver_mode" class="form-control">
+                    <option value="video" {{ $ssMode === 'video' ? 'selected' : '' }}>Video Playlist</option>
+                    <option value="image" {{ $ssMode === 'image' ? 'selected' : '' }}>Image Slideshow</option>
+                </select>
+                @error('screensaver_mode') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            {{-- ===== Image Slideshow settings ===== --}}
+            <div id="ssImagePanel" class="card mb-3" style="display:none;">
+                <div class="card-body py-2 px-3">
+                    <p class="text-muted small mb-2">
+                        Enter the folder that contains the slideshow images (e.g. <code>D:\images\screensaver</code> or a folder under
+                        the app's <code>public/</code> directory). Every image inside it (jpg, jpeg, png, gif, webp, bmp) will be shown in order.
+                    </p>
+                    <div class="form-group mb-2">
+                        <label for="screensaver_image_folder">Image Folder Path</label>
+                        <input type="text" name="screensaver_image_folder" id="screensaver_image_folder" class="form-control"
+                               value="{{ old('screensaver_image_folder', $settings['screensaver_image_folder'] ?? '') }}"
+                               placeholder="e.g. D:\images\screensaver">
+                        @error('screensaver_image_folder') <small class="text-danger">{{ $message }}</small> @enderror
+                    </div>
+                    <div class="form-group mb-0" style="max-width:250px;">
+                        <label for="screensaver_image_interval">Seconds per Image</label>
+                        <input type="number" name="screensaver_image_interval" id="screensaver_image_interval" class="form-control"
+                               value="{{ old('screensaver_image_interval', $settings['screensaver_image_interval'] ?? 8) }}"
+                               min="2" max="300">
+                        @error('screensaver_image_interval') <small class="text-danger">{{ $message }}</small> @enderror
+                    </div>
+                </div>
+            </div>
+
+            {{-- ===== Video Playlist settings ===== --}}
+            <div id="ssVideoPanel">
+            <p class="text-muted small mb-3">
                 Videos play in sequence when the kiosk is idle. Supports YouTube links <em>and</em> files stored directly on the kiosk drive —
                 enter the full Windows path (e.g. <code>D:\videos\clip1.mp4</code>). The file is read by the kiosk browser, not uploaded to the server.
                 Toggle the switch to enable or disable each slot. Use <strong>Test</strong> to preview.
@@ -172,6 +225,7 @@
                 </div>
             </div>
             @endforeach
+            </div>
 
             <div class="form-group mt-3" style="max-width:300px;">
                 <label for="screensaver_timeout">Idle timeout (seconds)</label>
@@ -209,6 +263,21 @@
 </div>
 
 <script>
+(function () {
+    const ssModeSelect = document.getElementById('screensaver_mode');
+    const ssImagePanel = document.getElementById('ssImagePanel');
+    const ssVideoPanel = document.getElementById('ssVideoPanel');
+
+    function toggleSsPanels() {
+        const isImage = ssModeSelect.value === 'image';
+        ssImagePanel.style.display = isImage ? 'block' : 'none';
+        ssVideoPanel.style.display = isImage ? 'none' : 'block';
+    }
+
+    ssModeSelect.addEventListener('change', toggleSsPanels);
+    toggleSsPanels();
+})();
+
 (function () {
     function getYouTubeId(url) {
         const m = url.match(/(?:youtube\.com\/watch\?[^#]*v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
