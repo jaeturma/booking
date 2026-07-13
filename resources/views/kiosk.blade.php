@@ -997,12 +997,15 @@ const GROUP_ICONS = {
 /* Kiosk layout tweaks — presentation only, booking logic untouched.
    Top-level offices matching this pattern move to the last row, double width. */
 const TOP_LEVEL_LAST_ROW = /\b(ICT|Legal)\b/i;
+/* Display order of the group tiles on the Select Office screen. */
+const TOP_LEVEL_GROUP_ORDER = ["Admin", "CID", "SGOD", "Finance"];
 /* Per-group section layout: `order` lists names shown first (rest keep DB order),
    `wide` names render at double width (2 of the 4 grid columns). */
 const SECTION_LAYOUTS = {
   "Finance": { wide: ["Accounting", "Budget"] },
   "CID":     { order: ["Instructional Management", "LRMS", "PSDS"], wide: ["Instructional Management"] },
-  "Admin":   { order: ["Personnel", "Records"], wide: ["Personnel", "Records"] },
+  "Admin":   { order: ["Personnel", "Records", "Cash", "Procurement", "Property and Supply", "General Services"],
+               wide:  ["Personnel", "Records", "Cash", "Procurement", "Property and Supply", "General Services"] },
 };
 const bookingData = { type:"", employeeId:"", officeId:null, office:"", serviceId:null, service:"", subServiceId:null, subService:"", bookingCode:"", coeEmployeeNo:"", coeName:"", coeDistrict:"", coeOffice:"", purpose:"" };
 
@@ -1268,10 +1271,11 @@ function renderBooking(){
     `;
   } else {
     currentOfficeGroup = null;
-    // Top level: ungrouped offices directly + one tile per group, in show_order
-    // sequence, except ICT/Legal which render last at double width
+    // Top level: ungrouped offices first (show_order), then group tiles in
+    // TOP_LEVEL_GROUP_ORDER, then ICT/Legal last at double width
     const seenGroups = new Set();
     const mainTiles = [];
+    const groupNames = [];
     const lastRowTiles = [];
     OFFICES.forEach(o => {
       if (!o.group) {
@@ -1281,20 +1285,23 @@ function renderBooking(){
       }
       if (seenGroups.has(o.group)) return;
       seenGroups.add(o.group);
-      mainTiles.push(`
-        <button type="button" class="menu-btn office-btn group-btn" data-group-name="${escapeHtml(o.group)}">
+      groupNames.push(o.group);
+    });
+    const groupRank = (g) => { const i = TOP_LEVEL_GROUP_ORDER.indexOf(g); return i === -1 ? TOP_LEVEL_GROUP_ORDER.length : i; };
+    groupNames.sort((a, b) => groupRank(a) - groupRank(b));
+    const groupTiles = groupNames.map(g => `
+        <button type="button" class="menu-btn office-btn group-btn" data-group-name="${escapeHtml(g)}">
           <div class="menu-content">
             <div class="menu-header">
-              <i class="bi ${GROUP_ICONS[o.group] || 'bi-diagram-3-fill'}"></i>
-              <span>${escapeHtml(o.group)}</span>
+              <i class="bi ${GROUP_ICONS[g] || 'bi-diagram-3-fill'}"></i>
+              <span>${escapeHtml(g)}</span>
             </div>
           </div>
         </button>
       `);
-    });
     bookingContent.innerHTML = `
       <h3 class="mb-3">Select Office</h3>
-      <div class="office-grid">${mainTiles.join('')}${lastRowTiles.join('')}</div>
+      <div class="office-grid">${mainTiles.join('')}${groupTiles.join('')}${lastRowTiles.join('')}</div>
     `;
   }
 
