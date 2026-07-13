@@ -10,11 +10,21 @@
 
 @section('content')
 <div class="card mt-3">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-title mb-0">Survey Responses</h3>
-        <a href="{{ route('admin.surveys.export') }}" class="btn btn-sm btn-success">
-            <i class="fas fa-file-excel mr-1"></i> Export to Excel
-        </a>
+    <div class="card-header">
+        <div class="d-flex flex-wrap align-items-center">
+            <h3 class="card-title mb-0 mr-auto">Survey Responses</h3>
+            <select id="filterYear" class="form-control form-control-sm mr-2 mb-1" style="width:auto" title="Filter by year">
+                <option value="">All Years</option>
+                @foreach ($years as $year)
+                    <option value="{{ $year }}">{{ $year }}</option>
+                @endforeach
+            </select>
+            <input type="date" id="filterFrom" class="form-control form-control-sm mr-2 mb-1" style="width:auto" title="From date">
+            <input type="date" id="filterTo" class="form-control form-control-sm mr-2 mb-1" style="width:auto" title="To date">
+            <a href="{{ route('admin.surveys.export') }}" id="exportExcelBtn" class="btn btn-sm btn-success mb-1">
+                <i class="fas fa-file-excel mr-1"></i> Export to Excel
+            </a>
+        </div>
     </div>
     <div class="card-body">
         <table id="surveysTable" class="table table-sm table-striped table-hover table-bordered">
@@ -64,10 +74,24 @@
 
 <script>
 $(document).ready(function () {
-    $('#surveysTable').DataTable({
+    const exportBaseUrl = '{{ route("admin.surveys.export") }}';
+
+    function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, function (ch) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[ch];
+        });
+    }
+
+    const table = $('#surveysTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{{ route("admin.surveys.data") }}',
+        ajax: {
+            url: '{{ route("admin.surveys.data") }}',
+            data: function (d) {
+                d.from = $('#filterFrom').val();
+                d.to   = $('#filterTo').val();
+            }
+        },
         columns: [
             { data: 'DT_RowIndex',    name: 'DT_RowIndex',   orderable: false, searchable: false },
             { data: 'created_at',     name: 'created_at' },
@@ -82,6 +106,29 @@ $(document).ready(function () {
         pageLength: 10,
         lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
         responsive: true,
+    });
+
+    function applyFilter() {
+        const from = $('#filterFrom').val();
+        const to   = $('#filterTo').val();
+        const params = new URLSearchParams();
+        if (from) params.set('from', from);
+        if (to)   params.set('to', to);
+        const qs = params.toString();
+        $('#exportExcelBtn').attr('href', exportBaseUrl + (qs ? '?' + qs : ''));
+        table.ajax.reload();
+    }
+
+    $('#filterYear').on('change', function () {
+        const year = $(this).val();
+        $('#filterFrom').val(year ? year + '-01-01' : '');
+        $('#filterTo').val(year ? year + '-12-31' : '');
+        applyFilter();
+    });
+
+    $('#filterFrom, #filterTo').on('change', function () {
+        $('#filterYear').val('');
+        applyFilter();
     });
 
     $(document).on('click', '.js-view-responses', function () {
@@ -112,6 +159,9 @@ $(document).ready(function () {
                         </table>
                     </div>
                 </div>
+                <table class="table table-sm table-borderless mb-0">
+                    <tr><th style="width:25%">Remarks</th><td>${escapeHtml(s.remarks)}</td></tr>
+                </table>
                 <hr>
                 <h6 class="font-weight-bold mb-2">Responses</h6>`;
 

@@ -11,12 +11,32 @@ class SurveyController extends Controller
 {
     public function index()
     {
-        return view('admin.surveys.index');
+        $years = Survey::selectRaw('YEAR(created_at) as y')
+            ->whereNotNull('created_at')
+            ->distinct()
+            ->orderByDesc('y')
+            ->pluck('y');
+
+        return view('admin.surveys.index', ['years' => $years]);
+    }
+
+    private function applyDateFilter($query, Request $request)
+    {
+        if ($from = $request->input('from')) {
+            $query->whereDate('created_at', '>=', $from);
+        }
+        if ($to = $request->input('to')) {
+            $query->whereDate('created_at', '<=', $to);
+        }
+        return $query;
     }
 
     public function getData(Request $request)
     {
-        $query = Survey::with(['office', 'service', 'responses.question'])->latest();
+        $query = $this->applyDateFilter(
+            Survey::with(['office', 'service', 'responses.question']),
+            $request
+        )->latest();
 
         return DataTables::eloquent($query)
             ->addIndexColumn()
@@ -59,7 +79,7 @@ class SurveyController extends Controller
     }
 
     // GET /admin/surveys/export — .xlsx following the MS Forms "Client Satisfaction Measurement" template
-    public function export()
+    public function export(Request $request)
     {
         $headers = [
             'ID', 'Start time', 'Completion time', 'Email', 'Name', 'Last modified time',
@@ -95,9 +115,10 @@ class SurveyController extends Controller
             'Remarks',
         ];
 
-        $surveys = Survey::with(['office', 'service', 'subService', 'booking.user', 'responses.question'])
-            ->orderBy('created_at')
-            ->get();
+        $surveys = $this->applyDateFilter(
+            Survey::with(['office', 'service', 'subService', 'booking.user', 'responses.question']),
+            $request
+        )->orderBy('created_at')->get();
 
         $rows = [];
         foreach ($surveys as $i => $s) {
@@ -276,6 +297,7 @@ class SurveyController extends Controller
                 'contact'      => $survey->contact         ?? '—',
                 'requested_coa'=> $survey->requested_coa   ? 'Yes' : 'No',
                 'booking_code' => $survey->booking->booking_code ?? '—',
+                'remarks'      => $survey->remarks         ?? '—',
             ],
             'responses' => $survey->responses
                 ->sortBy(fn($r) => $r->question->order ?? 0)
