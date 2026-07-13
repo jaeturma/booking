@@ -82,7 +82,7 @@ class OfficesAndServicesSeeder extends Seeder
         ],
         [
             'id' => 8,
-            'name' => 'LRMDS',
+            'name' => 'LRMS',
             'main' => 'CID',
             'group' => 'CID',
             'district' => null,
@@ -100,7 +100,7 @@ class OfficesAndServicesSeeder extends Seeder
         ],
         [
             'id' => 10,
-            'name' => 'Admin',
+            'name' => 'PSDS',
             'main' => 'CID',
             'group' => 'CID',
             'district' => null,
@@ -164,8 +164,8 @@ class OfficesAndServicesSeeder extends Seeder
         [
             'id' => 17,
             'name' => 'ICT Unit',
-            'main' => 'SDS',
-            'group' => 'SDS',
+            'main' => '1',
+            'group' => null,
             'district' => null,
             'icon' => 'bi-router-fill',
             'show_order' => 3
@@ -173,8 +173,8 @@ class OfficesAndServicesSeeder extends Seeder
         [
             'id' => 18,
             'name' => 'Legal Unit',
-            'main' => 'SDS',
-            'group' => 'SDS',
+            'main' => '1',
+            'group' => null,
             'district' => null,
             'icon' => 'bi-briefcase-fill',
             'show_order' => 4

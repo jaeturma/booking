@@ -77,7 +77,7 @@
       margin-left: 35%;
     }
     .signature {
-      margin-top: 40px;
+      margin-top: 0;
       text-align: center;
     }
     .qr-code {
@@ -106,23 +106,26 @@
     .info-table dt {
       margin: 0;
       padding: 0 0 0 50px; /* ← 20px left padding (tab effect) */
-      line-height: 1.15;
+      line-height: 1.0;
     }
     .info-table dd {
       font-weight: bold;
       margin: 0 0 0 50px; /* adjust to align values neatly */
       padding: 0;
-      line-height: 1.15;
+      line-height: 1.0;
     }
     .signature strong {
       color: {{ $caThemeColor }};
     }
     .esign-img {
-      max-height: 80px;
+      max-height: 55px;
+      margin-bottom: -18px;
+      position: relative;
+      z-index: 1;
     }
     .pnpki-img {
-      max-height: 44px;
-      margin-top: 4px;
+      max-height: 32px;
+      margin-top: 2px;
     }
 
   </style>

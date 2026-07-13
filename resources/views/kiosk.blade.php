@@ -159,6 +159,7 @@
 
     /* Portrait kiosk: push every modal into the lower touchable zone */
     .modal-dialog-top { margin: 32vh auto 1rem !important; }
+    .modal-dialog-flush-top { margin: 0.5rem auto !important; }
     .modal-dialog-centered {
         align-items: flex-start !important;
         padding-top: 30vh !important;
@@ -273,6 +274,9 @@
       .office-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .office-grid > .office-btn:nth-child(-n+2){ grid-column: span 2; }
     }
+
+    /* Section lists: no featured double-width tiles */
+    .office-grid.section-grid > .office-btn:nth-child(-n+2){ grid-column: auto; }
 
     .kiosk-footer {
       background: #FFD700;
@@ -533,6 +537,7 @@
                   </ul>
                 </li>
                 <li class="mb-2">Select the <strong>Office</strong> you need to visit.</li>
+                <li class="mb-2">If the office has sections (Admin, CID, Finance, SGOD), select the <strong>Section</strong> you need. Other offices show their services right away.</li>
                 <li class="mb-2">Select the <strong>Service</strong> you need from that office.</li>
                 <li class="mb-2">If prompted, select a <strong>Sub-service</strong>.</li>
                 <li class="mb-2">Review the summary, then tap <strong>Confirm</strong>.</li>
@@ -688,7 +693,7 @@
 
 <!-- About This App Modal -->
 <div class="modal fade" id="aboutAppModal" tabindex="-1" aria-labelledby="aboutAppModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-top">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-flush-top">
     <div class="modal-content">
       <div class="modal-header bg-primary text-white">
         <h5 class="modal-title" id="aboutAppModalLabel"><i class="bi bi-info-circle me-2"></i>About This App</h5>
@@ -812,11 +817,13 @@ const OFFICES = (function normalize(data){
       const id = Number(o.id ?? o.office_id ?? o.value ?? o.code ?? o.key);
       const name = (o.name ?? o.office_name ?? o.title ?? o.label ?? o.text ?? '').toString().trim();
       const icon = o.icon ?? o.icon_class ?? o.bi ?? null;
+      const group = (o.group ?? '').toString().trim() || null;
       const services = o.services ?? o.service_list ?? o.items ?? null;
       return {
         id,
         name,
         icon,
+        group,
         services: (services || []).map((s) => ({
           ...s,
           subServices: s.sub_services ?? s.subServices ?? s.children ?? [],
@@ -974,6 +981,14 @@ function showSurveyBookingDetails(booking) {
 /* ========= GLOBAL STATE ========= */
 const steps = ["Customer Type", "Office", "Service", "Sub-service", "Confirm"];
 let bookingStep = 0;
+let currentOfficeGroup = null; // set while picking a section inside a grouped office (Admin, CID, Finance, SGOD)
+
+const GROUP_ICONS = {
+  "Admin":   "bi-briefcase-fill",
+  "CID":     "bi-journal-bookmark-fill",
+  "Finance": "bi-cash-stack",
+  "SGOD":    "bi-people-fill",
+};
 const bookingData = { type:"", employeeId:"", officeId:null, office:"", serviceId:null, service:"", subServiceId:null, subService:"", bookingCode:"", coeEmployeeNo:"", coeName:"", coeDistrict:"", coeOffice:"", purpose:"" };
 
 const COE_PURPOSES = [
@@ -1156,7 +1171,7 @@ async function validateKeypadValue() {
 
 /* ========= NAV ========= */
 function goHome(){
-  bookingStep=0; Object.keys(bookingData).forEach(k=>bookingData[k]=["officeId","serviceId","subServiceId"].includes(k)?null:"");
+  bookingStep=0; currentOfficeGroup=null; Object.keys(bookingData).forEach(k=>bookingData[k]=["officeId","serviceId","subServiceId"].includes(k)?null:"");
   surveyIndex=-1; surveyQ=[]; surveyAnswers={}; surveyBookingCode=""; surveyCOASelected=false;
   mainMenu.classList.remove("hidden");
   bookingFlow.classList.add("hidden"); 
@@ -1169,7 +1184,7 @@ function goHome(){
   document.getElementById("trackId").value = "";
 }
 function showTracker(){ mainMenu.classList.add("hidden"); document.getElementById("trackerFlow").classList.remove("hidden"); }
-function startBooking(){ mainMenu.classList.add("hidden"); bookingFlow.classList.remove("hidden"); stepsBar.classList.remove("hidden"); bookingStep=0; renderBooking(); }
+function startBooking(){ mainMenu.classList.add("hidden"); bookingFlow.classList.remove("hidden"); stepsBar.classList.remove("hidden"); bookingStep=0; currentOfficeGroup=null; renderBooking(); }
 function startSurvey(){ mainMenu.classList.add("hidden"); surveyFlow.classList.remove("hidden"); renderSurvey(); }
 function showCharter(){ mainMenu.classList.add("hidden"); charterFlow.classList.remove("hidden"); }
 function showGuide(){ mainMenu.classList.add("hidden"); document.getElementById("guideFlow").classList.remove("hidden"); }
@@ -1210,21 +1225,51 @@ function renderBooking(){
   }
 
   if (bookingStep === 1) {
-  bookingContent.innerHTML = `
-    <h3 class="mb-3">Select Office</h3>
-    <div class="office-grid">
-      ${OFFICES.map(o => `
-        <button type="button" class="menu-btn office-btn" data-office-id="${o.id}">
+  const officeTile = (o) => `
+    <button type="button" class="menu-btn office-btn" data-office-id="${o.id}">
+      <div class="menu-content">
+        <div class="menu-header">
+          <i class="bi ${o.icon || 'bi-building'}"></i>
+          <span>${escapeHtml(o.name)}</span>
+        </div>
+      </div>
+    </button>
+  `;
+
+  const sections = currentOfficeGroup ? OFFICES.filter(o => o.group === currentOfficeGroup) : [];
+
+  if (sections.length) {
+    // Grouped office: user must pick a section before services show
+    bookingContent.innerHTML = `
+      <h3 class="mb-3">${escapeHtml(currentOfficeGroup)} — Select Section</h3>
+      <div class="office-grid section-grid">
+        ${sections.map(officeTile).join('')}
+      </div>
+    `;
+  } else {
+    currentOfficeGroup = null;
+    // Top level: ungrouped offices directly + one tile per group, in show_order sequence
+    const seenGroups = new Set();
+    const tiles = OFFICES.map(o => {
+      if (!o.group) return officeTile(o);
+      if (seenGroups.has(o.group)) return '';
+      seenGroups.add(o.group);
+      return `
+        <button type="button" class="menu-btn office-btn group-btn" data-group-name="${escapeHtml(o.group)}">
           <div class="menu-content">
             <div class="menu-header">
-              <i class="bi ${o.icon ? o.icon : '${o.icon}'}"></i>
-              <span>${o.name}</span>
+              <i class="bi ${GROUP_ICONS[o.group] || 'bi-diagram-3-fill'}"></i>
+              <span>${escapeHtml(o.group)}</span>
             </div>
           </div>
         </button>
-      `).join('')}
-    </div>
-  `;
+      `;
+    }).join('');
+    bookingContent.innerHTML = `
+      <h3 class="mb-3">Select Office</h3>
+      <div class="office-grid">${tiles}</div>
+    `;
+  }
 
   backBtn?.classList?.remove('hidden');
   return;
@@ -1238,7 +1283,7 @@ function renderBooking(){
         <i class="bi bi-receipt"></i> ${s.name}
       </button>
     `).join('');
-    bookingContent.innerHTML=`<h3 class="mb-3">Select Service</h3>${services || '<div class="alert alert-danger">No services configured for this office.</div>'}`;
+    bookingContent.innerHTML=`<h3 class="mb-3">${escapeHtml(office?.name || '')} — Select Service</h3>${services || '<div class="alert alert-danger">No services configured for this office.</div>'}`;
   }
 
   if (bookingStep === 3){
@@ -1325,6 +1370,11 @@ function updateCoeConfirmState(){
     const btn = e.target.closest('.office-btn');
     if (!btn) return;
 
+    if (btn.dataset.groupName) {
+      selectOfficeGroup(btn.dataset.groupName);
+      return;
+    }
+
     const id = parseInt(btn.dataset.officeId, 10);
     if (!Number.isFinite(id)) return;
 
@@ -1332,13 +1382,19 @@ function updateCoeConfirmState(){
   }, { passive: true });
 })();
 
+function selectOfficeGroup(name){
+  currentOfficeGroup = name;
+  bookingStep = 1;
+  renderBooking();
+}
+
 
 function selectOfficeById(id){
   const office = OFFICES.find(o => Number(o.id) === Number(id));
   if (!office) return;
 
   bookingData.officeId  = office.id;
-  bookingData.office    = office.name;
+  bookingData.office    = office.group ? `${office.group} - ${office.name}` : office.name;
   bookingData.serviceId = null;
   bookingData.service   = null;
   bookingData.subServiceId = null;
@@ -1374,6 +1430,12 @@ function selectService(id, name){
 function selectSubService(id, name){ bookingData.subServiceId=id; bookingData.subService=name; bookingStep=4; renderBooking(); }
 function onBookingBack(){
   if(bookingStep>0){
+    // From a section list, Back returns to the office list instead of Customer Type
+    if (bookingStep === 1 && currentOfficeGroup){
+      currentOfficeGroup = null;
+      renderBooking();
+      return;
+    }
     bookingStep--;
     if (bookingStep === 3 && !selectedServiceHasSubServices()) bookingStep = 2;
     renderBooking();

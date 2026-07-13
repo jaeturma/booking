@@ -39,34 +39,46 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// Offices/sections/services payload shared by the kiosk and mobile views
+if (!function_exists('kioskOfficesPayload')) {
+    function kioskOfficesPayload(): array
+    {
+        $offices = Office::with('services.subServices:id,service_id,name')
+            ->whereNotNull('show_order')
+            ->orderBy('show_order')
+            ->get(['id', 'name', 'main', 'show_order', 'icon']);
+
+        return $offices->map(function ($o) {
+            // `main` holds the parent office of a section (Admin, CID, Finance, SGOD);
+            // '1' (or empty) marks a direct-service office shown at top level.
+            $main = trim((string) $o->main);
+            return [
+                'id'       => $o->id,
+                'name'     => $o->name,
+                'icon'     => $o->icon,
+                'group'    => ($main !== '' && $main !== '1') ? $main : null,
+                'services' => $o->services->map(fn($s) => [
+                    'id'           => $s->id,
+                    'name'         => $s->name,
+                    'sub_services' => $s->subServices->map(fn($sub) => [
+                        'id'   => $sub->id,
+                        'name' => $sub->name,
+                    ])->values()->all(),
+                ])->values()->all(),
+            ];
+        })->values()->all();
+    }
+}
+
 // Public kiosk page
 Route::get('/kiosk', function () {
-    $offices = Office::with('services.subServices:id,service_id,name')
-        ->whereNotNull('show_order')
-        ->orderBy('show_order')
-        ->get(['id', 'name', 'show_order', 'icon']);
-
-    $kioskData = $offices->map(function ($o) {
-        return [
-            'id'       => $o->id,
-            'name'     => $o->name,
-            'icon'     => $o->icon,
-            'services' => $o->services->map(fn($s) => [
-                'id'           => $s->id,
-                'name'         => $s->name,
-                'sub_services' => $s->subServices->map(fn($sub) => [
-                    'id'   => $sub->id,
-                    'name' => $sub->name,
-                ])->values()->all(),
-            ])->values()->all(),
-        ];
-    })->values()->all();
-
-    return view('kiosk', ['kioskData' => $kioskData]);
+    return view('kiosk', ['kioskData' => kioskOfficesPayload()]);
 })->name('kiosk');
 
 // Mobile view
-Route::view('/mobile', 'mobile')->name('mobile');
+Route::get('/mobile', function () {
+    return view('mobile', ['kioskData' => kioskOfficesPayload()]);
+})->name('mobile');
 
 // Public document lookup
 Route::get('/docs/{tracking_no}', [DocumentController::class, 'show'])

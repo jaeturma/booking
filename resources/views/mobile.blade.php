@@ -132,6 +132,9 @@
       .office-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .office-grid > .office-btn:nth-child(-n+2){ grid-column: span 2; }
     }
+
+    /* Section lists: no featured double-width tiles */
+    .office-grid.section-grid > .office-btn:nth-child(-n+2){ grid-column: auto; }
   
   
 /* Mobile-friendly tweaks: ensure inputs and buttons are comfortably tappable */
@@ -234,26 +237,9 @@
 	  </div>
 	</div>
 
-    <!-- Survey Flow -->
+    <!-- Survey Flow (content rendered by renderSurvey) -->
     <div id="surveyFlow" class="panel hidden">
-      <div id="surveyContent">
-<div class="mb-3">
-  <label for="age" class="form-label">Age</label>
-  <input type="number" class="form-control" id="age" required>
-</div>
-<div class="mb-3">
-  <label class="form-label">Gender</label>
-  <select class="form-control" id="gender" required>
-    <option value="">Select Gender</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="other">Other</option>
-  </select>
-</div>
-<div class="mb-3">
-  <label for="mobile" class="form-label">Mobile Number</label>
-</div>
-</div>
+      <div id="surveyContent"></div>
 	  <div class="actions row g-0 w-100">
 	    <div class="col-4 d-grid">
 		  <button id="surveyBackBtn" class="btn btn-secondary hidden"><i class="bi bi-arrow-left-circle me-1"></i> Back</button>
@@ -345,8 +331,9 @@ const OFFICES = (function normalize(data){
       const id = Number(o.id ?? o.office_id ?? o.value ?? o.code ?? o.key);
       const name = (o.name ?? o.office_name ?? o.title ?? o.label ?? o.text ?? '').toString().trim();
       const icon = o.icon ?? o.icon_class ?? o.bi ?? null;
+      const group = (o.group ?? '').toString().trim() || null;
       const services = o.services ?? o.service_list ?? o.items ?? null;
-      return { id, name, icon, services };
+      return { id, name, icon, group, services };
     }).filter(o => Number.isFinite(o.id) && o.name);
   })(DB_OFFICES || []);
 
@@ -355,11 +342,28 @@ function showTemporaryAlert(message, type = "info") {
   Swal.fire({ toast:true, position:'top', icon:type, title:message, showConfirmButton:false, timer:3000, timerProgressBar:true });
 }
 function api(url, opts={}){ return fetch(url, {headers:{'Content-Type':'application/json', 'Accept':'application/json', ...(opts.headers||{})}, ...opts}); }
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  }[char]));
+}
 
 /* ========= GLOBAL STATE ========= */
 const steps = ["Customer Type", "Office", "Service", "Confirm"];
 let bookingStep = 0;
+let currentOfficeGroup = null; // set while picking a section inside a grouped office (Admin, CID, Finance, SGOD)
 const bookingData = { type:"", employeeId:"", officeId:null, office:"", serviceId:null, service:"", bookingCode:"" };
+
+const GROUP_ICONS = {
+  "Admin":   "bi-briefcase-fill",
+  "CID":     "bi-journal-bookmark-fill",
+  "Finance": "bi-cash-stack",
+  "SGOD":    "bi-people-fill",
+};
 
 let surveyIndex = -1;
 let surveyQ = [];               // loaded from API
@@ -393,69 +397,9 @@ surveyBackBtn.onclick = onSurveyBack;
 surveySubmitBtn.onclick = submitSurvey;
 document.getElementById("backToMenuBtn").onclick = goHome;
 
-/* ========= KEYPAD ========= */
-let activeInput = null;
-let currentType = "employee";
-
-  else if (input.id === "surveyBookingInput") { title.innerText = "Enter Booking/Transaction ID"; btn.innerHTML = '<i class="bi bi-check2-circle"></i> Validate Booking'; currentType="booking"; }
-  else if (input.id === "trackId") { title.innerText = "Enter Document ID"; btn.innerHTML = '<i class="bi bi-check2-circle"></i> Validate Document'; currentType="document"; }
-
-  target.value = ""; btn.className = "btn btn-primary btn-lg"; btn.onclick = validateKeypadValue; msg.classList.add("d-none");
-}
-
-  if (val === "←")  { t.value = t.value.slice(0, -1); return; }
-  t.value += val;
-}
-
-async $/.test(value)) throw { message: 'Employee ID must be 7 digits' };
-      const r = await api(`/api/employees/validate/${encodeURIComponent(value)}`);
-      const data = await r.json();
-      if(!r.ok) throw data;
-      valid = true; name = data.name || "";
-    } else if (currentType === "booking") {
-      if(!/^\d{6}$/.test(value)) throw { message: 'Booking Code must be 6 digits' };
-      const r = await api(`/api/bookings/code/${encodeURIComponent(value)}`);
-      const data = await r.json();
-      if(!r.ok) throw data;
-      valid = true; name = (data.guest_name || (data.user && data.user.name) || '');
-    } else if (currentType === "document") {
-      if (!/^\d{7}$/.test(value)) throw { message: 'Document ID must be 7 digits' };
-      const r = await api(`/api/docs/${encodeURIComponent(value)}`);
-      const data = await r.json();
-      if(!r.ok) throw data;
-      valid = true; name = data.title || `Document ${value}`;
-    }
-  } catch (e) {
-    valid = false;
-  }
-
-  if (valid) {
-    btn.innerHTML = '<i class="bi bi-arrow-right-circle"></i> Proceed';
-    btn.classList.remove("btn-primary"); btn.classList.add("btn-success");
-    btn.onclick = () => {
-      if (activeInput) activeInput.value = value;
-      const m = bootstrap.Modal.getInstance(modalEl);
-      if (m) m.hide();
-
-      if (currentType === "employee") showTemporaryAlert(`Welcome ${name||'Employee'}!`, "success");
-      if (currentType === "booking")  showTemporaryAlert(`Booking created by ${name||'client'} You can sart the CSM now`, "info");
-      if (currentType === "document") showTemporaryAlert(`${name} found.`, "success");
-    };
-  } else {
-    let message = "Entry not Found";
-    if (currentType === "employee") message = "Employee ID is 7 digits and Exist.";
-    if (currentType === "booking")  message = "Booking Code 6 digits and Exist.";
-    if (currentType === "document") message = "Document ID is 7 digits and Valid or Exist.";
-    msg.textContent = message;
-    msg.classList.remove("d-none");
-    setTimeout(() => msg.classList.add("d-none"), 3000);
-  }
-}
-
-
 /* ========= NAV ========= */
 function goHome(){
-  bookingStep=0; Object.keys(bookingData).forEach(k=>bookingData[k]=["officeId","serviceId"].includes(k)?null:"");
+  bookingStep=0; currentOfficeGroup=null; Object.keys(bookingData).forEach(k=>bookingData[k]=["officeId","serviceId"].includes(k)?null:"");
   surveyIndex=-1; surveyQ=[]; surveyAnswers={}; surveyBookingCode=""; surveyCOASelected=false;
   mainMenu.classList.remove("hidden");
   bookingFlow.classList.add("hidden"); 
@@ -467,7 +411,7 @@ function goHome(){
   document.getElementById("trackId").value = "";
 }
 function showTracker(){ mainMenu.classList.add("hidden"); document.getElementById("trackerFlow").classList.remove("hidden"); }
-function startBooking(){ mainMenu.classList.add("hidden"); bookingFlow.classList.remove("hidden"); stepsBar.classList.remove("hidden"); bookingStep=0; renderBooking(); }
+function startBooking(){ mainMenu.classList.add("hidden"); bookingFlow.classList.remove("hidden"); stepsBar.classList.remove("hidden"); bookingStep=0; currentOfficeGroup=null; renderBooking(); }
 function startSurvey(){ mainMenu.classList.add("hidden"); surveyFlow.classList.remove("hidden"); renderSurvey(); }
 function showCharter(){ mainMenu.classList.add("hidden"); charterFlow.classList.remove("hidden"); }
 
@@ -497,24 +441,53 @@ function renderBooking(){
   }
 
   if (bookingStep === 1) {
-  bookingContent.innerHTML = `
-    <h3 class="mb-3">Select Office</h3>
-    <div class="office-grid">
-      ${OFFICES.map(o => `
-        <button type="button" class="menu-btn office-btn" data-office-id="${o.id}">
+  const officeTile = (o) => `
+    <button type="button" class="menu-btn office-btn" data-office-id="${o.id}">
+      <div class="menu-content">
+        <div class="menu-header">
+          <i class="bi ${o.icon || 'bi-building'}"></i>
+          <span>${escapeHtml(o.name)}</span>
+        </div>
+      </div>
+    </button>
+  `;
+
+  const sections = currentOfficeGroup ? OFFICES.filter(o => o.group === currentOfficeGroup) : [];
+
+  if (sections.length) {
+    // Grouped office: user must pick a section before services show
+    bookingContent.innerHTML = `
+      <h3 class="mb-3">${escapeHtml(currentOfficeGroup)} — Select Section</h3>
+      <div class="office-grid section-grid">
+        ${sections.map(officeTile).join('')}
+      </div>
+    `;
+  } else {
+    currentOfficeGroup = null;
+    // Top level: ungrouped offices directly + one tile per group, in show_order sequence
+    const seenGroups = new Set();
+    const tiles = OFFICES.map(o => {
+      if (!o.group) return officeTile(o);
+      if (seenGroups.has(o.group)) return '';
+      seenGroups.add(o.group);
+      return `
+        <button type="button" class="menu-btn office-btn group-btn" data-group-name="${escapeHtml(o.group)}">
           <div class="menu-content">
             <div class="menu-header">
-              <i class="bi ${o.icon ? o.icon : 'bi-building'}"></i>
-              <span>${o.name}</span>
+              <i class="bi ${GROUP_ICONS[o.group] || 'bi-diagram-3-fill'}"></i>
+              <span>${escapeHtml(o.group)}</span>
             </div>
           </div>
         </button>
-      `).join('')}
-    </div>
-  `;
+      `;
+    }).join('');
+    bookingContent.innerHTML = `
+      <h3 class="mb-3">Select Office</h3>
+      <div class="office-grid">${tiles}</div>
+    `;
+  }
 
   backBtn?.classList?.remove('hidden');
-  nextBtn?.classList?.add('hidden');
   return;
 }
 
@@ -526,7 +499,7 @@ function renderBooking(){
         <i class="bi bi-receipt"></i> ${s.name}
       </button>
     `).join('');
-    bookingContent.innerHTML=`<h3 class="mb-3">Select Service</h3>${services || '<div class="alert alert-danger">No services configured for this office.</div>'}`;
+    bookingContent.innerHTML=`<h3 class="mb-3">${escapeHtml(office?.name || '')} — Select Service</h3>${services || '<div class="alert alert-danger">No services configured for this office.</div>'}`;
   }
 
   if (bookingStep === 3){
@@ -551,6 +524,11 @@ function renderBooking(){
     const btn = e.target.closest('.office-btn');
     if (!btn) return;
 
+    if (btn.dataset.groupName) {
+      selectOfficeGroup(btn.dataset.groupName);
+      return;
+    }
+
     const id = parseInt(btn.dataset.officeId, 10);
     if (!Number.isFinite(id)) return;
 
@@ -558,13 +536,19 @@ function renderBooking(){
   }, { passive: true });
 })();
 
+function selectOfficeGroup(name){
+  currentOfficeGroup = name;
+  bookingStep = 1;
+  renderBooking();
+}
+
 
 function selectOfficeById(id){
   const office = OFFICES.find(o => Number(o.id) === Number(id));
   if (!office) return;
 
   bookingData.officeId  = office.id;
-  bookingData.office    = office.name;
+  bookingData.office    = office.group ? `${office.group} - ${office.name}` : office.name;
   bookingData.serviceId = null;
   bookingData.service   = null;
 
@@ -578,7 +562,18 @@ function selectCustomer(type){ bookingData.type=type; bookingStep=1; renderBooki
 function continueFromGovernment(){ bookingData.employeeId=document.getElementById("employeeId").value.trim(); bookingStep=1; renderBooking(); }
 function selectOffice(id, name){ bookingData.officeId=id; bookingData.office=name; bookingStep=2; renderBooking(); }
 function selectService(id, name){ bookingData.serviceId=id; bookingData.service=name; bookingStep=3; renderBooking(); }
-function onBookingBack(){ if(bookingStep>0){ bookingStep--; renderBooking(); } }
+function onBookingBack(){
+  if(bookingStep>0){
+    // From a section list, Back returns to the office list instead of Customer Type
+    if (bookingStep === 1 && currentOfficeGroup){
+      currentOfficeGroup = null;
+      renderBooking();
+      return;
+    }
+    bookingStep--;
+    renderBooking();
+  }
+}
 
 async function confirmBooking() {
   const payload = {
@@ -1030,85 +1025,6 @@ function clearTracking(){ document.getElementById("trackId").value = ""; documen
 
 /* ========= INIT ========= */
 goHome();
-</script>
-
-<!-- Keypad Modal -->
-  <div class="modal-dialog modal-sm modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title">Enter Mobile Number</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body text-center">
-        <input type="text" id="keypadInput" class="form-control mb-3 text-center">
-        <div class="d-grid gap-2">
-          <div class="btn-group" role="group">
-            <button class="btn btn-secondary" onclick="appendDigit(1)">1</button>
-            <button class="btn btn-secondary" onclick="appendDigit(2)">2</button>
-            <button class="btn btn-secondary" onclick="appendDigit(3)">3</button>
-          </div>
-          <div class="btn-group" role="group">
-            <button class="btn btn-secondary" onclick="appendDigit(4)">4</button>
-            <button class="btn btn-secondary" onclick="appendDigit(5)">5</button>
-            <button class="btn btn-secondary" onclick="appendDigit(6)">6</button>
-          </div>
-          <div class="btn-group" role="group">
-            <button class="btn btn-secondary" onclick="appendDigit(7)">7</button>
-            <button class="btn btn-secondary" onclick="appendDigit(8)">8</button>
-            <button class="btn btn-secondary" onclick="appendDigit(9)">9</button>
-          </div>
-          <div class="btn-group" role="group">
-            <button class="btn btn-danger" onclick="clearInput()">C</button>
-            <button class="btn btn-secondary" onclick="appendDigit(0)">0</button>
-            <button class="btn btn-success" onclick="confirmMobile()">OK</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Confirmation Modal -->
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title">Confirm Your Details</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body">
-        <p><strong>Age:</strong> <span id="confirmAge"></span></p>
-        <p><strong>Gender:</strong> <span id="confirmGender"></span></p>
-        <p><strong>Mobile Number:</strong> <span id="confirmMobile"></span></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="finalizeSurvey()">Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-function appendDigit(num) {
-  document.getElementById('keypadInput').value += num;
-}
-function clearInput() {
-  document.getElementById('keypadInput').value = '';
-}
-function confirmMobile() {
-  document.getElementById('mobile').value = document.getElementById('keypadInput').value;
-}
-document.getElementById('surveySubmitBtn').addEventListener('click', function() {
-  if (!document.getElementById('age').value || !document.getElementById('gender').value || !document.getElementById('mobile').value) {
-    showTemporaryAlert("Please complete the demographic fields.", "warning");
-    return;
-  }
-  document.getElementById('confirmAge').innerText = document.getElementById('age').value;
-  document.getElementById('confirmGender').innerText = document.getElementById('gender').value;
-  document.getElementById('confirmMobile').innerText = document.getElementById('mobile').value;
-  bootstrap.Modal.getOrCreateInstance(document.getElementById('confirmModal')).show();
-});
-function finalizeSurvey() {
-  surveyData.age = document.getElementById('age').value;
-  surveyData.gender = document.getElementById('gender').value;
-  surveyData.contact = document.getElementById('mobile').value;
-  bootstrap.Modal.getInstance(document.getElementById('confirmModal')).hide();
-  submitSurvey();
-}
 </script>
 
 </body>
