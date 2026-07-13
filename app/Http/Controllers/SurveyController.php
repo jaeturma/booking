@@ -49,6 +49,7 @@ class SurveyController extends Controller
             'cc_aware'        => 'required|string|max:20',
             'cc_see'        => 'required|string|max:20',
             'cc_used'        => 'required|string|max:20',
+            'remarks'        => 'nullable|string|max:500',
         ]);
 
         $booking = Booking::where('booking_code', $data['booking_code'])->firstOrFail();
@@ -65,6 +66,7 @@ class SurveyController extends Controller
         $survey->cc_aware = $data['cc_aware'];
         $survey->cc_see = $data['cc_see'];
         $survey->cc_used = $data['cc_used'];
+        $survey->remarks = $data['remarks'] ?? null;
         $survey->employee_no = $booking->user->employee_no;
         $survey->office_id = $booking->office_id;
         $survey->service_id = $booking->service_id;

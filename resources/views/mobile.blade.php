@@ -665,7 +665,21 @@ let surveyStep = 0;
     office_id: null,
     service_id: null,
     customer_type: null,
+    remarks: null,
   };
+
+  const SURVEY_REMARKS_OPTIONS = [
+    "Very satisfied with the service provided.",
+    "Satisfied with the overall transaction.",
+    "Staff were courteous and accommodating.",
+    "Service was completed promptly and efficiently.",
+    "Instructions and requirements were clearly explained.",
+    "Waiting time was reasonable.",
+    "The transaction process was organized and easy to follow.",
+    "The office facilities were clean, safe, and comfortable.",
+    "There is room for improvement in the service provided.",
+    "I have additional comments or suggestions for improvement.",
+  ];
 
   function prefillSurveyMetaFromBooking() {
     try {
@@ -706,6 +720,8 @@ function renderSurvey(){
     `;
     surveyBackBtn.classList.toggle("hidden",surveyIndex===0);
     surveySubmitBtn.classList.add("hidden");
+  } else if (surveyIndex === surveyQ.length) {
+    renderSurveyRemarks();
   } else {
     surveyContent.innerHTML = `
       <br><center><h4>Request Certificate of Appearance?</h4>
@@ -723,6 +739,38 @@ function renderSurvey(){
     surveySubmitBtn.classList.remove("hidden"); surveySubmitBtn.disabled=true;
     document.querySelectorAll("input[name='coa']").forEach(r=>r.onchange=()=>{ surveyCOASelected = (document.getElementById('coaYes').checked); surveySubmitBtn.disabled=false; });
   }
+}
+
+/* Remarks: last question before submission — pick a preset or write your own */
+function renderSurveyRemarks(){
+  const isCustom = !!surveyData.remarks && !SURVEY_REMARKS_OPTIONS.includes(surveyData.remarks);
+  surveyContent.innerHTML = `
+    <h4>Question ${surveyQ.length + 1}</h4>
+    <p class="fw-bold mt-2 mb-3">Remarks — how was the service you received?</p>
+    <select id="surveyRemarksSelect" class="form-select form-select-lg mb-3">
+      <option value="">-- Select a remark --</option>
+      ${SURVEY_REMARKS_OPTIONS.map(o => `<option value="${escapeHtml(o)}" ${surveyData.remarks === o ? 'selected' : ''}>${escapeHtml(o)}</option>`).join('')}
+      <option value="__custom__" ${isCustom ? 'selected' : ''}>I want to write my own remarks…</option>
+    </select>
+    <textarea id="surveyRemarksText" class="form-control form-control-lg ${isCustom ? '' : 'd-none'}" rows="3" maxlength="500" placeholder="Type your remarks here...">${isCustom ? escapeHtml(surveyData.remarks) : ''}</textarea>
+    <button id="surveyRemarksNext" type="button" class="btn btn-primary btn-lg w-100 mt-3" disabled>
+      <i class="bi bi-arrow-right-circle me-1"></i> Continue
+    </button>
+  `;
+  const sel  = document.getElementById("surveyRemarksSelect");
+  const txt  = document.getElementById("surveyRemarksText");
+  const next = document.getElementById("surveyRemarksNext");
+  const sync = () => {
+    if (sel.value === '__custom__') { txt.classList.remove('d-none'); next.disabled = !txt.value.trim(); }
+    else { txt.classList.add('d-none'); next.disabled = !sel.value; }
+  };
+  sel.onchange = sync; txt.oninput = sync; sync();
+  next.onclick = () => {
+    surveyData.remarks = sel.value === '__custom__' ? txt.value.trim() : sel.value;
+    surveyIndex++; renderSurvey();
+  };
+  surveyBackBtn.classList.remove("hidden");
+  surveySubmitBtn.classList.add("hidden");
 }
 
 async function proceedSurveyBookingId(){
@@ -745,6 +793,7 @@ async function proceedSurveyBookingId(){
       surveyBookingCode = code;
       surveyQ           = data.questions || [];
       surveyAnswers     = {};
+      surveyData.remarks = null;
 
       // If booking meta was set earlier, copy it now (optional but harmless)
       prefillSurveyMetaFromBooking();
@@ -981,7 +1030,7 @@ async function submitSurvey(){
         cc_aware: surveyData.cc_aware,
         cc_see: surveyData.cc_see,
         cc_used: surveyData.cc_used,
-        //remarks: surveyData.remarks,
+        remarks: surveyData.remarks || null,
       })
     });
     const data = await r.json();

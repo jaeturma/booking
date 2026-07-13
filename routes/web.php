@@ -161,6 +161,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/users/template', [UserController::class, 'downloadTemplate'])->name('users.template');
             Route::post('/users/import',  [UserController::class, 'importCsv'])->name('users.import');
             Route::get('/surveys/data',               [SurveyController::class, 'getData'])->name('surveys.data');
+            Route::get('/surveys/export',             [SurveyController::class, 'export'])->name('surveys.export');
             Route::get('/surveys/{survey}/responses', [SurveyController::class, 'responses'])->name('surveys.responses');
             Route::get('/surveys',                    [SurveyController::class, 'index'])->name('surveys.index');
             Route::resource('users',       UserController::class);

@@ -10,8 +10,11 @@
 
 @section('content')
 <div class="card mt-3">
-    <div class="card-header">
-        <h3 class="card-title">Survey Responses</h3>
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title mb-0">Survey Responses</h3>
+        <a href="{{ route('admin.surveys.export') }}" class="btn btn-sm btn-success">
+            <i class="fas fa-file-excel mr-1"></i> Export to Excel
+        </a>
     </div>
     <div class="card-body">
         <table id="surveysTable" class="table table-sm table-striped table-hover table-bordered">
