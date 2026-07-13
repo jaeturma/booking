@@ -278,6 +278,10 @@
     /* Section lists: no featured double-width tiles */
     .office-grid.section-grid > .office-btn:nth-child(-n+2){ grid-column: auto; }
 
+    /* Explicit double-width tiles (top-level ICT/Legal + featured section tiles) */
+    .office-grid > .office-btn.tile-span-2,
+    .office-grid.section-grid > .office-btn.tile-span-2{ grid-column: span 2; }
+
     .kiosk-footer {
       background: #FFD700;
       text-align: center;
@@ -989,6 +993,17 @@ const GROUP_ICONS = {
   "Finance": "bi-cash-stack",
   "SGOD":    "bi-people-fill",
 };
+
+/* Kiosk layout tweaks — presentation only, booking logic untouched.
+   Top-level offices matching this pattern move to the last row, double width. */
+const TOP_LEVEL_LAST_ROW = /\b(ICT|Legal)\b/i;
+/* Per-group section layout: `order` lists names shown first (rest keep DB order),
+   `wide` names render at double width (2 of the 4 grid columns). */
+const SECTION_LAYOUTS = {
+  "Finance": { wide: ["Accounting", "Budget"] },
+  "CID":     { order: ["Instructional Management", "LRMS", "PSDS"], wide: ["Instructional Management"] },
+  "Admin":   { order: ["Personnel", "Records"], wide: ["Personnel", "Records"] },
+};
 const bookingData = { type:"", employeeId:"", officeId:null, office:"", serviceId:null, service:"", subServiceId:null, subService:"", bookingCode:"", coeEmployeeNo:"", coeName:"", coeDistrict:"", coeOffice:"", purpose:"" };
 
 const COE_PURPOSES = [
@@ -1225,8 +1240,8 @@ function renderBooking(){
   }
 
   if (bookingStep === 1) {
-  const officeTile = (o) => `
-    <button type="button" class="menu-btn office-btn" data-office-id="${o.id}">
+  const officeTile = (o, widthClass = '') => `
+    <button type="button" class="menu-btn office-btn${widthClass ? ' ' + widthClass : ''}" data-office-id="${o.id}">
       <div class="menu-content">
         <div class="menu-header">
           <i class="bi ${o.icon || 'bi-building'}"></i>
@@ -1240,21 +1255,33 @@ function renderBooking(){
 
   if (sections.length) {
     // Grouped office: user must pick a section before services show
+    const layout = SECTION_LAYOUTS[currentOfficeGroup] || {};
+    const order = layout.order || [];
+    const wide = layout.wide || [];
+    const rank = (o) => { const i = order.indexOf(o.name); return i === -1 ? order.length : i; };
+    const ordered = order.length ? [...sections].sort((a, b) => rank(a) - rank(b)) : sections;
     bookingContent.innerHTML = `
       <h3 class="mb-3">${escapeHtml(currentOfficeGroup)} — Select Section</h3>
       <div class="office-grid section-grid">
-        ${sections.map(officeTile).join('')}
+        ${ordered.map(o => officeTile(o, wide.includes(o.name) ? 'tile-span-2' : '')).join('')}
       </div>
     `;
   } else {
     currentOfficeGroup = null;
-    // Top level: ungrouped offices directly + one tile per group, in show_order sequence
+    // Top level: ungrouped offices directly + one tile per group, in show_order
+    // sequence, except ICT/Legal which render last at double width
     const seenGroups = new Set();
-    const tiles = OFFICES.map(o => {
-      if (!o.group) return officeTile(o);
-      if (seenGroups.has(o.group)) return '';
+    const mainTiles = [];
+    const lastRowTiles = [];
+    OFFICES.forEach(o => {
+      if (!o.group) {
+        if (TOP_LEVEL_LAST_ROW.test(o.name)) lastRowTiles.push(officeTile(o, 'tile-span-2'));
+        else mainTiles.push(officeTile(o));
+        return;
+      }
+      if (seenGroups.has(o.group)) return;
       seenGroups.add(o.group);
-      return `
+      mainTiles.push(`
         <button type="button" class="menu-btn office-btn group-btn" data-group-name="${escapeHtml(o.group)}">
           <div class="menu-content">
             <div class="menu-header">
@@ -1263,11 +1290,11 @@ function renderBooking(){
             </div>
           </div>
         </button>
-      `;
-    }).join('');
+      `);
+    });
     bookingContent.innerHTML = `
       <h3 class="mb-3">Select Office</h3>
-      <div class="office-grid">${tiles}</div>
+      <div class="office-grid">${mainTiles.join('')}${lastRowTiles.join('')}</div>
     `;
   }
 
